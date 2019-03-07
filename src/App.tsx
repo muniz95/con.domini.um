@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from './components/Header';
+const Home = React.lazy(() => import("./views/Home"));
+import 'typeface-roboto';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <Header />
+          <div className="container">
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route exact={true} path="/" component={Home} />
+              </Switch>
+            </React.Suspense>
+          </div>
+        </div>
+      </Router>
     );
   }
 }
