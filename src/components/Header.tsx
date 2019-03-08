@@ -69,8 +69,8 @@ class Header extends React.Component<IProps, IState> {
       <div className={classes.list}>
         <List>
           {menuEntries.map((entry, index) => (
-            <Link to={`/${entry.url}`}>
-              <ListItem button key={index}>
+            <Link to={`/${entry.url}`} key={index}>
+              <ListItem button>
                 <ListItemIcon>{entry.icon}</ListItemIcon>
                 <ListItemText primary={entry.name} />
               </ListItem>
