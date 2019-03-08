@@ -69,7 +69,7 @@ class Header extends React.Component<IProps, IState> {
       <div className={classes.list}>
         <List>
           {menuEntries.map((entry, index) => (
-            <Link to="/">
+            <Link to={`/${entry.url}`}>
               <ListItem button key={index}>
                 <ListItemIcon>{entry.icon}</ListItemIcon>
                 <ListItemText primary={entry.name} />
@@ -107,27 +107,28 @@ class Header extends React.Component<IProps, IState> {
 }
 
 const menuEntries = [
-  { name: "Administradora", icon: <InboxIcon /> },
-  { name: "Assembleias", icon: <InboxIcon /> },
-  { name: "Brigada de incêndio", icon: <InboxIcon /> },
-  { name: "Caixa de sugestão", icon: <InboxIcon /> },
-  { name: "Carona Solidária", icon: <InboxIcon /> },
-  { name: "Classificados", icon: <InboxIcon /> },
-  { name: "Colaboradores", icon: <InboxIcon /> },
-  { name: "Correspondências", icon: <InboxIcon /> },
-  { name: "Documentos", icon: <InboxIcon /> },
-  { name: "Enquetes", icon: <InboxIcon /> },
-  { name: "Eventos", icon: <InboxIcon /> },
-  { name: "Galeria de fotos", icon: <InboxIcon /> },
-  { name: "Lista de Acesso", icon: <InboxIcon /> },
-  { name: "Mensagens", icon: <InboxIcon /> },
-  { name: "Notificações", icon: <InboxIcon /> },
-  { name: "Obras & Providências", icon: <InboxIcon /> },
-  { name: "Ocorrências", icon: <InboxIcon /> },
-  { name: "Quadro de Avisos", icon: <InboxIcon /> },
-  { name: "Reservas", icon: <InboxIcon /> },
-  { name: "Visita de Prestadores", icon: <InboxIcon /> },
-  { name: "Votações", icon: <InboxIcon /> },
+  { name: "Achados & Perdidos", url:"lostfound", icon: <InboxIcon /> },
+  { name: "Administradora", url:"", icon: <InboxIcon /> },
+  { name: "Assembleias", url:"", icon: <InboxIcon /> },
+  { name: "Brigada de incêndio", url:"", icon: <InboxIcon /> },
+  { name: "Caixa de sugestão", url:"", icon: <InboxIcon /> },
+  { name: "Carona Solidária", url:"", icon: <InboxIcon /> },
+  { name: "Classificados", url:"", icon: <InboxIcon /> },
+  { name: "Colaboradores", url:"", icon: <InboxIcon /> },
+  { name: "Correspondências", url:"", icon: <InboxIcon /> },
+  { name: "Documentos", url:"", icon: <InboxIcon /> },
+  { name: "Enquetes", url:"", icon: <InboxIcon /> },
+  { name: "Eventos", url:"", icon: <InboxIcon /> },
+  { name: "Galeria de fotos", url:"", icon: <InboxIcon /> },
+  { name: "Lista de Acesso", url:"", icon: <InboxIcon /> },
+  { name: "Mensagens", url:"", icon: <InboxIcon /> },
+  { name: "Notificações", url:"", icon: <InboxIcon /> },
+  { name: "Obras & Providências", url:"", icon: <InboxIcon /> },
+  { name: "Ocorrências", url:"", icon: <InboxIcon /> },
+  { name: "Quadro de Avisos", url:"", icon: <InboxIcon /> },
+  { name: "Reservas", url:"", icon: <InboxIcon /> },
+  { name: "Visita de Prestadores", url:"", icon: <InboxIcon /> },
+  { name: "Votações", url:"", icon: <InboxIcon /> },
 ];
   
 export default withStyles(styles)(Header);
