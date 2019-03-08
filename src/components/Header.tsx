@@ -8,7 +8,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -22,6 +21,9 @@ const styles = createStyles({
   },
   list: {
     width: 250,
+  },
+  listItemText: {
+    fontSize: "0.9em",
   },
   fullList: {
     width: 'auto',
@@ -66,44 +68,13 @@ class Header extends React.Component<IProps, IState> {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {menuEntries.map((entry, index) => (
             <Link to="/">
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+              <ListItem button key={index}>
+                <ListItemIcon>{entry.icon}</ListItemIcon>
+                <ListItemText primary={entry.name} />
               </ListItem>
             </Link>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
           ))}
         </List>
       </div>
@@ -134,5 +105,29 @@ class Header extends React.Component<IProps, IState> {
     );
   }
 }
+
+const menuEntries = [
+  { name: "Administradora", icon: <InboxIcon /> },
+  { name: "Assembleias", icon: <InboxIcon /> },
+  { name: "Brigada de incêndio", icon: <InboxIcon /> },
+  { name: "Caixa de sugestão", icon: <InboxIcon /> },
+  { name: "Carona Solidária", icon: <InboxIcon /> },
+  { name: "Classificados", icon: <InboxIcon /> },
+  { name: "Colaboradores", icon: <InboxIcon /> },
+  { name: "Correspondências", icon: <InboxIcon /> },
+  { name: "Documentos", icon: <InboxIcon /> },
+  { name: "Enquetes", icon: <InboxIcon /> },
+  { name: "Eventos", icon: <InboxIcon /> },
+  { name: "Galeria de fotos", icon: <InboxIcon /> },
+  { name: "Lista de Acesso", icon: <InboxIcon /> },
+  { name: "Mensagens", icon: <InboxIcon /> },
+  { name: "Notificações", icon: <InboxIcon /> },
+  { name: "Obras & Providências", icon: <InboxIcon /> },
+  { name: "Ocorrências", icon: <InboxIcon /> },
+  { name: "Quadro de Avisos", icon: <InboxIcon /> },
+  { name: "Reservas", icon: <InboxIcon /> },
+  { name: "Visita de Prestadores", icon: <InboxIcon /> },
+  { name: "Votações", icon: <InboxIcon /> },
+];
   
 export default withStyles(styles)(Header);
