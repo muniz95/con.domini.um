@@ -50,7 +50,7 @@ const styles = createStyles({
 const menuEntries: IMenuEntry[] = [
   { name: "Achados & Perdidos", url:"lostfound", icon: <InboxIcon /> },
   { name: "Administradora", url:"administrator", icon: <InboxIcon /> },
-  { name: "Assembleias", url:"", icon: <InboxIcon /> },
+  { name: "Assembleias", url:"assemblies", icon: <InboxIcon /> },
   { name: "Brigada de incêndio", url:"", icon: <InboxIcon /> },
   { name: "Caixa de sugestão", url:"", icon: <InboxIcon /> },
   { name: "Carona Solidária", url:"", icon: <InboxIcon /> },
