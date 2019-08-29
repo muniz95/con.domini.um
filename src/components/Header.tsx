@@ -24,7 +24,7 @@ interface IMenuEntry {
 // tslint:disable-next-line: typedef
 const styles = createStyles({
   appBar: {
-    backgroundColor: "#f00",
+    backgroundColor: "#faa473",
   },
   list: {
     width: 250,
