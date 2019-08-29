@@ -1,6 +1,6 @@
 import React from "react";
 
 const Home: React.FC = () =>
-  <div>Home</div>;
+  <div>Início</div>;
 
 export default Home;
