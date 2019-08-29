@@ -1,11 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class LostFound extends Component {
-  render() {
-    return (
-      <div>
-        Achados e perdidos
-      </div>
-    )
-  }
-}
+const LostFound: React.FC = () =>
+  <div>Achados e perdidos</div>;
+
+export default LostFound;

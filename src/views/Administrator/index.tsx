@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { observer } from "mobx-react-lite";
+import AdministratorStore from "./store";
 
-export const Administrator: React.FC = () => {
-  const [administrators, setAdmins] = useState([]);
+const Administrator: React.FC<{}> = observer(() => {
+  const store = React.useContext(AdministratorStore);
+  return (
+    <div>
+      <h1>{store.administrators.length}</h1>
+    </div>
+  );
+});
 
-  useEffect(() => {
-    setAdmins([{name: "Admin", url: "/"}]);
-  }, [administrators]);
-
-  return <div>Administradora: {administrators.length}</div>;
-};
+export default Administrator;
