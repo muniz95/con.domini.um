@@ -23,9 +23,29 @@ export const EmojiBox = styled.div`
   flex-direction: column;
 `;
 
+export const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
+export const Table = styled.table`
+  width: 90%;
+  tbody {
+    tr {
+      td {
+        text-align: left;
+        border-style: none;
+      }
+    }
+  }
+`;
+
 export default {
   SmileysContainer,
   SadEmoji,
   HappyEmoji,
   EmojiBox,
+  Center,
+  Table,
 };
