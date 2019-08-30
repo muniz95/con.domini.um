@@ -1,10 +1,12 @@
 import React from "react";
 import S from "./styled";
 import { observer } from "mobx-react-lite";
-import LostFoundStore from './store';
+import LostFoundStore from "./store";
+import LostFoundItem from "../../models/LostFoundItem";
 
 const LostFound: React.FC = observer(() => {
   const store = React.useContext(LostFoundStore);
+  store.fetchItems();
   return <React.Fragment>
     <h2>Achados & perdidos</h2>
     <p>Comunique perdas ou avise se porventura encontrar objetos ou valores nas dependências do condomínio.</p>
@@ -24,18 +26,18 @@ const LostFound: React.FC = observer(() => {
     <S.Center>
       <S.Table>
         <tbody>
-          { store.items.map((item) => 
-            <tr>
-              <td>Notebook</td>
-              <td>Administração - gestor - gestão</td>
-              <td>04/11/2018</td>
-              <td>Resolvido</td>
+          { store.items.map((item: LostFoundItem) =>
+            <tr key={item.id}>
+              <td>{item.name}</td>
+              <td>{item.foundBy}</td>
+              <td>{item.creationDate.toDateString()}</td>
+              <td>{item.status}</td>
             </tr>
           ) }
         </tbody>
       </S.Table>
     </S.Center>
-  </React.Fragment>
+  </React.Fragment>;
 });
 
 export default LostFound;
