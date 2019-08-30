@@ -1,5 +1,7 @@
-export const defaultPrimaryColor = "#faa473";
+export const primaryColor = "#faa473";
+export const secondaryColor = "#930154";
 
 export default {
-  defaultPrimaryColor,
+  primaryColor,
+  secondaryColor,
 };

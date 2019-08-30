@@ -11,12 +11,12 @@ export const SmileysContainer = styled.div`
 
 export const SadEmoji = styled(MoodBad)`
   font-size: 8pc;
-  color: ${global.defaultPrimaryColor};
+  color: ${global.primaryColor};
 `;
 
 export const HappyEmoji = styled(Mood)`
   font-size: 8pc;
-  color: ${global.defaultPrimaryColor};
+  color: ${global.primaryColor};
 `;
 
 export const EmojiBox = styled.div`
@@ -52,7 +52,7 @@ export const ItemCard = styled.div`
 
 export const ItemCardBody = styled.div`
   width: 100%;
-  background-color: ${global.defaultPrimaryColor};
+  background-color: ${global.primaryColor};
   margin: 5px;
   border-radius: 5px;
 `;
