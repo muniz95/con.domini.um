@@ -23,20 +23,16 @@ const LostFound: React.FC = observer(() => {
       </S.EmojiBox>
     </S.SmileysContainer>
 
-    <S.Center>
-      <S.Table>
-        <tbody>
-          { store.items.map((item: LostFoundItem) =>
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.foundBy}</td>
-              <td>{item.creationDate.toLocaleDateString()}</td>
-              <td>{item.status}</td>
-            </tr>,
-          ) }
-        </tbody>
-      </S.Table>
-    </S.Center>
+    <S.ItemCardContainer>
+      { store.items.map((item: LostFoundItem) =>
+        <S.ItemCard>
+          <S.ItemCardBody>
+            <h2>{item.name}</h2>
+            <h6>{item.creationDate.toLocaleDateString("pt-BR")}</h6>
+          </S.ItemCardBody>
+        </S.ItemCard>,
+      ) }
+    </S.ItemCardContainer>
   </React.Fragment>;
 });
 

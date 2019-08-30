@@ -1,6 +1,7 @@
 import Mood from "@material-ui/icons/Mood";
 import MoodBad from "@material-ui/icons/MoodBad";
 import styled from "styled-components";
+import global from "../../global.style";
 
 export const SmileysContainer = styled.div`
   display: flex;
@@ -10,12 +11,12 @@ export const SmileysContainer = styled.div`
 
 export const SadEmoji = styled(MoodBad)`
   font-size: 8pc;
-  color: #faa473;
+  color: ${global.defaultPrimaryColor};
 `;
 
 export const HappyEmoji = styled(Mood)`
   font-size: 8pc;
-  color: #faa473;
+  color: ${global.defaultPrimaryColor};
 `;
 
 export const EmojiBox = styled.div`
@@ -27,6 +28,33 @@ export const Center = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
+`;
+
+export const ItemCardContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const ItemCard = styled.div`
+  height: 150px;
+  display: flex;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 50%;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 25%;
+  }
+`;
+
+export const ItemCardBody = styled.div`
+  width: 100%;
+  background-color: ${global.defaultPrimaryColor};
+  margin: 5px;
+  border-radius: 5px;
 `;
 
 export const Table = styled.table`
@@ -42,10 +70,13 @@ export const Table = styled.table`
 `;
 
 export default {
-  SmileysContainer,
-  SadEmoji,
-  HappyEmoji,
-  EmojiBox,
   Center,
+  EmojiBox,
+  HappyEmoji,
+  ItemCard,
+  ItemCardBody,
+  ItemCardContainer,
+  SadEmoji,
+  SmileysContainer,
   Table,
 };
