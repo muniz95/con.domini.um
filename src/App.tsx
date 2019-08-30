@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from './components/Header';
-import routes from './routes';
-import 'typeface-roboto';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "typeface-roboto";
+import "./App.css";
+import Header from "./components/Header";
+import routes from "./routes";
 
 const App: React.FC = () =>
   <Router>
@@ -13,7 +13,7 @@ const App: React.FC = () =>
         <React.Suspense fallback={<div>Loading...</div>}>
           <Switch>
             {routes.map(({exact, path, component}) =>
-              <Route exact={exact} path={`/${path}`} component={component} key={path} />
+              <Route exact={exact} path={`/${path}`} component={component} key={path} />,
             )}
           </Switch>
         </React.Suspense>

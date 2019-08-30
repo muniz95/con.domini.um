@@ -1,18 +1,18 @@
-import React from "react";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
+import Drawer from "@material-ui/core/Drawer";
+import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import MailIcon from "@material-ui/icons/Mail";
+import MenuIcon from "@material-ui/icons/Menu";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface IMenuEntry {
@@ -48,28 +48,28 @@ const styles = createStyles({
 });
 
 const menuEntries: IMenuEntry[] = [
-  { name: "Achados & Perdidos", url:"lostfound", icon: <InboxIcon /> },
-  { name: "Administradora", url:"administrator", icon: <InboxIcon /> },
-  { name: "Assembleias", url:"assemblies", icon: <InboxIcon /> },
-  { name: "Brigada de incêndio", url:"brigade", icon: <InboxIcon /> },
-  { name: "Caixa de sugestão", url:"sugestions", icon: <InboxIcon /> },
-  { name: "Carona Solidária", url:"ride", icon: <InboxIcon /> },
-  { name: "Classificados", url:"smallads", icon: <InboxIcon /> },
-  { name: "Colaboradores", url:"collaborators", icon: <InboxIcon /> },
-  { name: "Correspondências", url:"mail", icon: <InboxIcon /> },
-  { name: "Documentos", url:"documents", icon: <InboxIcon /> },
-  { name: "Enquetes", url:"surveys", icon: <InboxIcon /> },
-  { name: "Eventos", url:"events", icon: <InboxIcon /> },
-  { name: "Galeria de fotos", url:"gallery", icon: <InboxIcon /> },
-  { name: "Lista de Acesso", url:"accesslist", icon: <InboxIcon /> },
-  { name: "Mensagens", url:"messages", icon: <InboxIcon /> },
-  { name: "Notificações", url:"notifications", icon: <InboxIcon /> },
-  { name: "Obras & Providências", url:"buildingsandprovidences", icon: <InboxIcon /> },
-  { name: "Ocorrências", url:"occurrences", icon: <InboxIcon /> },
-  { name: "Quadro de Avisos", url:"board", icon: <InboxIcon /> },
-  { name: "Reservas", url:"reservations", icon: <InboxIcon /> },
-  { name: "Visita de Prestadores", url:"providers", icon: <InboxIcon /> },
-  { name: "Votações", url:"polls", icon: <InboxIcon /> },
+  { name: "Achados & Perdidos", url: "lostfound", icon: <InboxIcon /> },
+  { name: "Administradora", url: "administrator", icon: <InboxIcon /> },
+  { name: "Assembleias", url: "assemblies", icon: <InboxIcon /> },
+  { name: "Brigada de incêndio", url: "brigade", icon: <InboxIcon /> },
+  { name: "Caixa de sugestão", url: "sugestions", icon: <InboxIcon /> },
+  { name: "Carona Solidária", url: "ride", icon: <InboxIcon /> },
+  { name: "Classificados", url: "smallads", icon: <InboxIcon /> },
+  { name: "Colaboradores", url: "collaborators", icon: <InboxIcon /> },
+  { name: "Correspondências", url: "mail", icon: <InboxIcon /> },
+  { name: "Documentos", url: "documents", icon: <InboxIcon /> },
+  { name: "Enquetes", url: "surveys", icon: <InboxIcon /> },
+  { name: "Eventos", url: "events", icon: <InboxIcon /> },
+  { name: "Galeria de fotos", url: "gallery", icon: <InboxIcon /> },
+  { name: "Lista de Acesso", url: "accesslist", icon: <InboxIcon /> },
+  { name: "Mensagens", url: "messages", icon: <InboxIcon /> },
+  { name: "Notificações", url: "notifications", icon: <InboxIcon /> },
+  { name: "Obras & Providências", url: "buildingsandprovidences", icon: <InboxIcon /> },
+  { name: "Ocorrências", url: "occurrences", icon: <InboxIcon /> },
+  { name: "Quadro de Avisos", url: "board", icon: <InboxIcon /> },
+  { name: "Reservas", url: "reservations", icon: <InboxIcon /> },
+  { name: "Visita de Prestadores", url: "providers", icon: <InboxIcon /> },
+  { name: "Votações", url: "polls", icon: <InboxIcon /> },
 ];
 
 interface IProps extends WithStyles<typeof styles> {}
@@ -81,20 +81,20 @@ interface IState {
 }
 
 class Header extends React.Component<IProps, IState> {
-  state = {
+  public state = {
     top: false,
     left: false,
     bottom: false,
     right: false,
   };
 
-  toggleDrawer = (side: string, open: boolean) => () => {
+  public toggleDrawer = (side: string, open: boolean) => () => {
     this.setState({
       [side]: open,
     } as any);
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     const { classes } = this.props;
 
     const sideList: JSX.Element = (

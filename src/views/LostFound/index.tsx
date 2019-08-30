@@ -1,8 +1,8 @@
+import { observer } from "mobx-react";
 import React from "react";
-import S from "./styled";
-import { observer } from "mobx-react-lite";
-import LostFoundStore from "./store";
 import LostFoundItem from "../../models/LostFoundItem";
+import LostFoundStore from "./store";
+import S from "./styled";
 
 const LostFound: React.FC = observer(() => {
   const store = React.useContext(LostFoundStore);
@@ -30,9 +30,9 @@ const LostFound: React.FC = observer(() => {
             <tr key={item.id}>
               <td>{item.name}</td>
               <td>{item.foundBy}</td>
-              <td>{item.creationDate.toDateString()}</td>
+              <td>{item.creationDate.toLocaleDateString()}</td>
               <td>{item.status}</td>
-            </tr>
+            </tr>,
           ) }
         </tbody>
       </S.Table>
