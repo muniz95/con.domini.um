@@ -11,12 +11,12 @@ export const SmileysContainer = styled.div`
 export const SiteIcon = styled(Computer)`
   font-size: 8pc;
   color: ${global.primaryColor};
-`;
+` as keyof JSX.IntrinsicElements;
 
 export const BuildingIcon = styled(LocationCity)`
   font-size: 8pc;
   color: ${global.primaryColor};
-`;
+` as keyof JSX.IntrinsicElements;
 
 export const IconBox = styled.div`
   display: flex;
