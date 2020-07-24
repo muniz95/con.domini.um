@@ -9,7 +9,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import React from "react";

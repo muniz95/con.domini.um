@@ -6,7 +6,7 @@ import S from "./styled";
 const Ride: React.FC<{}> = observer(() => {
   const store = React.useContext(RideStore);
   const [fieldVisible, setFieldVisible] = React.useState(false);
-  const [selectedIcon, setSelectedIcon] = React.useState("");
+  const [, setSelectedIcon] = React.useState("");
   const offerIconAction = () => {
     if (!fieldVisible) {
       setFieldVisible(true);
