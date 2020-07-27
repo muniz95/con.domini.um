@@ -4,8 +4,9 @@ import S from "./styled";
 import Tabs from "@material-ui/core/Tabs";
 import AppBar from "@material-ui/core/AppBar";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Box from '@material-ui/core/Box';
+import SmallAd from "../../models/SmallAd";
+import SmallAdStore from "./store";
 
 function a11yProps(index: number) {
   return {
@@ -15,7 +16,13 @@ function a11yProps(index: number) {
 }
 
 const SmallAds: React.FC<{}> = observer(() => {
+  const store = React.useContext(SmallAdStore);
   const [value, setValue] = React.useState(0);
+  const myAds = (ad: SmallAd) => ad.createdBy === 'me';
+  
+  React.useEffect(() => {
+    store.fetchItems();
+  }, [store]);
 
   const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
@@ -36,10 +43,28 @@ const SmallAds: React.FC<{}> = observer(() => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Item One
+        <S.AdCardContainer>
+          { store.ads.map((item: SmallAd) =>
+            <S.AdCard key={item.id}>
+              <S.AdCardBody>
+                <S.AdCardTitle>{item.name}</S.AdCardTitle>
+                <span>{item.creationDate.toLocaleDateString("pt-BR")}</span>
+              </S.AdCardBody>
+            </S.AdCard>,
+          ) }
+        </S.AdCardContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <S.AdCardContainer>
+          { store.ads.filter(myAds).map((item: SmallAd) =>
+            <S.AdCard key={item.id}>
+              <S.AdCardBody>
+                <S.AdCardTitle>{item.name}</S.AdCardTitle>
+                <span>{item.creationDate.toLocaleDateString("pt-BR")}</span>
+              </S.AdCardBody>
+            </S.AdCard>,
+          ) }
+        </S.AdCardContainer>
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
@@ -60,7 +85,7 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
