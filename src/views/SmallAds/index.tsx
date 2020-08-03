@@ -7,6 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Box from '@material-ui/core/Box';
 import SmallAd from "../../models/SmallAd";
 import SmallAdStore from "./store";
+import global from '../../global.style';
 
 function a11yProps(index: number) {
   return {
@@ -31,7 +32,7 @@ const SmallAds: React.FC<{}> = observer(() => {
   return (
     <React.Fragment>
       <h2>Classificados</h2>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor: global.primaryColor}}>
         <Tabs
           value={value}
           onChange={handleChange}
