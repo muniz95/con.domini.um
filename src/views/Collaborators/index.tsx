@@ -1,8 +1,27 @@
 import { observer } from "mobx-react";
 import React from "react";
+import CollaboratorsStore from './store';
+import S from './styled';
 
 const Collaborators: React.FC<{}> = observer(() => {
-  return <div>Colaboradores</div>;
+  const store = React.useContext(CollaboratorsStore);
+  return (
+    <>
+      <h2>Colaboradores</h2>
+      <S.Center>
+        <S.Table>
+          {store.collaborators.map((record) =>
+            <tr>
+              <td>{record.name}</td>
+              <td>{record.role}</td>
+              <td>{record.startWork}</td>
+              <td>{record.endWork}</td>
+            </tr>,
+          )}
+        </S.Table>
+      </S.Center>
+    </>
+  );
 });
 
 export default Collaborators;
