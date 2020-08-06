@@ -3,7 +3,7 @@ class Event {
     const item = new Event();
     item.id = id;
     item.title = title;
-    item.title = local;
+    item.local = local;
     item.date = date;
     item.attending = attending;
     return item;
