@@ -6,7 +6,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -20,8 +20,7 @@ interface IMenuEntry {
   icon: JSX.Element;
 }
 
-// tslint:disable-next-line: typedef
-const styles = createStyles({
+const useStyles = makeStyles({
   appBar: {
     backgroundColor: "#faa473",
   },
@@ -39,10 +38,6 @@ const styles = createStyles({
   },
   grow: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
   },
 });
 
@@ -63,7 +58,11 @@ const menuEntries: IMenuEntry[] = [
   { name: "Lista de Acesso", url: "accesslist", icon: <InboxIcon /> },
   { name: "Mensagens", url: "messages", icon: <InboxIcon /> },
   { name: "Notificações", url: "notifications", icon: <InboxIcon /> },
-  { name: "Obras & Providências", url: "buildingsandprovidences", icon: <InboxIcon /> },
+  {
+    name: "Obras & Providências",
+    url: "buildingsandprovidences",
+    icon: <InboxIcon />,
+  },
   { name: "Ocorrências", url: "occurrences", icon: <InboxIcon /> },
   { name: "Quadro de Avisos", url: "board", icon: <InboxIcon /> },
   { name: "Reservas", url: "reservations", icon: <InboxIcon /> },
@@ -71,70 +70,73 @@ const menuEntries: IMenuEntry[] = [
   { name: "Votações", url: "polls", icon: <InboxIcon /> },
 ];
 
-interface IProps extends WithStyles<typeof styles> {}
-interface IState {
-  top: boolean;
-  left: boolean;
-  bottom: boolean;
-  right: boolean;
-}
+type Anchor = "top" | "left" | "bottom" | "right";
 
-class Header extends React.Component<IProps, IState> {
-  public state = {
+export default function Header() {
+  const classes = useStyles();
+  const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
+  });
+
+  const sideList: JSX.Element = (
+    <div className={classes.list}>
+      <List>
+        {menuEntries.map((entry, index) => (
+          <Link to={`/${entry.url}`} key={entry.name}>
+            <ListItem button key={index}>
+              <ListItemIcon>{entry.icon}</ListItemIcon>
+              <ListItemText primary={entry.name} />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+    </div>
+  );
+
+  const toggleDrawer = (anchor: Anchor, open: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent
+  ) => {
+    if (
+      event.type === "keydown" &&
+      ((event as React.KeyboardEvent).key === "Tab" ||
+        (event as React.KeyboardEvent).key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
   };
 
-  public toggleDrawer = (side: string, open: boolean) => () => {
-    this.setState({
-      [side]: open,
-    } as any);
-  }
-
-  public render(): JSX.Element {
-    const { classes } = this.props;
-
-    const sideList: JSX.Element = (
-      <div className={classes.list}>
-        <List>
-          { menuEntries.map((entry, index) => (
-            <Link to={`/${entry.url}`} key={entry.name}>
-              <ListItem button key={index}>
-                <ListItemIcon>{entry.icon}</ListItemIcon>
-                <ListItemText primary={entry.name} />
-              </ListItem>
-            </Link>
-          )) }
-        </List>
-      </div>
-    );
-
-    return (
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <IconButton className={classes.menuButton} onClick={this.toggleDrawer("left", true)} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-        <Drawer open={this.state.left} onClose={this.toggleDrawer("left", false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer("left", false)}
-            onKeyDown={this.toggleDrawer("left", false)}
-          >
-            {sideList}
-          </div>
-        </Drawer>
-      </AppBar>
-    );
-  }
+  return (
+    <AppBar position="static" className={classes.appBar}>
+      <Toolbar>
+        <Button color="inherit">Login</Button>
+        <Typography variant="h6" color="inherit" className={classes.grow}>
+          News
+        </Typography>
+        <IconButton
+          onClick={toggleDrawer("right", true)}
+          color="inherit"
+          aria-label="Menu"
+        >
+          <MenuIcon />
+        </IconButton>
+      </Toolbar>
+      <Drawer anchor={"right"} open={state["right"]} onClose={toggleDrawer("right", false)}>
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={toggleDrawer("right", false)}
+          onKeyDown={toggleDrawer("right", false)}
+        >
+          {sideList}
+        </div>
+      </Drawer>
+    </AppBar>
+  );
 }
 
-export default withStyles(styles)(Header);
+// export default withStyles(styles)(Header);
