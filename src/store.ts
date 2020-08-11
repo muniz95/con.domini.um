@@ -6,7 +6,7 @@ class Store {
   @observable public user: User = new User();
   @observable public authenticated: boolean = false;
 
-  @action authenticate(email: string, password: string): void {
+  @action authenticate(email: string, password: string): boolean {
     if (password) {
       this.user = {
         id: 1,
@@ -16,6 +16,8 @@ class Store {
       };
       this.authenticated = true;
     }
+
+    return this.authenticated;
   }
 }
 
