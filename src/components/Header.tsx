@@ -113,9 +113,11 @@ export default function Header() {
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
-        <Button color="inherit">Login</Button>
+        <Link to="login" color="inherit">Login</Link>
         <Typography variant="h6" color="inherit" className={classes.grow}>
-          News
+          <Link to="">
+            News
+          </Link>
         </Typography>
         <IconButton
           onClick={toggleDrawer("right", true)}
