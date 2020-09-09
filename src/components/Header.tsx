@@ -63,10 +63,12 @@ const menuEntries: IMenuEntry[] = [
     icon: <InboxIcon />,
   },
   { name: "Ocorrências", url: "occurrences", icon: <InboxIcon /> },
+  { name: "Pets", url: "pets", icon: <InboxIcon /> },
   { name: "Quadro de Avisos", url: "board", icon: <InboxIcon /> },
   { name: "Reservas", url: "reservations", icon: <InboxIcon /> },
   { name: "Visita de Prestadores", url: "providers", icon: <InboxIcon /> },
   { name: "Votações", url: "polls", icon: <InboxIcon /> },
+  { name: "Vizinhos", url: "neighbors", icon: <InboxIcon /> },
 ];
 
 type Anchor = "top" | "left" | "bottom" | "right";
