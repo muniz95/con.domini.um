@@ -23,6 +23,7 @@ const Reservations = React.lazy(() => import("./views/Reservations"));
 const Providers = React.lazy(() => import("./views/Providers"));
 const Polls = React.lazy(() => import("./views/Polls"));
 const Login = React.lazy(() => import("./views/Login"));
+const Neighbors = React.lazy(() => import("./views/Neighbors"));
 
 const routes = [
   { exact: true, path: "", component: Home, isPrivate: true },
@@ -49,6 +50,7 @@ const routes = [
   { exact: false, path: "providers", component: Providers, isPrivate: true },
   { exact: false, path: "polls", component: Polls, isPrivate: true },
   { exact: false, path: "login", component: Login, isPrivate: false },
+  { exact: false, path: "neighbors", component: Neighbors, isPrivate: false },
 ];
 
 export default routes;

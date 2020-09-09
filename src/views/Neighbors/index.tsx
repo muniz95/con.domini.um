@@ -13,26 +13,16 @@ const Neighbors: React.FC<{}> = observer(() => {
     <>
       <h2>Vizinhos</h2>
 
-      <S.Center>
-        <S.Table>
-          <thead>
-            <tr>
-              <th>Título</th>
-              <th>Encerramento</th>
-              <th>Votou</th>
-            </tr>
-          </thead>
-          <tbody>
-          {store.neighbors.map((item) =>
-            <tr key={item.id}>
-              <td>{item.title}</td>
-              <td>{item.closingDate?.toLocaleDateString('pt-br')}</td>
-              <td>{item.voted ? "Sim" : "Não"}</td>
-            </tr>,
-          )}
-          </tbody>
-        </S.Table>
-      </S.Center>
+      <S.ItemCardContainer>
+        {store.neighbors.map((item) =>
+          <S.ItemCard key={item.id}>
+            <S.ItemCardBody>
+              <h4>{item.name}</h4>
+              <button>Solicitar amizade</button>
+            </S.ItemCardBody>
+          </S.ItemCard>
+        )}
+      </S.ItemCardContainer>
     </>
   );
 });
