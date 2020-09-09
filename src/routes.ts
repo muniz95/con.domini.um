@@ -45,7 +45,7 @@ const routes = [
   { exact: false, path: "buildingsandprovidences", component: BuildingsAndProvidences, isPrivate: true },
   { exact: false, path: "occurrences", component: Occurrences, isPrivate: true },
   { exact: false, path: "board", component: Board, isPrivate: true },
-  { exact: false, path: "reservations", component: Reservations, isPrivate: true },
+  { exact: false, path: "reservations", component: Reservations, isPrivate: false },
   { exact: false, path: "providers", component: Providers, isPrivate: true },
   { exact: false, path: "polls", component: Polls, isPrivate: true },
   { exact: false, path: "login", component: Login, isPrivate: false },
