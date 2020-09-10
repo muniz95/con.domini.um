@@ -66,6 +66,7 @@ const menuEntries: IMenuEntry[] = [
   { name: "Pets", url: "pets", icon: <InboxIcon /> },
   { name: "Quadro de Avisos", url: "board", icon: <InboxIcon /> },
   { name: "Reservas", url: "reservations", icon: <InboxIcon /> },
+  { name: "Veículos", url: "vehicles", icon: <InboxIcon /> },
   { name: "Visita de Prestadores", url: "providers", icon: <InboxIcon /> },
   { name: "Votações", url: "polls", icon: <InboxIcon /> },
   { name: "Vizinhos", url: "neighbors", icon: <InboxIcon /> },
