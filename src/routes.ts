@@ -26,6 +26,7 @@ const Login = React.lazy(() => import("./views/Login"));
 const Neighbors = React.lazy(() => import("./views/Neighbors"));
 const Pets = React.lazy(() => import("./views/Pets"));
 const Vehicles = React.lazy(() => import("./views/Vehicles"));
+const Employees = React.lazy(() => import("./views/Employees"));
 
 const routes = [
   { exact: true, path: "", component: Home, isPrivate: true },
@@ -55,6 +56,7 @@ const routes = [
   { exact: false, path: "neighbors", component: Neighbors, isPrivate: false },
   { exact: false, path: "pets", component: Pets, isPrivate: false },
   { exact: false, path: "vehicles", component: Vehicles, isPrivate: false },
+  { exact: false, path: "employees", component: Employees, isPrivate: false },
 ];
 
 export default routes;

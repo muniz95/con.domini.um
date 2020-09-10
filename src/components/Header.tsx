@@ -51,6 +51,7 @@ const menuEntries: IMenuEntry[] = [
   { name: "Colaboradores", url: "collaborators", icon: <InboxIcon /> },
   { name: "Correspondências", url: "mail", icon: <InboxIcon /> },
   { name: "Documentos", url: "documents", icon: <InboxIcon /> },
+  { name: "Empregados", url: "employees", icon: <InboxIcon /> },
   { name: "Enquetes", url: "surveys", icon: <InboxIcon /> },
   { name: "Eventos", url: "events", icon: <InboxIcon /> },
   { name: "Galeria de fotos", url: "gallery", icon: <InboxIcon /> },
