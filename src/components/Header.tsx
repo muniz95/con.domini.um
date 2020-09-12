@@ -57,6 +57,7 @@ const menuEntries: IMenuEntry[] = [
   { name: "Galeria de fotos", url: "gallery", icon: <InboxIcon /> },
   { name: "Lista de Acesso", url: "accesslist", icon: <InboxIcon /> },
   { name: "Mensagens", url: "messages", icon: <InboxIcon /> },
+  { name: "Minha unidade", url: "unit", icon: <InboxIcon /> },
   { name: "Notificações", url: "notifications", icon: <InboxIcon /> },
   {
     name: "Obras & Providências",
