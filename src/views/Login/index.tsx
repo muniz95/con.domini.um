@@ -11,7 +11,8 @@ const Login: React.FC<{}> = observer(() => {
   const history = useHistory();
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (store.authenticate(email, password)) {
+    store.authenticate(email, password);
+    if (store.authenticated) {
       history.replace('/');
     }
   }

@@ -37,7 +37,7 @@ export default (user: User) => (
     <div>
       <label htmlFor="martial-status">Estado civil</label>
       <select name="martial-status" id="martial-status">
-        <option value="sigle">Solteiro</option>
+        <option value="single">Solteiro</option>
         <option value="married">Casado</option>
         <option value="divorced">Divorciado</option>
         <option value="widow">Viúvo</option>
