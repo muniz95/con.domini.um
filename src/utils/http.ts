@@ -1,6 +1,8 @@
-export async function http<T>(
-  request: RequestInfo
-): Promise<T> {
+export async function full(request: RequestInfo): Promise<Response> {
+  return await fetch(request);
+}
+
+export async function http<T>(request: RequestInfo): Promise<T> {
   const response: Response = await fetch(request);
   let result;
 
@@ -12,7 +14,7 @@ export async function http<T>(
   if (!response.ok) {
     throw new Error(response.statusText);
   }
-  
+
   return result;
 }
 
@@ -21,30 +23,50 @@ export async function get<T>(
   args: RequestInit = { method: "get" }
 ): Promise<T> {
   return await http<T>(new Request(path, args));
-};
+}
 
 export async function post<T>(
   path: string,
   body: any,
-  args: RequestInit = { 
+  args: RequestInit = {
     method: "post",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(body)
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
   }
-): Promise<T>  {
+): Promise<T> {
   return await http<T>(new Request(path, args));
-};
+}
+
+export async function fullPost(
+  path: string,
+  body: any,
+  args: RequestInit = {
+    method: "post",
+    headers: { 
+      "Content-Type": "application/json",
+      "access-control-expose-headers": "Authorization"
+    },
+    body: JSON.stringify(body),
+  }
+): Promise<Response> {
+  return await full(new Request(path, args));
+}
 
 export async function put<T>(
   path: string,
   body: any,
-  args: RequestInit = { method: "put", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) }
+  args: RequestInit = {
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  }
 ): Promise<T> {
   return await http<T>(new Request(path, args));
-};
+}
 
 export default {
   get,
   post,
+  fullPost,
   put,
-}
+};

@@ -12,8 +12,11 @@ class Store {
     const result = await service.authenticate(email, password);
 
     if (result) {
-      this.user = result;
-      this.jwt = result.email;
+      this.user = await result.json();
+      this.jwt = result.headers.get('Authorization') || '';
+
+      localStorage.setItem("jwt", this.jwt);
+      localStorage.setItem("user", JSON.stringify(this.user));
     }
   }
 }
