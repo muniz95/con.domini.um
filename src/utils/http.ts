@@ -30,7 +30,11 @@ export async function post<T>(
   body: any,
   args: RequestInit = {
     method: "post",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "Access-Control-Expose-Headers": "Authorization",
+      "Access-Control-Allow-Origin": "*",
+    },
     body: JSON.stringify(body),
   }
 ): Promise<T> {
@@ -44,7 +48,8 @@ export async function fullPost(
     method: "post",
     headers: { 
       "Content-Type": "application/json",
-      "access-control-expose-headers": "Authorization"
+      "Access-Control-Expose-Headers": "Authorization",
+      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify(body),
   }
@@ -57,7 +62,11 @@ export async function put<T>(
   body: any,
   args: RequestInit = {
     method: "put",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "Access-Control-Expose-Headers": "Authorization",
+      "Access-Control-Allow-Origin": "*",
+    },
     body: JSON.stringify(body),
   }
 ): Promise<T> {
