@@ -9,9 +9,9 @@ const Login: React.FC<{}> = observer(() => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const history = useHistory();
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    store.authenticate(email, password);
+    await store.authenticate(email, password);
     if (store.authenticated) {
       history.replace('/');
     }

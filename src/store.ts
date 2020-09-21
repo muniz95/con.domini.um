@@ -8,12 +8,21 @@ class Store {
   @observable public authenticated: boolean = false;
   @observable public jwt: string = '';
 
+  @action checkLoggedUser() {
+    if (localStorage.getItem("jwt") && localStorage.getItem("user")) {
+      this.jwt = localStorage.getItem("jwt")!;
+      this.user = JSON.parse(localStorage.getItem("user")!);
+      this.authenticated = true;
+    }
+  }
+
   @action async authenticate(email: string, password: string): Promise<void> {
     const result = await service.authenticate(email, password);
 
     if (result) {
       this.user = await result.json();
       this.jwt = result.headers.get('Authorization') || '';
+      this.authenticated = true;
 
       localStorage.setItem("jwt", this.jwt);
       localStorage.setItem("user", JSON.stringify(this.user));

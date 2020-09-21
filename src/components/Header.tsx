@@ -12,6 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import React from "react";
 import { Link } from "react-router-dom";
+import GlobalStore from '../store';
 
 interface IMenuEntry {
   name: string;
@@ -78,6 +79,7 @@ const menuEntries: IMenuEntry[] = [
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function Header() {
+  const globalStore = React.useContext(GlobalStore);
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -115,6 +117,16 @@ export default function Header() {
     setState({ ...state, [anchor]: open });
   };
 
+  const menuButton = globalStore.authenticated
+    ? <IconButton
+        onClick={toggleDrawer("right", true)}
+        color="inherit"
+        aria-label="Menu"
+      >
+        <MenuIcon />
+      </IconButton>
+    : <></>;
+
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
@@ -124,13 +136,7 @@ export default function Header() {
             News
           </Link>
         </Typography>
-        <IconButton
-          onClick={toggleDrawer("right", true)}
-          color="inherit"
-          aria-label="Menu"
-        >
-          <MenuIcon />
-        </IconButton>
+        {menuButton}
       </Toolbar>
       <Drawer anchor={"right"} open={state["right"]} onClose={toggleDrawer("right", false)}>
         <div

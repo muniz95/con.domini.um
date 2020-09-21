@@ -23,6 +23,7 @@ const PrivateRoute = ({authed, ...rest}: IPrivateRouteProps) => {
 
 const App: React.FC = observer(() => {
   const store = React.useContext(Store);
+  store.checkLoggedUser();
   return (
     <Router>
       <div className="App">
