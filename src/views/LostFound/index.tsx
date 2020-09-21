@@ -6,7 +6,10 @@ import S from "./styled";
 
 const LostFound: React.FC = observer(() => {
   const store = React.useContext(LostFoundStore);
-  store.fetchItems();
+
+  React.useEffect(() => {
+    store.fetchItems();
+  }, [])
   return <React.Fragment>
     <h2>Achados & perdidos</h2>
     <p>Comunique perdas ou avise se porventura encontrar objetos ou valores nas dependências do condomínio.</p>
@@ -25,10 +28,10 @@ const LostFound: React.FC = observer(() => {
 
     <S.ItemCardContainer>
       { store.items.map((item: LostFoundItem) =>
-        <S.ItemCard>
+        <S.ItemCard key={item.id}>
           <S.ItemCardBody>
             <h2>{item.name}</h2>
-            <h6>{item.creationDate.toLocaleDateString("pt-BR")}</h6>
+            <h6>{item.createdAt}</h6>
           </S.ItemCardBody>
         </S.ItemCard>,
       ) }

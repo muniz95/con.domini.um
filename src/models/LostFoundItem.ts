@@ -1,26 +1,20 @@
 class LostFoundItem {
-
-  public static create(id: number, name: string, foundBy: string, creationDate: Date, status: string): LostFoundItem {
-    const item = new LostFoundItem();
-    item.id = id;
-    item.name = name;
-    item.foundBy = foundBy;
-    item.creationDate = creationDate;
-    item.status = status;
-    return item;
-  }
   public id: number;
   public name: string;
   public foundBy: string;
   public creationDate: Date;
   public status: string;
 
-  constructor() {
-    this.id = 0;
-    this.name = "";
-    this.foundBy = "";
-    this.creationDate = new Date();
-    this.status = "";
+  constructor(params: any) {
+    this.id = params.id;
+    this.name = params.name;
+    this.foundBy = params.foundBy;
+    this.creationDate = new Date(params.created_at);
+    this.status = params.status;
+  }
+
+  get createdAt() {
+    return this.creationDate.toLocaleDateString("pt-BR");
   }
 }
 
