@@ -1,12 +1,14 @@
-import { observable } from "mobx";
+import { action, observable } from "mobx";
 import { createContext } from "react";
 import Administrator from "../../models/Administrator";
+import service from '../../services/administrator.service';
 
 class AdministratorStore {
-  @observable public administrators: Administrator[] = [
-    { id: 1, name: "CM Premium - acesso aos balancetes", phone: "41 3023-9033" },
-    { id: 2, name: "Garantidora BV - segunda via de boleto", phone: "41 3232 4242" },
-  ];
+  @observable public items: Administrator[] = [];
+
+  @action public async fetchItems(): Promise<void> {
+    this.items = await service.getAdministrators();
+  }
 }
 
 export default createContext(new AdministratorStore());
