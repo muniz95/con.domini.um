@@ -5,6 +5,11 @@ import S from "./styled";
 
 const Assemblies: React.FC<{}> = observer(() => {
   const store = React.useContext(AssembliesStore);
+
+  React.useEffect(() => {
+    store.fetchItems()
+  }, []);
+
   return (
     <React.Fragment>
       <h2>Assembleias</h2>
@@ -18,11 +23,11 @@ const Assemblies: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.records.map((record) =>
+          {store.items.map((item) =>
             <tr>
-              <td>{record.title}</td>
-              <td>{record.date.toLocaleDateString()}</td>
-              <td>{record.confirmed ? "Sim" : "Não"}</td>
+              <td>{item.title}</td>
+              <td>{item.dateToString}</td>
+              <td>{item.isConfirmed}</td>
             </tr>,
           )}
           </tbody>

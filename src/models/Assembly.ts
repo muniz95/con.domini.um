@@ -4,11 +4,19 @@ class Assembly {
   public date: Date;
   public confirmed: boolean;
 
-  constructor() {
-    this.confirmed = false;
-    this.date = new Date();
-    this.id = 0;
-    this.title = "";
+  constructor(params: any) {
+    this.confirmed = params.confirmed;
+    this.date = new Date(params.date);
+    this.id = params.id;
+    this.title = params.title;
+  }
+
+  get dateToString() {
+    return this.date.toLocaleDateString("pt-br");
+  }
+
+  get isConfirmed() {
+    return this.confirmed ? "Sim" : "Não";
   }
 }
 
