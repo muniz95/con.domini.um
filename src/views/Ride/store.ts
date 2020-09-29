@@ -1,43 +1,13 @@
 import { action, observable } from "mobx";
 import { createContext } from "react";
 import RideRecord from "../../models/RideRecord";
+import service from '../../services/ride.service';
 
 class RideStore {
   @observable public records: RideRecord[] = [];
 
-  @action public fetchItems(): void {
-    this.records = [
-      {
-        days: "seg, ter, qua, qui, sex",
-        destiny: "Trabalho",
-        id: 1,
-        type: "need",
-      },
-      {
-        days: "seg, ter, qua, qui, sex",
-        destiny: "Eletrofrio/CIC/Pinheirinho",
-        id: 2,
-        type: "need",
-      },
-      {
-        days: "seg, ter, qua, qui, sex",
-        destiny: "PUC",
-        id: 3,
-        type: "need",
-      },
-      {
-        days: "seg, ter, qua, qui, sex",
-        destiny: "Alphaville Pinhais",
-        id: 4,
-        type: "need",
-      },
-      {
-        days: "seg, ter, qua, qui, sex",
-        destiny: "Trabalho",
-        id: 5,
-        type: "need",
-      },
-    ];
+  @action public async fetchItems(): Promise<void> {
+    this.records = await service.getRides();
   }
 }
 

@@ -19,7 +19,11 @@ const Ride: React.FC<{}> = observer(() => {
     }
     setSelectedIcon("website");
   };
-  store.fetchItems();
+
+  React.useEffect(() => {
+    store.fetchItems();
+  }, []);
+
   return (
     <React.Fragment>
       <h2>Carona solidária</h2>
@@ -53,7 +57,7 @@ const Ride: React.FC<{}> = observer(() => {
           <tbody>
           {store.records.map((record) =>
             <tr>
-              <td>{record.type}</td>
+              <td>{record.category}</td>
               <td>{record.destiny}</td>
               <td>{record.days}</td>
             </tr>,
