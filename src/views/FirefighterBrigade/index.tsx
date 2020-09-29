@@ -5,6 +5,11 @@ import S from "./styled";
 
 const Administrator: React.FC<{}> = observer(() => {
   const store = React.useContext(FirefighterBrigadeStore);
+
+  React.useEffect(() => {
+    store.fetchItems();
+  }, []);
+  
   return (
     <React.Fragment>
       <h2>Brigada de incêndio</h2>
@@ -17,10 +22,10 @@ const Administrator: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.members.map((member) =>
-            <tr>
-              <td>{member.name}</td>
-              <td>{member.type}</td>
+          {store.items.map((item) =>
+            <tr key={item.id}>
+              <td>{item.name}</td>
+              <td>{item.category}</td>
             </tr>,
           )}
           </tbody>
