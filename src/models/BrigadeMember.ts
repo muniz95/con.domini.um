@@ -1,5 +1,3 @@
-import { isConstructorDeclaration } from "typescript";
-
 class BrigadeMember {
   public id?: number;
   public name?: string;

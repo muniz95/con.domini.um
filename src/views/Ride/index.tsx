@@ -22,7 +22,7 @@ const Ride: React.FC<{}> = observer(() => {
 
   React.useEffect(() => {
     store.fetchItems();
-  }, []);
+  }, [store]);
 
   return (
     <React.Fragment>

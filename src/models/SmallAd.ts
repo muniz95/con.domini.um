@@ -1,13 +1,7 @@
 class SmallAd {
 
   public static create(id: number, name: string, foundBy: string, creationDate: Date, createdBy: string, status: string): SmallAd {
-    const item = new SmallAd();
-    item.id = id;
-    item.name = name;
-    item.foundBy = foundBy;
-    item.creationDate = creationDate;
-    item.createdBy = createdBy;
-    item.status = status;
+    const item = new SmallAd({id, name, foundBy, creationDate, createdBy, status});
     return item;
   }
   public id: number;
@@ -17,13 +11,13 @@ class SmallAd {
   public creationDate: Date;
   public status: string;
 
-  constructor() {
-    this.id = 0;
-    this.name = "";
-    this.foundBy = "";
-    this.createdBy = "";
-    this.creationDate = new Date();
-    this.status = "";
+  constructor(params: any) {
+    this.id = params.id;
+    this.name = params.name;
+    this.foundBy = params.foundBy;
+    this.createdBy = params.createdBy;
+    this.creationDate = new Date(params.created_at);
+    this.status = params.status;
   }
 }
 

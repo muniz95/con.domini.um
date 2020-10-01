@@ -21,13 +21,13 @@ const SmallAds: React.FC<{}> = observer(() => {
   const [value, setValue] = React.useState(0);
   const myAds = (ad: SmallAd) => ad.createdBy === 'me';
   
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
-
   const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
   };
+  
+  React.useEffect(() => {
+    store.fetchItems();
+  }, [store]);
   
   return (
     <React.Fragment>
@@ -45,7 +45,7 @@ const SmallAds: React.FC<{}> = observer(() => {
       </AppBar>
       <TabPanel value={value} index={0}>
         <S.AdCardContainer>
-          { store.ads.map((item: SmallAd) =>
+          { store.items.map((item: SmallAd) =>
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.name}</S.AdCardTitle>
@@ -57,7 +57,7 @@ const SmallAds: React.FC<{}> = observer(() => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <S.AdCardContainer>
-          { store.ads.filter(myAds).map((item: SmallAd) =>
+          { store.items.filter(myAds).map((item: SmallAd) =>
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.name}</S.AdCardTitle>
