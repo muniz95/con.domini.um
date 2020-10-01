@@ -5,6 +5,11 @@ import S from './styled';
 
 const Mail: React.FC<{}> = observer(() => {
   const store = React.useContext(MailStore);
+
+  React.useEffect(() => {
+    store.fetchItems();
+  }, [store]);
+  
   return (
     <>
       <h2>Correspondências</h2>
@@ -19,7 +24,7 @@ const Mail: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.mailList.map((record) =>
+          {store.items.map((record) =>
             <tr key={record.id}>
               <td>{record.unit}</td>
               <td>{record.description}</td>
