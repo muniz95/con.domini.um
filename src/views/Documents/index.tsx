@@ -34,6 +34,7 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
 const Documents: React.FC<{}> = observer(() => {
   const store = React.useContext(DocumentsStore);
   const [value, setValue] = React.useState(0);
+  
   React.useEffect(() => {
     store.fetchItems();
   }, [store]);
