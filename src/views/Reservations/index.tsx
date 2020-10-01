@@ -10,7 +10,7 @@ import availableHours from "./availableHours";
 const Reservations: React.FC<{}> = observer(() => {
   const [reservations, setReservations] =
     React.useState<ReservationRecord[]>([]);
-  const [selectedReservation, setSelectedReservation] =
+  const [, setSelectedReservation] =
     React.useState<ReservationRecord | null>();
   const handleClickDay = (date: Date) => {
     service.getReservationsByDate(date).then((result: Response) => {

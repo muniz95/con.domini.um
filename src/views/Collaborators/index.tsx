@@ -5,12 +5,17 @@ import S from './styled';
 
 const Collaborators: React.FC<{}> = observer(() => {
   const store = React.useContext(CollaboratorsStore);
+
+  React.useEffect(() => {
+    store.fetchItems()
+  }, [store]);
+
   return (
     <>
       <h2>Colaboradores</h2>
       <S.Center>
         <S.Table>
-          {store.collaborators.map((record) =>
+          {store.items.map((record) =>
             <tr>
               <td>{record.name}</td>
               <td>{record.role}</td>

@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import React from "react";
 import Store from '../../store';
-import S from './styled';
+// import S from './styled';
 import { useHistory } from "react-router-dom";
 
 const Login: React.FC<{}> = observer(() => {

@@ -9,7 +9,7 @@ const LostFound: React.FC = observer(() => {
 
   React.useEffect(() => {
     store.fetchItems();
-  }, [])
+  }, [store])
   return <React.Fragment>
     <h2>Achados & perdidos</h2>
     <p>Comunique perdas ou avise se porventura encontrar objetos ou valores nas dependências do condomínio.</p>

@@ -7,7 +7,7 @@ const Administrator: React.FC<{}> = observer(() => {
   const store = React.useContext(AdministratorStore);
   React.useEffect(() => {
     store.fetchItems();
-  }, []);
+  }, [store]);
 
   return (
     <React.Fragment>
