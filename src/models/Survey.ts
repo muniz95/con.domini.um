@@ -1,6 +1,6 @@
 class Survey {
   public static create(id: number, title: string, closingDate: Date, voted?: boolean): Survey {
-    const item = new Survey();
+    const item = new Survey({id, title, closingDate, voted});
     item.id = id;
     item.title = title;
     item.closingDate = closingDate;
@@ -13,11 +13,11 @@ class Survey {
   public closingDate: Date;
   public voted?: boolean;
 
-  constructor() {
-    this.id = 0;
-    this.title = "";
-    this.closingDate = new Date();
-    this.voted = undefined;
+  constructor(params: any) {
+    this.id = params.id;
+    this.title = params.title;
+    this.closingDate = new Date(params.closing_date);
+    this.voted = params.voted;
   }
 }
 
