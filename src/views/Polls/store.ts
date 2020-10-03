@@ -1,31 +1,13 @@
 import { action, observable } from "mobx";
 import { createContext } from "react";
 import Poll from "../../models/Poll";
+import service from '../../services/poll.service';
 
 class ProviderListStore {
   @observable public polls: Poll[] = [];
 
-  @action public fetchItems(): void {
-    this.polls = [
-      {
-        id: 1,
-        title: "Teste 1",
-        closingDate: new Date(),
-        voted: false,
-      },
-      {
-        id: 2,
-        title: "Teste 2",
-        closingDate: new Date(),
-        voted: false,
-      },
-      {
-        id: 3,
-        title: "Teste 3",
-        closingDate: new Date(),
-        voted: true,
-      },
-    ];
+  @action public async fetchItems(): Promise<void> {
+    this.polls = await service.getPolls();
   }
 }
 
