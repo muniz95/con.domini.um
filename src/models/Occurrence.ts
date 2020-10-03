@@ -6,13 +6,13 @@ class Occurrence {
   public creationDate: Date;
   public status: string;
 
-  constructor() {
-    this.id = 0;
-    this.name = "";
-    this.foundBy = "";
-    this.createdBy = "";
-    this.creationDate = new Date();
-    this.status = "";
+  constructor(params: any) {
+    this.id = params.id;
+    this.name = params.name;
+    this.foundBy = params.found_by;
+    this.createdBy = params.created_by;
+    this.creationDate = new Date(params.created_at);
+    this.status = params.status;
   }
 }
 
