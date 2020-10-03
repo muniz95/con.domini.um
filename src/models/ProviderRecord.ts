@@ -8,15 +8,15 @@ class ProviderRecord {
   public reason?: string;
   public observation?: string;
   
-  constructor() {
-    this.id = 0;
-    this.name = "";
-    this.unit = "";
-    this.date = new Date();
-    this.ownerAtHome = false;
-    this.rg = "";
-    this.reason = "";
-    this.observation = "";
+  constructor(params: any) {
+    this.id = params.id;
+    this.name = params.name;
+    this.unit = params.unit;
+    this.date = new Date(params.created_at);
+    this.ownerAtHome = params.owner_at_home;
+    this.rg = params.rg;
+    this.reason = params.reason;
+    this.observation = params.observation;
   }
 }
 
