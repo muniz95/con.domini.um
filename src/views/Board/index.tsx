@@ -22,7 +22,7 @@ const Board: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.noticeList.map((item) =>
+          {store.items.map((item) =>
             <tr key={item.id}>
               <td>{item.title}</td>
               <td>{item.date?.toLocaleDateString('pt-br')}</td>

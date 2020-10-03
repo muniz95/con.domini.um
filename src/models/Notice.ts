@@ -3,10 +3,10 @@ class Notice {
   public title: string;
   public date?: Date;
 
-  constructor() {
-    this.id = 0;
-    this.title = "";
-    this.date = new Date();
+  constructor(params: any) {
+    this.id = params.id;
+    this.title = params.title;
+    this.date = new Date(params.created_at);
   }
 }
 
