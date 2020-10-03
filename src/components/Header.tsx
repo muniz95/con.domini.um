@@ -62,7 +62,7 @@ const menuEntries: IMenuEntry[] = [
   { name: "Notificações", url: "notifications", icon: <InboxIcon /> },
   {
     name: "Obras & Providências",
-    url: "buildingsandprovidences",
+    url: "providences",
     icon: <InboxIcon />,
   },
   { name: "Ocorrências", url: "occurrences", icon: <InboxIcon /> },

@@ -1,14 +1,14 @@
 class Providence {
   public id?: number;
   public details?: string;
-  public type: string;
+  public category: string;
   public date?: Date;
 
-  constructor() {
-    this.id = 0;
-    this.details = "";
-    this.type = "Outros";
-    this.date = new Date();
+  constructor(params: any) {
+    this.id = params.id;
+    this.details = params.details;
+    this.category = params.category;
+    this.date = new Date(params.created_at);
   }
 }
 

@@ -16,7 +16,7 @@ const Gallery = React.lazy(() => import("./views/Gallery"));
 const AccessList = React.lazy(() => import("./views/AccessList"));
 const Messages = React.lazy(() => import("./views/Messages"));
 const Notifications = React.lazy(() => import("./views/Notifications"));
-const BuildingsAndProvidences = React.lazy(() => import("./views/BuildingsAndProvidences"));
+const Providences = React.lazy(() => import("./views/Providences"));
 const Occurrences = React.lazy(() => import("./views/Occurrences"));
 const Board = React.lazy(() => import("./views/Board"));
 const Reservations = React.lazy(() => import("./views/Reservations"));
@@ -48,7 +48,7 @@ const routes = [
   { exact: false, path: "accesslist", component: AccessList, isPrivate: true },
   { exact: false, path: "messages", component: Messages, isPrivate: true },
   { exact: false, path: "notifications", component: Notifications, isPrivate: true },
-  { exact: false, path: "buildingsandprovidences", component: BuildingsAndProvidences, isPrivate: true },
+  { exact: false, path: "providences", component: Providences, isPrivate: true },
   { exact: false, path: "occurrences", component: Occurrences, isPrivate: true },
   { exact: false, path: "board", component: Board, isPrivate: true },
   { exact: false, path: "reservations", component: Reservations, isPrivate: false },

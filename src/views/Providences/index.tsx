@@ -3,7 +3,7 @@ import React from "react";
 import ProvidencesStore from './store';
 import S from './styled';
 
-const BuildingsAndProvidences: React.FC<{}> = observer(() => {
+const Providences: React.FC<{}> = observer(() => {
   const store = React.useContext(ProvidencesStore);
 
   React.useEffect(() => {
@@ -25,7 +25,7 @@ const BuildingsAndProvidences: React.FC<{}> = observer(() => {
           {store.providences.map((item) =>
             <tr key={item.id}>
               <td>{item.details}</td>
-              <td>{item.type}</td>
+              <td>{item.category}</td>
             </tr>,
           )}
           </tbody>
@@ -35,4 +35,4 @@ const BuildingsAndProvidences: React.FC<{}> = observer(() => {
   );
 });
 
-export default BuildingsAndProvidences;
+export default Providences;
