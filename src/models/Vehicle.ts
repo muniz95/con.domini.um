@@ -4,15 +4,15 @@ class Vehicle {
   public model: string;
   public plate: string;
   public color: string;
-  public vehicleType?: string;
+  public category?: string;
   
-  constructor() {
-    this.id = 0;
-    this.brand = "";
-    this.model = "";
-    this.plate = "";
-    this.color = "";
-    this.vehicleType = "";
+  constructor(params: any) {
+    this.id = params.id;
+    this.brand = params.brand;
+    this.model = params.model;
+    this.plate = params.plate;
+    this.color = params.color;
+    this.category = params.category;
   }
 }
 

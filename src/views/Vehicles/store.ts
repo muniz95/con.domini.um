@@ -1,21 +1,13 @@
 import { action, observable } from "mobx";
 import { createContext } from "react";
 import Vehicle from "../../models/Vehicle";
+import service from '../../services/vehicle.service';
 
 class VehiclesStore {
   @observable public vehicles: Vehicle[] = [];
 
-  @action public fetchItems(): void {
-    this.vehicles = [
-      {
-        id: 1,
-        brand: "Peugeot",
-        color: "Gray",
-        model: "206",
-        plate: "AAA-0000",
-        vehicleType: "carro"
-      },
-    ];
+  @action public async fetchItems(): Promise<void> {
+    this.vehicles = await service.getVehicles();
   }
 }
 

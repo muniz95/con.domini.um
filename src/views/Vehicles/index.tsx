@@ -28,7 +28,7 @@ const Vehicles: React.FC<{}> = observer(() => {
           {store.vehicles.map((item) =>
             <tr key={item.id}>
               <td>{item.plate}</td>
-              <td>{item.vehicleType}</td>
+              <td>{item.category}</td>
               <td>{item.brand}</td>
               <td>{item.model}</td>
               <td>{item.color}</td>
