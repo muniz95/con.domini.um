@@ -2,13 +2,13 @@ class Pet {
   public id: number;
   public name: string;
   public race: string;
-  public petType?: string;
+  public category?: string;
   
-  constructor() {
-    this.id = 0;
-    this.name = "";
-    this.race = "";
-    this.petType = "";
+  constructor(params: any) {
+    this.id = params.id;
+    this.name = params.name;
+    this.race = params.race;
+    this.category = params.category;
   }
 }
 

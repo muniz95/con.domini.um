@@ -25,7 +25,7 @@ const Pets: React.FC<{}> = observer(() => {
           <tbody>
           {store.pets.map((item) =>
             <tr key={item.id}>
-              <td>{item.petType}</td>
+              <td>{item.category}</td>
               <td>{item.race}</td>
               <td>{item.name}</td>
             </tr>,
