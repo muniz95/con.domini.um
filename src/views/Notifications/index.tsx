@@ -24,7 +24,7 @@ const Notifications: React.FC<{}> = observer(() => {
           <tbody>
           {store.notifications.map((survey) =>
             <tr key={survey.id}>
-              <td>{survey.type}</td>
+              <td>{survey.category}</td>
               <td>{survey.date?.toLocaleDateString('pt-br')}</td>
             </tr>,
           )}
