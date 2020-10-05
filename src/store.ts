@@ -30,4 +30,6 @@ class Store {
   }
 }
 
+export type RootState = typeof Store;
+
 export default createContext(new Store());

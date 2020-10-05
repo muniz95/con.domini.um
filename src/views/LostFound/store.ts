@@ -6,8 +6,8 @@ import service from '../../services/lostFound.service';
 class LostFoundStore {
   @observable public items: LostFoundItem[] = [];
 
-  @action public async fetchItems(): Promise<void> {
-    this.items = await service.getLostFoundItems();
+  @action public async fetchItems(token: string): Promise<void> {
+    this.items = await service.getLostFoundItems(token);
   }
 }
 

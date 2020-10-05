@@ -12,7 +12,7 @@ export async function http<T>(request: RequestInfo): Promise<T> {
   } catch (ex) {}
 
   if (!response.ok) {
-    throw new Error(response.statusText);
+    console.error(response.statusText);
   }
 
   return result;
@@ -20,7 +20,16 @@ export async function http<T>(request: RequestInfo): Promise<T> {
 
 export async function get<T>(
   path: string,
-  args: RequestInit = { method: "get" }
+  token?: string,
+  args: RequestInit = {
+    method: "get",
+    headers: { 
+      "Content-Type": "application/json",
+      "Access-Control-Expose-Headers": "Authorization",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": token || '',
+    },
+  }
 ): Promise<T> {
   return await http<T>(new Request(path, args));
 }
@@ -28,12 +37,14 @@ export async function get<T>(
 export async function post<T>(
   path: string,
   body: any,
+  token?: string,
   args: RequestInit = {
-    method: "post",
+    method: "POST",
     headers: { 
       "Content-Type": "application/json",
       "Access-Control-Expose-Headers": "Authorization",
       "Access-Control-Allow-Origin": "*",
+      "Authorization": token || '',
     },
     body: JSON.stringify(body),
   }
