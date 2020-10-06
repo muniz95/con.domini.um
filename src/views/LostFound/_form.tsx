@@ -2,6 +2,7 @@ import React from 'react';
 import LostFoundItem from '../../models/LostFoundItem';
 import service from '../../services/lostFound.service';
 import RootStore from '../../store';
+import { toBase64 } from '../../utils/file';
 
 interface IProps {
   itemLabel: any;
@@ -12,11 +13,15 @@ const Form = ({itemLabel, itemCategory = ''}: IProps) => {
   const rootStore = React.useContext(RootStore);
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
-  const [image, setImage] = React.useState<FileList | null>(null);
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+  const [images, setImages] = React.useState<FileList | null>(null);
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log(name, description);
-    console.log(image);
+    let file;
+    let image = '';
+    if (images) {
+      [file] = [...Array.from(images)];
+      image = await toBase64(file);
+    }
     service.post(new LostFoundItem({name, description, image}), rootStore.jwt);
   };
   return (
@@ -29,7 +34,7 @@ const Form = ({itemLabel, itemCategory = ''}: IProps) => {
         onChange={({target}) => setDescription(target.value)} />
       <label htmlFor="image">Anexar imagem (opcional)</label>
       <input type="file" id="image" name="image"
-        onChange={({currentTarget}) => setImage(currentTarget.files)} />
+        onChange={({currentTarget}) => setImages(currentTarget.files)} />
 
       <input type="submit" value="Enviar"/>
     </form>
