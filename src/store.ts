@@ -16,6 +16,10 @@ class Store {
     }
   }
 
+  @action isAdmin() {
+    return this.user.role === 'admin' || this.user.login === 'admin';
+  }
+
   @action async authenticate(email: string, password: string): Promise<void> {
     const result = await service.authenticate(email, password);
 
@@ -32,4 +36,6 @@ class Store {
 
 export type RootState = typeof Store;
 
-export default createContext(new Store());
+export const instance = new Store()
+
+export default createContext(instance);

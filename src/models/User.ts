@@ -10,6 +10,7 @@ class User {
   public photo?: string;
   public bio?: string;
   public rg?: string;
+  public role: string;
   public mobilityRestriction: boolean = false;
   public birthdate: Date;
   public gender: Gender;
@@ -25,6 +26,7 @@ class User {
     this.photo = params.photo;
     this.bio = params.bio;
     this.rg = params.rg;
+    this.role = params.role;
     this.mobilityRestriction = params.mobilityRestriction;
     this.birthdate = params.birthdate;
     this.gender = params.gender;
