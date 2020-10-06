@@ -27,7 +27,7 @@ const Administrators: React.FC<{}> = observer(() => {
     setOpen(false);
   };
   const AddButton = (
-    rootStore.isAdmin && <Fab onClick={handleAddClick}>+</Fab>
+    rootStore.isAdmin() && <Fab onClick={handleAddClick}>+</Fab>
   );
   
   React.useEffect(() => {
