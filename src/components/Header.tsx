@@ -46,7 +46,7 @@ const menuEntries: IMenuEntry[] = [
   { name: "Administradora", url: "administrator", icon: <InboxIcon /> },
   { name: "Assembleias", url: "assemblies", icon: <InboxIcon /> },
   { name: "Brigada de incêndio", url: "brigade", icon: <InboxIcon /> },
-  { name: "Caixa de sugestão", url: "sugestions", icon: <InboxIcon /> },
+  // { name: "Caixa de sugestão", url: "sugestions", icon: <InboxIcon /> },
   { name: "Carona Solidária", url: "ride", icon: <InboxIcon /> },
   { name: "Classificados", url: "smallads", icon: <InboxIcon /> },
   { name: "Colaboradores", url: "collaborators", icon: <InboxIcon /> },
