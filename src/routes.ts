@@ -6,6 +6,7 @@ const Assemblies = React.lazy(() => import("./views/Assemblies"));
 const FirefighterBrigade = React.lazy(() => import("./views/FirefighterBrigade"));
 // const Sugestions = React.lazy(() => import("./views/Sugestions"));
 const Ride = React.lazy(() => import("./views/Ride"));
+const NeededRide = React.lazy(() => import("./views/Ride/needed"));
 const SmallAds = React.lazy(() => import("./views/SmallAds"));
 const Collaborators = React.lazy(() => import("./views/Collaborators"));
 const Mail = React.lazy(() => import("./views/Mail"));
@@ -37,6 +38,7 @@ const routes = [
   { exact: false, path: "assemblies", component: Assemblies, isPrivate: true },
   { exact: false, path: "brigade", component: FirefighterBrigade, isPrivate: true },
   // { exact: false, path: "sugestions", component: Sugestions, isPrivate: true },
+  { exact: false, path: "ride/needed", component: NeededRide, isPrivate: true },
   { exact: false, path: "ride", component: Ride, isPrivate: true },
   { exact: false, path: "smallads", component: SmallAds, isPrivate: true },
   { exact: false, path: "collaborators", component: Collaborators, isPrivate: true },

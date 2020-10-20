@@ -1,5 +1,6 @@
 import { observer } from "mobx-react";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import RideStore from "./store";
 import S from "./styled";
 
@@ -7,6 +8,7 @@ const Ride: React.FC<{}> = observer(() => {
   const store = React.useContext(RideStore);
   const [fieldVisible, setFieldVisible] = React.useState(false);
   const [, setSelectedIcon] = React.useState("");
+  const history = useHistory();
   const offerIconAction = () => {
     if (!fieldVisible) {
       setFieldVisible(true);
@@ -18,6 +20,7 @@ const Ride: React.FC<{}> = observer(() => {
       setFieldVisible(true);
     }
     setSelectedIcon("website");
+    history.push("/ride/needed")
   };
 
   React.useEffect(() => {
@@ -56,7 +59,7 @@ const Ride: React.FC<{}> = observer(() => {
           </thead>
           <tbody>
           {store.records.map((record) =>
-            <tr>
+            <tr key={record.id}>
               <td>{record.category}</td>
               <td>{record.destiny}</td>
               <td>{record.days}</td>
