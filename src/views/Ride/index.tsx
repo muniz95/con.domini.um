@@ -14,6 +14,7 @@ const Ride: React.FC<{}> = observer(() => {
       setFieldVisible(true);
     }
     setSelectedIcon("condomínio");
+    history.push("/ride/offer")
   };
   const needIconAction = () => {
     if (!fieldVisible) {
