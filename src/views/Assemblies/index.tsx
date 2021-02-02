@@ -1,10 +1,11 @@
 import { observer } from "mobx-react";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import Assembly from "../../models/Assembly";
 import AssembliesStore from "./store";
 import RootStore from '../../store';
 import S from "./styled";
-import { Fab, Modal } from "@material-ui/core";
+import { Form } from "../../components/Form";
+import { Button, Fab, FormControl, Input, InputLabel, Modal } from "@material-ui/core";
 
 const Assemblies: React.FC<{}> = observer(() => {
   const store = React.useContext(AssembliesStore);
@@ -14,7 +15,7 @@ const Assemblies: React.FC<{}> = observer(() => {
   const [date, setDate] = React.useState('');
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    await store.saveItem(new Assembly({title, date}));
+    await store.saveItem(new Assembly({ title, date }));
     handleModalClose();
     store.fetchItems();
   };
@@ -25,6 +26,18 @@ const Assemblies: React.FC<{}> = observer(() => {
   const handleModalClose = () => {
     setOpen(false);
   };
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    switch (event.currentTarget.id) {
+      case 'title':
+        setTitle(event.currentTarget.value);
+        break;
+      case 'date':
+        setDate(event.currentTarget.value);
+        break;
+      default:
+        break;
+    }
+  }
   const AddButton = (
     rootStore.isAdmin() && <Fab onClick={handleAddClick}>+</Fab>
   );
@@ -46,33 +59,37 @@ const Assemblies: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.items.map((item) =>
-            <tr key={item.id}>
-              <td>{item.title}</td>
-              <td>{item.dateToString}</td>
-              <td>{item.isConfirmed}</td>
-            </tr>,
-          )}
+            {store.items.map((item) =>
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.dateToString}</td>
+                <td>{item.isConfirmed}</td>
+              </tr>,
+            )}
           </tbody>
         </S.Table>
       </S.Center>
-      { AddButton }
+      { AddButton}
       <Modal
         open={open}
         onClose={handleModalClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="title">Título</label>
-          <input type="text" name="title" id="title"
-            onChange={({target}) => setTitle(target.value)} />
-          <label htmlFor="date">Data</label>
-          <input type="date" name="date" id="date"
-            onChange={({target}) => setDate(target.value)} />
-
-          <input type="submit" value="Enviar"/>
-        </form>
+        <Form onSubmit={handleSubmit}>
+          <FormControl>
+            <InputLabel htmlFor="title">Título</InputLabel>
+            <Input id="title" value={title} onChange={handleChange} />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="date">Data</InputLabel>
+            <Input type="date" id="date" value={date} onChange={handleChange} />
+          </FormControl>
+          <div>
+            <Button color="secondary" onClick={() => setOpen(false)}>Cancelar</Button>
+            <Input type="submit" value="Enviar"/>
+          </div>
+        </Form>
       </Modal>
     </React.Fragment>
   );
