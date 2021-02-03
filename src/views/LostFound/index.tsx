@@ -4,7 +4,7 @@ import LostFoundItem from "../../models/LostFoundItem";
 import LostFoundStore from "./store";
 import Store from "../../store";
 import S from "./styled";
-import Form from './_form';
+import LostFoundItemForm from './_form';
 
 const LostFound: React.FC = observer(() => {
   const store = React.useContext(LostFoundStore);
@@ -38,7 +38,7 @@ const LostFound: React.FC = observer(() => {
     </S.SmileysContainer>
 
     {itemCategory !== '' && 
-      <Form itemLabel={itemLabel} itemCategory={itemCategory} />
+      <LostFoundItemForm itemLabel={itemLabel} itemCategory={itemCategory} />
     }
 
     <S.ItemCardContainer>

@@ -1,4 +1,6 @@
+import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import React from 'react';
+import { Form } from '../../components/Form';
 import LostFoundItem from '../../models/LostFoundItem';
 import service from '../../services/lostFound.service';
 import RootStore from '../../store';
@@ -9,7 +11,7 @@ interface IProps {
   itemCategory: string;
 }
 
-const Form = ({itemLabel, itemCategory = ''}: IProps) => {
+const LostFoundItemForm = ({itemLabel, itemCategory = ''}: IProps) => {
   const rootStore = React.useContext(RootStore);
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
@@ -25,20 +27,32 @@ const Form = ({itemLabel, itemCategory = ''}: IProps) => {
     service.post(new LostFoundItem({name, description, image}), rootStore.jwt);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="item">O que você {itemLabel[itemCategory]}</label>
-      <input type="text" id="item" name="item"
-        onChange={({target}) => setName(target.value)} />
-      <label htmlFor="description">Faça uma descrição</label>
-      <input type="textarea" id="description" name="description"
-        onChange={({target}) => setDescription(target.value)} />
-      <label htmlFor="image">Anexar imagem (opcional)</label>
-      <input type="file" id="image" name="image"
-        onChange={({currentTarget}) => setImages(currentTarget.files)} />
+    <Form onSubmit={handleSubmit}>
+      <FormControl>
+        <InputLabel htmlFor="item">O que você {itemLabel[itemCategory]}</InputLabel>
+        <Input type="text" id="item" name="item"
+          onChange={({target}) => setName(target.value)} />
+      </FormControl>
+      <FormControl>
+        <InputLabel htmlFor="description">Faça uma descrição</InputLabel>
+        <Input type="textarea" id="description" name="description"
+          onChange={({target}) => setDescription(target.value)} />
+      </FormControl>
+      <FormControl>
+        <label htmlFor="image">Anexar imagem (opcional)</label>
+        <Button
+          variant="contained"
+          component="label"
+        >
+          Upload File
+          <input type="file" id="image" name="image" hidden
+            onChange={({currentTarget}) => setImages(currentTarget.files)} />
+        </Button>
+      </FormControl>
 
-      <input type="submit" value="Enviar"/>
-    </form>
+      <Input type="submit" value="Enviar"/>
+    </Form>
   );
 }
 
-export default Form;
+export default LostFoundItemForm;
