@@ -4,7 +4,8 @@ import AdministratorStore from "./store";
 import Administrator from '../../models/Administrator';
 import RootStore from "../../store";
 import S from "./styled";
-import { Fab, Modal } from "@material-ui/core";
+import { Fab, FormControl, Input, InputLabel, Modal } from "@material-ui/core";
+import { Form } from "../../components/Form";
 
 const Administrators: React.FC<{}> = observer(() => {
   const store = React.useContext(AdministratorStore);
@@ -62,16 +63,20 @@ const Administrators: React.FC<{}> = observer(() => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Nome</label>
-          <input type="text" name="name" id="name"
-            onChange={({target}) => setName(target.value)} />
-          <label htmlFor="phone">Telefone</label>
-          <input type="text" name="phone" id="phone"
-            onChange={({target}) => setPhone(target.value)} />
+        <Form onSubmit={handleSubmit}>
+          <FormControl>
+            <InputLabel htmlFor="name">Nome</InputLabel>
+            <Input type="text" name="name" id="name"
+              onChange={({target}) => setName(target.value)} />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="phone">Telefone</InputLabel>
+            <Input type="text" name="phone" id="phone"
+              onChange={({target}) => setPhone(target.value)} />
+          </FormControl>
 
-          <input type="submit" value="Enviar"/>
-        </form>
+          <Input type="submit" value="Enviar"/>
+        </Form>
       </Modal>
     </>
   );

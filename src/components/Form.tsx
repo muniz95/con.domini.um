@@ -5,7 +5,7 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: #FFFFFFED;
   flex-flow: column;
 `;
 
