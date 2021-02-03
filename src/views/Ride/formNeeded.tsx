@@ -1,4 +1,6 @@
+import { FormControl, Input, InputLabel } from "@material-ui/core";
 import React from "react";
+import { Form } from "../../components/Form";
 import RideRecord from "../../models/RideRecord";
 import service from "../../services/ride.service";
 import RootStore from "../../store";
@@ -28,67 +30,82 @@ const FormNeeded = () => {
     );
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="destiny">Destino</label>
-      <input
-        type="text"
-        id="destiny"
-        name="destiny"
-        onChange={({ target }) => setDestiny(target.value)}
-      />
+    <Form onSubmit={handleSubmit}>
+      <FormControl>
+        <InputLabel htmlFor="destiny">Destino</InputLabel>
+        <Input
+          type="text"
+          id="destiny"
+          name="destiny"
+          onChange={({ target }) => setDestiny(target.value)}
+        />
+      </FormControl>
 
-      <label htmlFor="town">Bairro e/ou cidade</label>
-      <input
-        type="text"
-        id="town"
-        name="town"
-        onChange={({ target }) => setTown(target.value)}
-      />
+      <FormControl>
+        <InputLabel htmlFor="town">Bairro e/ou cidade</InputLabel>
+        <Input
+          type="text"
+          id="town"
+          name="town"
+          onChange={({ target }) => setTown(target.value)}
+          />
+      </FormControl>
+    
+      <FormControl>
+        <Input
+          type="radio"
+          name="frequency"
+          id="onetime"
+          value="0"
+          onChange={({ target }) => setFrequency(target.value)}
+        />
+        <InputLabel htmlFor="onetime">Apenas um dia</InputLabel>
+      
+      </FormControl>
 
-      <input
-        type="radio"
-        name="frequency"
-        id="onetime"
-        value="0"
-        onChange={({ target }) => setFrequency(target.value)}
-      />
-      <label htmlFor="onetime">Apenas um dia</label>
+      <FormControl>
+        <Input
+          type="radio"
+          name="frequency"
+          id="recurring"
+          value="1"
+          onChange={({ target }) => setFrequency(target.value)}
+        />
+        <InputLabel htmlFor="recurring">Recorrente</InputLabel>
+      </FormControl>
+      
+      <FormControl>
+        <InputLabel htmlFor="departure">Horário de saída</InputLabel>
+        <Input
+          type="text"
+          id="departure"
+          name="departure"
+          onChange={({ target }) => setDeparture(target.value)}
+        />
+      </FormControl>
 
-      <input
-        type="radio"
-        name="frequency"
-        id="recurring"
-        value="1"
-        onChange={({ target }) => setFrequency(target.value)}
-      />
-      <label htmlFor="recurring">Recorrente</label>
+      <FormControl>
+        <InputLabel htmlFor="phone">Telefone (opcional)</InputLabel>
+        <Input
+          type="text"
+          id="phone"
+          name="phone"
+          onChange={({ target }) => setPhone(target.value)}
+        />
+      </FormControl>
 
-      <label htmlFor="departure">Horário de saída</label>
-      <input
-        type="text"
-        id="departure"
-        name="departure"
-        onChange={({ target }) => setDeparture(target.value)}
-      />
+      <FormControl>
+        <InputLabel htmlFor="observation">Observações</InputLabel>
+        <Input
+          type="text"
+          id="observation"
+          name="observation"
+          onChange={({ target }) => setObservation(target.value)}
+        />
+      </FormControl>
 
-      <label htmlFor="phone">Telefone (opcional)</label>
-      <input
-        type="text"
-        id="phone"
-        name="phone"
-        onChange={({ target }) => setPhone(target.value)}
-      />
-
-      <label htmlFor="observation">Observações</label>
-      <input
-        type="text"
-        id="observation"
-        name="observation"
-        onChange={({ target }) => setObservation(target.value)}
-      />
-
-      <input type="submit" value="Enviar" />
-    </form>
+      <Input type="submit" value="Enviar" />
+    </Form>
   );
 };
 
