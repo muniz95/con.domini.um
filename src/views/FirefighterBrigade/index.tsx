@@ -1,10 +1,11 @@
-import { Fab, Modal } from "@material-ui/core";
+import { Fab, FormControl, Input, InputLabel, Modal } from "@material-ui/core";
 import { observer } from "mobx-react";
 import React from "react";
 import FirefighterBrigadeStore from "./store";
 import RootStore from '../../store';
 import S from "./styled";
 import BrigadeMember from "../../models/BrigadeMember";
+import { Form } from "../../components/Form";
 
 const Administrator: React.FC<{}> = observer(() => {
   const store = React.useContext(FirefighterBrigadeStore);
@@ -61,16 +62,20 @@ const Administrator: React.FC<{}> = observer(() => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Nome</label>
-          <input type="text" name="name" id="name"
-            onChange={({target}) => setName(target.value)} />
-          <label htmlFor="category">Data</label>
-          <input type="text" name="category" id="category"
-            onChange={({target}) => setCategory(target.value)} />
+        <Form onSubmit={handleSubmit}>
+          <FormControl>
+            <InputLabel htmlFor="name">Nome</InputLabel>
+            <Input type="text" name="name" id="name"
+              onChange={({target}) => setName(target.value)} />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="category">Data</InputLabel>
+            <Input type="text" name="category" id="category"
+              onChange={({target}) => setCategory(target.value)} />
+          </FormControl>
 
-          <input type="submit" value="Enviar"/>
-        </form>
+          <Input type="submit" value="Enviar"/>
+        </Form>
       </Modal>
     </React.Fragment>
   );
