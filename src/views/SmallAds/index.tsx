@@ -8,6 +8,8 @@ import Box from '@material-ui/core/Box';
 import SmallAd from "../../models/SmallAd";
 import SmallAdStore from "./store";
 import global from '../../global.style';
+import SmallAdForm from "./_form";
+import { FormControl, Input, InputLabel } from "@material-ui/core";
 
 function a11yProps(index: number) {
   return {
@@ -18,6 +20,7 @@ function a11yProps(index: number) {
 
 const SmallAds: React.FC<{}> = observer(() => {
   const store = React.useContext(SmallAdStore);
+  const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(0);
   const myAds = (ad: SmallAd) => ad.createdBy === 'me';
   
@@ -68,7 +71,7 @@ const SmallAds: React.FC<{}> = observer(() => {
         </S.AdCardContainer>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <SmallAdForm />
       </TabPanel>
     </React.Fragment>
   );
