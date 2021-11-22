@@ -17,7 +17,7 @@ class Store {
   }
 
   @action isAdmin() {
-    return this.user.role === 'admin' || this.user.name === 'Admin';
+    return this.user.role.toLocaleLowerCase() === 'admin';
   }
 
   @action async authenticate(email: string, password: string): Promise<void> {
