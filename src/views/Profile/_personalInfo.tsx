@@ -1,7 +1,7 @@
 import React from 'react';
 import User from '../../models/User';
 
-export default (user: User) => (
+const PersonalInfo = (user: User) => (
   <form>
     <div>
       <label htmlFor="name">Nome</label>
@@ -55,3 +55,5 @@ export default (user: User) => (
     <button type="reset">Limpar</button>
   </form>
 );
+
+export default PersonalInfo

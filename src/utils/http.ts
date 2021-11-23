@@ -6,10 +6,13 @@ export async function http<T>(request: RequestInfo): Promise<T> {
   const response: Response = await fetch(request);
   let result;
 
+  // eslint-disable-next-line no-useless-catch
   try {
     // may error if there is no body
     result = await response.json();
-  } catch (ex) {}
+  } catch (ex) {
+    throw ex
+  }
 
   if (!response.ok) {
     console.error(response.statusText);

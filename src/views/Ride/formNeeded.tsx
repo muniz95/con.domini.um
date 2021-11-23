@@ -4,7 +4,6 @@ import { Form } from "../../components/Form";
 import RideRecord from "../../models/RideRecord";
 import service from "../../services/ride.service";
 import RootStore from "../../store";
-import { toBase64 } from "../../utils/file";
 
 const FormNeeded = () => {
   const rootStore = React.useContext(RootStore);

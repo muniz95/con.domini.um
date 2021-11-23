@@ -14,6 +14,8 @@ const Reservations: React.FC<{}> = observer(() => {
     React.useState<ReservationRecord | null>();
   const handleClickDay = (date: Date) => {
     service.getReservationsByDate(date).then((result: Response) => {
+      console.log(result);
+      
       // setReservations(result);
     });
   };

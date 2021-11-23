@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import React from "react";
 import RideStore from "./store";
 import FormNeeded from './formNeeded';
-import S from "./styled";
+// import S from "./styled";
 import global from '../../global.style';
 
 function a11yProps(index: number) {
@@ -35,20 +35,20 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
 const NeededRide: React.FC<{}> = observer(() => {
   const store = React.useContext(RideStore);
   const [value, setValue] = React.useState(0);
-  const [fieldVisible, setFieldVisible] = React.useState(false);
-  const [, setSelectedIcon] = React.useState("");
-  const offerIconAction = () => {
-    if (!fieldVisible) {
-      setFieldVisible(true);
-    }
-    setSelectedIcon("condomínio");
-  };
-  const needIconAction = () => {
-    if (!fieldVisible) {
-      setFieldVisible(true);
-    }
-    setSelectedIcon("website");
-  };
+  // const [fieldVisible, setFieldVisible] = React.useState(false);
+  // const [, setSelectedIcon] = React.useState("");
+  // const offerIconAction = () => {
+  //   if (!fieldVisible) {
+  //     setFieldVisible(true);
+  //   }
+  //   setSelectedIcon("condomínio");
+  // };
+  // const needIconAction = () => {
+  //   if (!fieldVisible) {
+  //     setFieldVisible(true);
+  //   }
+  //   setSelectedIcon("website");
+  // };
 
   React.useEffect(() => {
     store.fetchItems();

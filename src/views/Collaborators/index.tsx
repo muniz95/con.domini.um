@@ -16,7 +16,7 @@ const Collaborators: React.FC<{}> = observer(() => {
       <S.Center>
         <S.Table>
           {store.items.map((record) =>
-            <tr>
+            <tr key={record.id}>
               <td>{record.name}</td>
               <td>{record.role}</td>
               <td>{record.startWork}</td>
