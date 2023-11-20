@@ -22,7 +22,7 @@
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "file-loader": "2.0.0",
-    "formik": "^1.5.1",
+    "formik": "^2.4.5",
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
