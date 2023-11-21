@@ -55,11 +55,9 @@ const menuEntries: IMenuEntry[] = [
   { name: "Empregados", url: "employees", icon: <InboxIcon /> },
   { name: "Enquetes", url: "surveys", icon: <InboxIcon /> },
   { name: "Eventos", url: "events", icon: <InboxIcon /> },
-  { name: "Galeria de fotos", url: "gallery", icon: <InboxIcon /> },
   { name: "Lista de Acesso", url: "accesslist", icon: <InboxIcon /> },
   { name: "Mensagens", url: "messages", icon: <InboxIcon /> },
   { name: "Minha unidade", url: "unit", icon: <InboxIcon /> },
-  { name: "Notificações", url: "notifications", icon: <InboxIcon /> },
   {
     name: "Obras & Providências",
     url: "providences",
@@ -73,7 +71,6 @@ const menuEntries: IMenuEntry[] = [
   { name: "Veículos", url: "vehicles", icon: <InboxIcon /> },
   { name: "Visita de Prestadores", url: "providers", icon: <InboxIcon /> },
   { name: "Votações", url: "polls", icon: <InboxIcon /> },
-  { name: "Vizinhos", url: "neighbors", icon: <InboxIcon /> },
 ];
 
 type Anchor = "top" | "left" | "bottom" | "right";
