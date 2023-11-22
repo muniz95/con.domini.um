@@ -32,6 +32,13 @@ class Store {
       localStorage.setItem("user", JSON.stringify(this.user));
     }
   }
+
+  @action async logout(): Promise<void> {
+    this.authenticated = false;
+
+    localStorage.setItem("jwt", "");
+    localStorage.setItem("user", "");
+  }
 }
 
 export type RootState = typeof Store;
