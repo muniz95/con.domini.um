@@ -13,7 +13,12 @@ export const postFirefighter = async (item: BrigadeMember, token: string) => {
   return await http.post<BrigadeMember>(url, item, token);
 }
 
+export const removeFirefighter = async (id: number, token: string) => {
+  return await http.remove(url, id, token);
+}
+
 export default {
   getFirefighters,
   postFirefighter,
+  removeFirefighter,
 };

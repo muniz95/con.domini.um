@@ -12,12 +12,12 @@ export const SmileysContainer = styled.div`
 export const SadEmoji = styled(MoodBad)`
   font-size: 8pc;
   color: ${global.primaryColor};
-` as keyof JSX.IntrinsicElements;
+` as unknown as keyof JSX.IntrinsicElements;
 
 export const HappyEmoji = styled(Mood)`
   font-size: 8pc;
   color: ${global.primaryColor};
-` as keyof JSX.IntrinsicElements;
+` as unknown as keyof JSX.IntrinsicElements;
 
 export const EmojiBox = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import ThumbDown from "@material-ui/icons/ThumbDown";
 import ThumbUp from "@material-ui/icons/ThumbUp";
-import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
 import global from "../../global.style";
 
 interface IItemCardBodyProps {
@@ -16,12 +16,12 @@ export const SmileysContainer = styled.div`
 export const OfferIcon = styled(ThumbUp)`
   font-size: 8pc;
   color: ${global.primaryColor};
-` as keyof JSX.IntrinsicElements;
+` as unknown as keyof JSX.IntrinsicElements;
 
 export const NeedIcon = styled(ThumbDown)`
   font-size: 8pc;
   color: ${global.primaryColor};
-` as keyof JSX.IntrinsicElements;
+` as unknown as keyof JSX.IntrinsicElements;
 
 export const IconBox = styled.div`
   display: flex;
@@ -47,7 +47,7 @@ export const ItemCard = styled.div`
   width: 25%;
 `;
 
-export const ItemCardBody: StyledComponent<"div", any, IItemCardBodyProps> = styled.div`
+export const ItemCardBody = styled.div<IItemCardBodyProps>`
   width: 100%;
   background-color: ${(props: any) => props.available ? "green" : "red"};
   margin: 5px;
