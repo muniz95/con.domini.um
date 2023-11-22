@@ -1,4 +1,4 @@
-import { instance as store} from '../store';
+import { instance as store } from '../store';
 
 export async function full(request: RequestInfo): Promise<Response> {
   return await fetch(request);
@@ -98,6 +98,7 @@ export async function fullPost(
 export async function put<T>(
   path: string,
   body: any,
+  token?: string,
   args: RequestInit = {
     method: "put",
     headers: { 
@@ -108,7 +109,7 @@ export async function put<T>(
     body: JSON.stringify(body),
   }
 ): Promise<T | null> {
-  return await http<T>(new Request(path, args));
+  return await http<T>(new Request(`${path}/${body.id}`, args));
 }
 
 export default {

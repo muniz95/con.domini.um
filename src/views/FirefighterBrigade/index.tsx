@@ -11,24 +11,37 @@ import CDUModal from "../../components/Modal";
 const Administrator: React.FC<{}> = observer(() => {
   const store = React.useContext(FirefighterBrigadeStore);
   const rootStore = React.useContext(RootStore);
-  const [open, setOpen] = React.useState(false);
-  const [name, setName] = React.useState('');
-  const [category, setCategory] = React.useState('');
-  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    await store.saveItem(new BrigadeMember({name, category}));
+  const [currentItem, setCurrentItem] = React.useState<BrigadeMember | null>(null);
+  const [id, setId] = React.useState<number | null>(null);
+  const [newOpen, setNewOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = React.useState(false);
+  const [, setName] = React.useState('');
+  const [, setCategory] = React.useState('');
+
+  const handleNewSubmit = async (formName: string, formCategory: string) => {
+    await store.saveItem(new BrigadeMember({ name: formName, category: formCategory }));
+    handleModalClose();
+    store.fetchItems();
+  };
+  const handleEditSubmit = async (formName: string, formCategory: string) => {
+    await store.saveItem(new BrigadeMember({ id, name: formName, category: formCategory }));
     handleModalClose();
     store.fetchItems();
   };
   const handleAddClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
     console.log(evt);
-    setOpen(true);
+    setNewOpen(true);
   }
   const handleModalClose = () => {
-    setOpen(false);
+    setNewOpen(false);
+    setEditOpen(false);
   };
-  const handleEdit = () => {
-    setOpen(false);
+  const handleEdit = (item: BrigadeMember) => {
+    setCurrentItem(item);
+    setId(item.id!);
+    setName(item.name!);
+    setCategory(item.category!);
+    setEditOpen(true);
   };
   const handleRemove = async (id: number) => {
     await store.removeItem(id);
@@ -61,7 +74,7 @@ const Administrator: React.FC<{}> = observer(() => {
               <td>{item.name}</td>
               <td>{item.category}</td>
               <td>
-                <Button onClick={handleEdit}>Editar</Button>
+                <Button onClick={() => handleEdit(item)}>Editar</Button>
                 <Button onClick={() => handleRemove(item.id!)}>Remover</Button>
               </td>
             </tr>,
@@ -71,25 +84,20 @@ const Administrator: React.FC<{}> = observer(() => {
       </S.Center>
       { AddButton }
       <CDUModal
-        open={open}
-        setOpen={setOpen}
+        open={editOpen}
+        setOpen={setEditOpen}
         >
         <FirefighterBrigadeForm
-          handleSubmit={handleSubmit}
-          setName={setName}
-          setCategory={setCategory} />
+          item={currentItem!}
+          onSubmit={handleEditSubmit} />
       </CDUModal>
-      {/* <Modal
-        open={open}
-        onClose={handleModalClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
+      <CDUModal
+        open={newOpen}
+        setOpen={setNewOpen}
+        >
         <FirefighterBrigadeForm
-          handleSubmit={handleSubmit}
-          setName={setName}
-          setCategory={setCategory} />
-      </Modal> */}
+          onSubmit={handleNewSubmit} />
+      </CDUModal>
     </React.Fragment>
   );
 });

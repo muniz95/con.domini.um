@@ -1,29 +1,81 @@
+/* eslint-disable no-unused-vars */
 import { FormControl, InputLabel, Input } from "@material-ui/core";
-import { Form } from "../../components/Form";
+import { Form, Text } from "../../components/Form";
 import React from "react";
+import BrigadeMember from "../../models/BrigadeMember";
+import { Formik } from "formik";
 
 interface IProps {
-  handleSubmit: (evt: React.FormEvent<HTMLFormElement>) => void
-  setName: (name: string) => void
-  setCategory: (category: string) => void
+  item?: BrigadeMember
+  onSubmit: (name: string, category: string) => void
 }
 
-const FirefighterBrigadeForm = ({ handleSubmit, setName, setCategory }: IProps) => {  
+const FirefighterBrigadeForm = ({ item, onSubmit }: IProps) => {  
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormControl>
-        <InputLabel htmlFor="name">Nome</InputLabel>
-        <Input type="text" name="name" id="name"
-          onChange={({target}) => setName(target.value)} />
-      </FormControl>
-      <FormControl>
-        <InputLabel htmlFor="category">Categoria</InputLabel>
-        <Input type="text" name="category" id="category"
-          onChange={({target}) => setCategory(target.value)} />
-      </FormControl>
+    <Formik
+      initialValues={
+        {
+          name: (item && item!.name) || "",
+          category: (item && item!.category) || ""
+        }
+      }
+      onSubmit={({name, category}) => {
+        console.log(name, category);
+        
+        onSubmit(name, category)
+      }}
+      validate={(values) => {
+        const errors: any = {};
+        console.log(values);
 
-      <Input type="submit" value="Enviar"/>
-    </Form>
+        if (!values.name) {
+          errors.name = "Nome é obrigatório.";
+        }
+
+        if (!values.category) {
+          errors.category = "Categoria é obrigatória.";
+        }
+
+        return errors;
+      }}
+      render={({
+        errors,
+        values,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+      }) => (
+        <Form onSubmit={handleSubmit}>
+          <FormControl>
+            <InputLabel htmlFor="name">
+              Nome *
+              {errors.name && <Text color="red">{errors.name}</Text>}
+            </InputLabel>
+            <Input onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.name}
+              type="text"
+              name="name"
+              placeholder="Nome"  />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="category">
+              Categoria *
+              {errors.category && <Text color="red">{errors.category}</Text>}
+            </InputLabel>
+            <Input 
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.category}
+              type="text"
+              name="category"
+              placeholder="Categoria" />
+          </FormControl>
+
+          <Input type="submit" value="Enviar"/>
+        </Form>
+      )}
+    />
   );
 }
 
