@@ -1,13 +1,12 @@
 import http from '../utils/http';
 import LostFoundItem from '../models/LostFoundItem';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
-const path = 'lost_found_items';
-const url = `${baseUrl}/${path}`;
+const url = `${process.env.REACT_APP_BASE_URL}/lost_found_items`;
 
 export const getLostFoundItems = async (token: string) => {
-  return (await http.get<LostFoundItem[]>(url, token))
-    .map((item) => new LostFoundItem(item));
+  const result = await http.get<LostFoundItem[]>(url, token);
+  if (result) return result.map((item) => new LostFoundItem(item));
+  return [];
 }
 
 export const post = async (item: LostFoundItem, token: string) => {

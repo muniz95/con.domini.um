@@ -1,13 +1,12 @@
 import http from '../utils/http';
 import RideRecord from '../models/RideRecord';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
-const path = 'rides';
-const url = `${baseUrl}/${path}`;
+const url = `${process.env.REACT_APP_BASE_URL}/rides`;
 
 export const getRides = async (token: string) => {
-  return (await http.get<RideRecord[]>(url, token))
-    .map((item) => new RideRecord(item));
+  const result = await http.get<RideRecord[]>(url, token);
+  if (result) return result.map((item) => new RideRecord(item));
+  return [];
 }
 
 export const post = async (item: RideRecord, token: string) => {

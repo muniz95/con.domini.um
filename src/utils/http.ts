@@ -1,24 +1,31 @@
+import { instance as store} from '../store';
+
 export async function full(request: RequestInfo): Promise<Response> {
   return await fetch(request);
 }
 
-export async function http<T>(request: RequestInfo): Promise<T> {
+export async function http<T>(request: RequestInfo): Promise<T | null> {
   const response: Response = await fetch(request);
   let result;
 
   // eslint-disable-next-line no-useless-catch
   try {
     // may error if there is no body
-    result = await response.json();
+    switch (response.status) {
+      case 200:
+        result = await response.json();
+        return result;
+      case 401:
+        store.logout();
+        break;
+      default:
+        break;
+    }
   } catch (ex) {
-    throw ex
+    throw ex;
   }
 
-  if (!response.ok) {
-    console.error(response.statusText);
-  }
-
-  return result;
+  return null;
 }
 
 export async function get<T>(
@@ -33,7 +40,7 @@ export async function get<T>(
       "Authorization": token || '',
     },
   }
-): Promise<T> {
+): Promise<T | null> {
   return await http<T>(new Request(path, args));
 }
 
@@ -51,7 +58,7 @@ export async function post<T>(
     },
     body: JSON.stringify(body),
   }
-): Promise<T> {
+): Promise<T | null> {
   return await http<T>(new Request(path, args));
 }
 
@@ -83,7 +90,7 @@ export async function put<T>(
     },
     body: JSON.stringify(body),
   }
-): Promise<T> {
+): Promise<T | null> {
   return await http<T>(new Request(path, args));
 }
 
