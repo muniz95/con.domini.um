@@ -1,30 +1,52 @@
-import { Fab, FormControl, Input, InputLabel, Modal } from "@material-ui/core";
+import { Button, Fab } from "@material-ui/core";
 import { observer } from "mobx-react";
 import React from "react";
 import FirefighterBrigadeStore from "./store";
 import RootStore from '../../store';
 import S from "./styled";
 import BrigadeMember from "../../models/BrigadeMember";
-import { Form } from "../../components/Form";
+import FirefighterBrigadeForm from "./_form";
+import CDUModal from "../../components/Modal";
 
 const Administrator: React.FC<{}> = observer(() => {
   const store = React.useContext(FirefighterBrigadeStore);
   const rootStore = React.useContext(RootStore);
-  const [open, setOpen] = React.useState(false);
-  const [name, setName] = React.useState('');
-  const [category, setCategory] = React.useState('');
-  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    await store.saveItem(new BrigadeMember({name, category}));
+  const [currentItem, setCurrentItem] = React.useState<BrigadeMember | null>(null);
+  const [id, setId] = React.useState<number | null>(null);
+  const [newOpen, setNewOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = React.useState(false);
+  const [, setName] = React.useState('');
+  const [, setCategory] = React.useState('');
+
+  const handleNewSubmit = async (formName: string, formCategory: string) => {
+    await store.saveItem(new BrigadeMember({ name: formName, category: formCategory }));
+    handleModalClose();
+    store.fetchItems();
+  };
+  const handleEditSubmit = async (formName: string, formCategory: string) => {
+    await store.saveItem(new BrigadeMember({ id, name: formName, category: formCategory }));
     handleModalClose();
     store.fetchItems();
   };
   const handleAddClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
     console.log(evt);
-    setOpen(true);
+    setNewOpen(true);
   }
   const handleModalClose = () => {
-    setOpen(false);
+    setNewOpen(false);
+    setEditOpen(false);
+  };
+  const handleEdit = (item: BrigadeMember) => {
+    setCurrentItem(item);
+    setId(item.id!);
+    setName(item.name!);
+    setCategory(item.category!);
+    setEditOpen(true);
+  };
+  const handleRemove = async (id: number) => {
+    await store.removeItem(id);
+    handleModalClose();
+    store.fetchItems();
   };
   const AddButton = (
     rootStore.isAdmin() && <Fab onClick={handleAddClick}>+</Fab>
@@ -43,6 +65,7 @@ const Administrator: React.FC<{}> = observer(() => {
             <tr>
               <th>Membro</th>
               <th>Tipo</th>
+              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -50,33 +73,31 @@ const Administrator: React.FC<{}> = observer(() => {
             <tr key={item.id}>
               <td>{item.name}</td>
               <td>{item.category}</td>
+              <td>
+                <Button onClick={() => handleEdit(item)}>Editar</Button>
+                <Button onClick={() => handleRemove(item.id!)}>Remover</Button>
+              </td>
             </tr>,
           )}
           </tbody>
         </S.Table>
       </S.Center>
       { AddButton }
-      <Modal
-        open={open}
-        onClose={handleModalClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <Form onSubmit={handleSubmit}>
-          <FormControl>
-            <InputLabel htmlFor="name">Nome</InputLabel>
-            <Input type="text" name="name" id="name"
-              onChange={({target}) => setName(target.value)} />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="category">Data</InputLabel>
-            <Input type="text" name="category" id="category"
-              onChange={({target}) => setCategory(target.value)} />
-          </FormControl>
-
-          <Input type="submit" value="Enviar"/>
-        </Form>
-      </Modal>
+      <CDUModal
+        open={editOpen}
+        setOpen={setEditOpen}
+        >
+        <FirefighterBrigadeForm
+          item={currentItem!}
+          onSubmit={handleEditSubmit} />
+      </CDUModal>
+      <CDUModal
+        open={newOpen}
+        setOpen={setNewOpen}
+        >
+        <FirefighterBrigadeForm
+          onSubmit={handleNewSubmit} />
+      </CDUModal>
     </React.Fragment>
   );
 });

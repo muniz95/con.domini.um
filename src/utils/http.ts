@@ -1,10 +1,10 @@
-import { instance as store} from '../store';
+import { instance as store } from '../store';
 
 export async function full(request: RequestInfo): Promise<Response> {
   return await fetch(request);
 }
 
-export async function http<T>(request: RequestInfo): Promise<T | null> {
+export async function http<T>(request: RequestInfo): Promise<T | any | null> {
   const response: Response = await fetch(request);
   let result;
 
@@ -62,6 +62,23 @@ export async function post<T>(
   return await http<T>(new Request(path, args));
 }
 
+export async function remove(
+  path: string,
+  id: any,
+  token?: string,
+  args: RequestInit = {
+    method: "DELETE",
+    headers: { 
+      "Content-Type": "application/json",
+      "Access-Control-Expose-Headers": "Authorization",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": token || '',
+    },
+  }
+): Promise<void> {
+  return await http(new Request(`${path}/${id}`, args));
+}
+
 export async function fullPost(
   path: string,
   body: any,
@@ -81,6 +98,7 @@ export async function fullPost(
 export async function put<T>(
   path: string,
   body: any,
+  token?: string,
   args: RequestInit = {
     method: "put",
     headers: { 
@@ -91,12 +109,13 @@ export async function put<T>(
     body: JSON.stringify(body),
   }
 ): Promise<T | null> {
-  return await http<T>(new Request(path, args));
+  return await http<T>(new Request(`${path}/${body.id}`, args));
 }
 
 export default {
   get,
   post,
+  remove,
   fullPost,
   put,
 };

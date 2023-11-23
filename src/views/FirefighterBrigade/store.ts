@@ -13,7 +13,13 @@ class FirefighterBrigadeStore {
   }
 
   @action public async saveItem(item: BrigadeMember) {
-    await service.postFirefighter(item, this._store.jwt);
+    item.id
+      ? await service.putFirefighter(item, this._store.jwt)
+      : await service.postFirefighter(item, this._store.jwt);
+  }
+
+  @action public async removeItem(id: number) {
+    await service.removeFirefighter(id, this._store.jwt);
   }
 }
 
