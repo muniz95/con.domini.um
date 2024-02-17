@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import GlobalStore from '../store';
 
 interface IMenuEntry {
@@ -78,6 +78,7 @@ type Anchor = "top" | "left" | "bottom" | "right";
 export default function Header() {
   const globalStore = React.useContext(GlobalStore);
   const classes = useStyles();
+  const history = useHistory();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -124,10 +125,20 @@ export default function Header() {
       </IconButton>
     : <></>;
 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await globalStore.logout();
+    history.replace('/');
+  }
+
+  const authLink = globalStore.authenticated
+    ? <Link to="" onClick={handleSubmit} color="inherit">Logout</Link>
+    : <Link to="login" color="inherit">Login</Link>;
+
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
-        <Link to="login" color="inherit">Login</Link>
+        { authLink }
         <Typography variant="h6" color="inherit" className={classes.grow}>
           <Link to="">
             News
