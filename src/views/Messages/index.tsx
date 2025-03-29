@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import MessagesStore from './store';
 import S from './styled';
@@ -16,7 +16,7 @@ function a11yProps(index: number) {
   };
 }
 
-const Messages: React.FC<{}> = observer(() => {
+const Messages = () => {
   const store = React.useContext(MessagesStore);
   const [value, setValue] = React.useState(0);
   const sentToMe = (item: Message) => item.to === 'Morador';

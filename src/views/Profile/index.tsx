@@ -1,10 +1,9 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import ProfileStore from './store';
 import S from './styled';
 import PersonalInfo from './_personalInfo';
 
-const Profile: React.FC<{}> = observer(() => {
+const Profile = () => {
   const store = React.useContext(ProfileStore);
 
   React.useEffect(() => {
@@ -19,6 +18,6 @@ const Profile: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Profile;

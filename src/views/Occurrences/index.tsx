@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import OccurrenceStore from './store';
 import S from './styled';
@@ -13,7 +13,7 @@ function a11yProps(index: number) {
   };
 }
 
-const Occurrences: React.FC<{}> = observer(() => {
+const Occurrences = () => {
   const store = React.useContext(OccurrenceStore);
   const [value, setValue] = React.useState(0);
   const myAds = (ad: Occurrence) => ad.createdBy === 'me';

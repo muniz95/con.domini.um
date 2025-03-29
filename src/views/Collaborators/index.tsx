@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import CollaboratorsStore from './store';
 import S from './styled';
 
-const Collaborators: React.FC<{}> = observer(() => {
+const Collaborators = () => {
   const store = React.useContext(CollaboratorsStore);
 
   React.useEffect(() => {
@@ -27,6 +26,6 @@ const Collaborators: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Collaborators;

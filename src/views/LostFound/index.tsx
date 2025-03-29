@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import LostFoundItem from '../../models/LostFoundItem';
 import LostFoundStore from './store';
@@ -57,6 +57,6 @@ const LostFound: React.FC = observer(() => {
       </S.ItemCardContainer>
     </React.Fragment>
   );
-});
+};
 
 export default LostFound;

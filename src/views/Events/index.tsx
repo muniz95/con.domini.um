@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import S from './styled';
 import EventsStore from './store';
 
-const Events: React.FC<{}> = observer(() => {
+const Events = () => {
   const store = React.useContext(EventsStore);
 
   React.useEffect(() => {
@@ -37,6 +36,6 @@ const Events: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Events;

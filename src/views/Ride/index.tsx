@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import RideStore from './store';
@@ -75,6 +75,6 @@ const Ride: React.FC = observer(() => {
       </S.Center>
     </React.Fragment>
   );
-});
+};
 
 export default Ride;

@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import UnitStore from './store';
 import S from './styled';
 
-const Unit: React.FC<{}> = observer(() => {
+const Unit = () => {
   const store = React.useContext(UnitStore);
 
   React.useEffect(() => {
@@ -45,6 +44,6 @@ const Unit: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Unit;

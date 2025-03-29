@@ -1,5 +1,5 @@
 import { Button, Fab } from '@mui/material';
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import FirefighterBrigadeStore from './store';
 import RootStore from '../../store';
@@ -8,7 +8,7 @@ import BrigadeMember from '../../models/BrigadeMember';
 import FirefighterBrigadeForm from './_form';
 import CDUModal from '../../components/Modal';
 
-const Administrator: React.FC<{}> = observer(() => {
+const Administrator = () => {
   const store = React.useContext(FirefighterBrigadeStore);
   const rootStore = React.useContext(RootStore);
   const [currentItem, setCurrentItem] = React.useState<BrigadeMember | null>(
@@ -102,6 +102,6 @@ const Administrator: React.FC<{}> = observer(() => {
       </CDUModal>
     </React.Fragment>
   );
-});
+};
 
 export default Administrator;

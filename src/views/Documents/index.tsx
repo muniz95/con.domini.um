@@ -1,5 +1,5 @@
 import { AppBar, Box, Tab, Tabs } from '@mui/material';
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import global from '../../global.style';
 import DocumentsStore from './store';
@@ -32,7 +32,7 @@ const TabPanel = (props: {
   );
 };
 
-const Documents: React.FC<{}> = observer(() => {
+const Documents = () => {
   const store = React.useContext(DocumentsStore);
   const [value, setValue] = React.useState(0);
 
@@ -88,6 +88,6 @@ const Documents: React.FC<{}> = observer(() => {
       </TabPanel>
     </>
   );
-});
+};
 
 export default Documents;

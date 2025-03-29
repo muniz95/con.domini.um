@@ -1,5 +1,5 @@
 import { AppBar, Box, Tab, Tabs } from '@mui/material';
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import global from '../../global.style';
 import SmallAd from '../../models/SmallAd';

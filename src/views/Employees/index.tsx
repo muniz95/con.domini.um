@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import EmployeesStore from './store';
 import S from './styled';
 
-const Employees: React.FC<{}> = observer(() => {
+const Employees = () => {
   const store = React.useContext(EmployeesStore);
 
   React.useEffect(() => {
@@ -39,6 +38,6 @@ const Employees: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Employees;

@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -67,6 +67,6 @@ const Reservations: React.FC = observer(() => {
       </S.ItemCardContainer>
     </>
   );
-});
+};
 
 export default Reservations;

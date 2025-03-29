@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import MailStore from './store';
 import S from './styled';
 
-const Mail: React.FC<{}> = observer(() => {
+const Mail = () => {
   const store = React.useContext(MailStore);
 
   React.useEffect(() => {
@@ -37,6 +36,6 @@ const Mail: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Mail;

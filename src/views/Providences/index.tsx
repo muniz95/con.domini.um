@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import ProvidencesStore from './store';
 import S from './styled';
 
-const Providences: React.FC<{}> = observer(() => {
+const Providences = () => {
   const store = React.useContext(ProvidencesStore);
 
   React.useEffect(() => {
@@ -33,6 +32,6 @@ const Providences: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Providences;

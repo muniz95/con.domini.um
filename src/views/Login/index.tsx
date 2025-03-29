@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import Store from '../../store';
 import { useNavigate } from 'react-router';
@@ -45,6 +45,6 @@ const Login: React.FC = observer(() => {
       </form>
     </>
   );
-});
+};
 
 export default Login;

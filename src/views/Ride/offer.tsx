@@ -1,5 +1,5 @@
 import { AppBar, Tabs, Tab, Box } from '@mui/material';
-import { observer } from 'mobx-react';
+
 import React from 'react';
 import RideStore from './store';
 import FormNeeded from './formNeeded';
@@ -112,6 +112,6 @@ const NeededRide: React.FC = observer(() => {
       </TabPanel>
     </React.Fragment>
   );
-});
+};
 
 export default NeededRide;

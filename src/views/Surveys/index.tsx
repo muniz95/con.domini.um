@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import S from './styled';
 import SurveysStore from './store';
 
-const Surveys: React.FC<{}> = observer(() => {
+const Surveys = () => {
   const store = React.useContext(SurveysStore);
 
   React.useEffect(() => {
@@ -35,6 +34,6 @@ const Surveys: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Surveys;

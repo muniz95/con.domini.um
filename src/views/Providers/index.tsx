@@ -1,10 +1,9 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import ProviderListStore from './store';
 import S from './styled';
 import { Fab } from '@mui/material';
 
-const Providers: React.FC<{}> = observer(() => {
+const Providers = () => {
   const store = React.useContext(ProviderListStore);
 
   React.useEffect(() => {
@@ -44,6 +43,6 @@ const Providers: React.FC<{}> = observer(() => {
       <Fab>+</Fab>
     </>
   );
-});
+};
 
 export default Providers;

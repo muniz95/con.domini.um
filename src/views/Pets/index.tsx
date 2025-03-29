@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import PetsStore from './store';
 import S from './styled';
 
-const Pets: React.FC<{}> = observer(() => {
+const Pets = () => {
   const store = React.useContext(PetsStore);
 
   React.useEffect(() => {
@@ -35,6 +34,6 @@ const Pets: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Pets;

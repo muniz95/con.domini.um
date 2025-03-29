@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import VehiclesStore from './store';
 import S from './styled';
 
-const Vehicles: React.FC<{}> = observer(() => {
+const Vehicles = () => {
   const store = React.useContext(VehiclesStore);
 
   React.useEffect(() => {
@@ -39,6 +38,6 @@ const Vehicles: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Vehicles;

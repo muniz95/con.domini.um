@@ -1,9 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import PollsStore from './store';
 import S from './styled';
 
-const Polls: React.FC<{}> = observer(() => {
+const Polls = () => {
   const store = React.useContext(PollsStore);
 
   React.useEffect(() => {
@@ -35,6 +34,6 @@ const Polls: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Polls;
