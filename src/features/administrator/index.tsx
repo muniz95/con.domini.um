@@ -2,11 +2,11 @@ import { Button, FormControl, Input, InputLabel, Modal } from '@mui/material';
 import { FC, FormEvent, useState } from 'react';
 import { Form } from '@/components/Form';
 import { useCreateAdministrator } from './api/create-administrator';
-import { useAdministrators } from './api/get-administrators';
+import { useGetAdministrators } from './api/get-administrators';
 import S from './styled';
 
 const Administrators: FC = () => {
-  const { data } = useAdministrators();
+  const { data } = useGetAdministrators();
   const createAdministratorMutation = useCreateAdministrator();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');

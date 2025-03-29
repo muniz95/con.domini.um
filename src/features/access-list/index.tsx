@@ -1,9 +1,9 @@
 import { AccessRecord } from '../../models/AccessRecord';
-import { useAccessList } from './api/get-access-list';
+import { useGetAccessList } from './api/get-access-list';
 import S from './styled';
 
 const AccessList = () => {
-  const { data } = useAccessList();
+  const { data } = useGetAccessList();
   const temporary = (record: AccessRecord) => !record.permanent;
   const permanent = (record: AccessRecord) => record.permanent;
 

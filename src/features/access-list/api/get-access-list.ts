@@ -35,7 +35,7 @@ type UseCommentsOptions = {
   queryConfig?: QueryConfig<typeof getAccessList>;
 };
 
-export const useAccessList = ({ queryConfig }: UseCommentsOptions = {}) => {
+export const useGetAccessList = ({ queryConfig }: UseCommentsOptions = {}) => {
   return useQuery({
     ...getAccessListQueryOptions(),
     ...queryConfig,

@@ -27,7 +27,9 @@ type UseCommentsOptions = {
   queryConfig?: QueryConfig<typeof getAdministrators>;
 };
 
-export const useAdministrators = ({ queryConfig }: UseCommentsOptions = {}) => {
+export const useGetAdministrators = ({
+  queryConfig,
+}: UseCommentsOptions = {}) => {
   return useQuery({
     ...getAdministratorsQueryOptions(),
     ...queryConfig,
