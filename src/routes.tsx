@@ -20,7 +20,7 @@ const AccessList = React.lazy(() => import('./features/access-list'));
 const Messages = React.lazy(() => import('./views/Messages'));
 const Providences = React.lazy(() => import('./views/Providences'));
 const Occurrences = React.lazy(() => import('./views/Occurrences'));
-const Board = React.lazy(() => import('./views/Board'));
+const Board = React.lazy(() => import('./features/board'));
 const Reservations = React.lazy(() => import('./views/Reservations'));
 const Providers = React.lazy(() => import('./views/Providers'));
 const Polls = React.lazy(() => import('./views/Polls'));

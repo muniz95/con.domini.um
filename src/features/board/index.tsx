@@ -1,14 +1,9 @@
-import { observer } from 'mobx-react';
-import React from 'react';
-import BoardStore from './store';
+import { useGetNotices } from './api/get-notices';
 import S from './styled';
 
-const Board: React.FC<{}> = observer(() => {
-  const store = React.useContext(BoardStore);
+const Board = () => {
+  const { data } = useGetNotices();
 
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
   return (
     <>
       <h2>Quadro de avisos</h2>
@@ -22,7 +17,7 @@ const Board: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-            {store.items.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.title}</td>
                 <td>{item.date?.toLocaleDateString('pt-br')}</td>
@@ -33,6 +28,6 @@ const Board: React.FC<{}> = observer(() => {
       </S.Center>
     </>
   );
-});
+};
 
 export default Board;
