@@ -1,36 +1,31 @@
-
-import React from 'react';
-import OccurrenceStore from './store';
-import S from './styled';
-import Occurrence from '../../models/Occurrence';
-import { AppBar, Tabs, Box, Tab } from '@mui/material';
+import TabPanel from '@/components/tab-panel';
+import { AppBar, Tab, Tabs } from '@mui/material';
+import { SetStateAction, SyntheticEvent, useState } from 'react';
 import global from '../../global.style';
+import Occurrence from '../../models/Occurrence';
+import { useGetOccurrences } from './api/get-occurrences';
+import S from './styled';
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+const a11yProps = (index: number) => ({
+  id: `simple-tab-${index}`,
+  'aria-controls': `simple-tabpanel-${index}`,
+});
 
 const Occurrences = () => {
-  const store = React.useContext(OccurrenceStore);
-  const [value, setValue] = React.useState(0);
+  const { data } = useGetOccurrences();
+
+  const [value, setValue] = useState(0);
   const myAds = (ad: Occurrence) => ad.createdBy === 'me';
 
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
-
   const handleChange = (
-    _event: any,
-    newValue: React.SetStateAction<number>
+    _event: SyntheticEvent,
+    newValue: SetStateAction<number>
   ) => {
     setValue(newValue);
   };
 
   return (
-    <React.Fragment>
+    <>
       <h2>Ocorrências</h2>
       <AppBar
         position="static"
@@ -52,7 +47,7 @@ const Occurrences = () => {
         </S.SearchFieldContainer>
 
         <S.AdCardContainer>
-          {store.occurrences.map((item: Occurrence) => (
+          {data?.map((item: Occurrence) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.name}</S.AdCardTitle>
@@ -64,7 +59,7 @@ const Occurrences = () => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <S.AdCardContainer>
-          {store.occurrences.filter(myAds).map((item: Occurrence) => (
+          {data?.filter(myAds).map((item: Occurrence) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.name}</S.AdCardTitle>
@@ -74,27 +69,7 @@ const Occurrences = () => {
           ))}
         </S.AdCardContainer>
       </TabPanel>
-    </React.Fragment>
-  );
-});
-
-const TabPanel = (props: {
-  [x: string]: any;
-  children: any;
-  value: any;
-  index: any;
-}) => {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </div>
+    </>
   );
 };
 

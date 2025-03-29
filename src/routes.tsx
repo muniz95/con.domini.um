@@ -19,7 +19,7 @@ const Events = React.lazy(() => import('./features/events'));
 const AccessList = React.lazy(() => import('./features/access-list'));
 const Messages = React.lazy(() => import('./features/messages'));
 const Providences = React.lazy(() => import('./views/Providences'));
-const Occurrences = React.lazy(() => import('./views/Occurrences'));
+const Occurrences = React.lazy(() => import('./features/occurrences'));
 const Board = React.lazy(() => import('./features/board'));
 const Reservations = React.lazy(() => import('./views/Reservations'));
 const Providers = React.lazy(() => import('./views/Providers'));
