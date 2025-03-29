@@ -28,7 +28,7 @@ const Login = React.lazy(() => import('./views/Login'));
 const Pets = React.lazy(() => import('./features/pets'));
 const Vehicles = React.lazy(() => import('./views/Vehicles'));
 const Employees = React.lazy(() => import('./features/employees'));
-const Profile = React.lazy(() => import('./views/Profile'));
+const Profile = React.lazy(() => import('./features/profile'));
 const Unit = React.lazy(() => import('./views/Unit'));
 
 const routes: RouteObject[] = [
