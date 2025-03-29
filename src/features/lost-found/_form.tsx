@@ -1,22 +1,20 @@
-import { Button, FormControl, Input, InputLabel } from '@mui/material';
-import React from 'react';
 import { Form } from '@/components/Form';
-import LostFoundItem from '../../models/LostFoundItem';
-import service from '../../services/lostFound.service';
-import RootStore from '../../store';
+import { Button, FormControl, Input, InputLabel } from '@mui/material';
 import { toBase64 } from '../../utils/file';
+import { useCreateLostFoundItem } from './api/create-lost-found-item';
+import { useState, FormEvent } from 'react';
 
 interface IProps {
-  itemLabel: any;
+  itemLabel: { [x: string]: string };
   itemCategory: string;
 }
 
 const LostFoundItemForm = ({ itemLabel, itemCategory = '' }: IProps) => {
-  const rootStore = React.useContext(RootStore);
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
-  const [images, setImages] = React.useState<FileList | null>(null);
-  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+  const createLostFoundItem = useCreateLostFoundItem();
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [images, setImages] = useState<FileList | null>(null);
+  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     let file;
     let image = '';
@@ -24,10 +22,7 @@ const LostFoundItemForm = ({ itemLabel, itemCategory = '' }: IProps) => {
       [file] = [...Array.from(images)];
       image = await toBase64(file);
     }
-    service.post(
-      new LostFoundItem({ name, description, image }),
-      rootStore.jwt
-    );
+    createLostFoundItem.mutate({ name, description, image, foundBy: 'Admin' });
   };
   return (
     <Form onSubmit={handleSubmit}>

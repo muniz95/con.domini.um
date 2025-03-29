@@ -1,25 +1,17 @@
-
 import React from 'react';
-import LostFoundItem from '../../models/LostFoundItem';
-import LostFoundStore from './store';
-import Store from '../../store';
-import S from './styled';
 import LostFoundItemForm from './_form';
+import { useGetLostFoundItems } from './api/get-lost-found-items';
+import S from './styled';
 
-const LostFound: React.FC = observer(() => {
-  const store = React.useContext(LostFoundStore);
-  const rootStore = React.useContext(Store);
+const LostFound = () => {
+  const { data } = useGetLostFoundItems();
   const [itemCategory, setItemCategory] = React.useState<string>('');
-  const itemLabel: any = {
+  const itemLabel = {
     found: 'encontrou',
     lost: 'perdeu',
   };
   const handleFoundClick = () => setItemCategory('found');
   const handleLostClick = () => setItemCategory('lost');
-
-  React.useEffect(() => {
-    store.fetchItems(rootStore.jwt);
-  }, [store]);
 
   return (
     <React.Fragment>
@@ -46,11 +38,11 @@ const LostFound: React.FC = observer(() => {
       )}
 
       <S.ItemCardContainer>
-        {store.items.map((item: LostFoundItem) => (
+        {data?.map((item) => (
           <S.ItemCard key={item.id}>
             <S.ItemCardBody>
               <h2>{item.name}</h2>
-              <h6>{item.createdAt}</h6>
+              <h6>{item.creationDate.toLocaleDateString('pt-br')}</h6>
             </S.ItemCardBody>
           </S.ItemCard>
         ))}
