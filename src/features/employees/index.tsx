@@ -1,13 +1,8 @@
-import React from 'react';
-import EmployeesStore from './store';
+import { useGetEmployees } from './api/get-employees';
 import S from './styled';
 
 const Employees = () => {
-  const store = React.useContext(EmployeesStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetEmployees();
   return (
     <>
       <h2>Veículos</h2>
@@ -24,7 +19,7 @@ const Employees = () => {
             </tr>
           </thead>
           <tbody>
-            {store.employees.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.photo}</td>
                 <td>{item.name}</td>
