@@ -1,20 +1,15 @@
-import React from 'react';
-import CollaboratorsStore from './store';
+import { useGetCollaborators } from './api/get-collaborators';
 import S from './styled';
 
 const Collaborators = () => {
-  const store = React.useContext(CollaboratorsStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetCollaborators();
 
   return (
     <>
       <h2>Colaboradores</h2>
       <S.Center>
         <S.Table>
-          {store.items.map((record) => (
+          {data?.map((record) => (
             <tr key={record.id}>
               <td>{record.name}</td>
               <td>{record.role}</td>
