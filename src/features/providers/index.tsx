@@ -1,14 +1,9 @@
-import React from 'react';
-import ProviderListStore from './store';
-import S from './styled';
 import { Fab } from '@mui/material';
+import { useGetProviders } from './api/get-providers';
+import S from './styled';
 
 const Providers = () => {
-  const store = React.useContext(ProviderListStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetProviders();
   return (
     <>
       <h2>Prestadores de serviços</h2>
@@ -27,7 +22,7 @@ const Providers = () => {
             </tr>
           </thead>
           <tbody>
-            {store.records.map((record) => (
+            {data?.map((record) => (
               <tr key={record.id}>
                 <td>{record.name}</td>
                 <td>{record.date?.toLocaleTimeString('pt-br')}</td>
