@@ -1,13 +1,8 @@
-import React from 'react';
+import { useGetEvents } from './api/get-events';
 import S from './styled';
-import EventsStore from './store';
 
 const Events = () => {
-  const store = React.useContext(EventsStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetEvents();
   return (
     <>
       <h2>Eventos</h2>
@@ -23,7 +18,7 @@ const Events = () => {
             </tr>
           </thead>
           <tbody>
-            {store.events.map((event) => (
+            {data?.map((event) => (
               <tr key={event.id}>
                 <td>{event.title}</td>
                 <td>{event.local}</td>
