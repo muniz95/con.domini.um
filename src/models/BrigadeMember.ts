@@ -2,12 +2,6 @@ interface BrigadeMember {
   id?: number;
   name?: string;
   category?: string;
-
-  constructor(params: any) {
-    this.id = params.id;
-    this.name = params.name;
-    this.category = params.category;
-  }
 }
 
 export default BrigadeMember;

@@ -1,38 +1,42 @@
 import { Button, Fab } from '@mui/material';
 
 import React from 'react';
-import FirefighterBrigadeStore from './store';
-import RootStore from '../../store';
-import S from './styled';
+import CDUModal from '../../components/Modal';
 import BrigadeMember from '../../models/BrigadeMember';
 import FirefighterBrigadeForm from './_form';
-import CDUModal from '../../components/Modal';
+import { useCreateBrigadeMember } from './api/create-brigade-member';
+import { useDeleteBrigadeMember } from './api/delete-brigade-member';
+import { useGetBrigadeMembers } from './api/get-brigade-members';
+import { useUpdateBrigadeMember } from './api/update-brigade-member';
+import S from './styled';
 
-const Administrator = () => {
-  const store = React.useContext(FirefighterBrigadeStore);
-  const rootStore = React.useContext(RootStore);
-  const [currentItem, setCurrentItem] = React.useState<BrigadeMember | null>(
-    null
-  );
-  const [id, setId] = React.useState<number | null>(null);
+const FirefighterBrigade = () => {
+  const { data } = useGetBrigadeMembers();
+  const createBrigadeMember = useCreateBrigadeMember();
+  const updateBrigadeMember = useUpdateBrigadeMember();
+  const deleteBrigadeMember = useDeleteBrigadeMember();
+
+  const [currentItem, setCurrentItem] = React.useState<BrigadeMember>();
+  const [id, setId] = React.useState<number>();
   const [newOpen, setNewOpen] = React.useState(false);
   const [editOpen, setEditOpen] = React.useState(false);
   const [, setName] = React.useState('');
   const [, setCategory] = React.useState('');
 
   const handleNewSubmit = async (formName: string, formCategory: string) => {
-    await store.saveItem(
-      new BrigadeMember({ name: formName, category: formCategory })
-    );
+    await createBrigadeMember.mutate({
+      name: formName,
+      category: formCategory,
+    });
     handleModalClose();
-    store.fetchItems();
   };
   const handleEditSubmit = async (formName: string, formCategory: string) => {
-    await store.saveItem(
-      new BrigadeMember({ id, name: formName, category: formCategory })
-    );
+    await updateBrigadeMember.mutate({
+      id,
+      name: formName,
+      category: formCategory,
+    });
     handleModalClose();
-    store.fetchItems();
   };
   const handleAddClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
     console.log(evt);
@@ -50,17 +54,10 @@ const Administrator = () => {
     setEditOpen(true);
   };
   const handleRemove = async (id: number) => {
-    await store.removeItem(id);
+    deleteBrigadeMember.mutate(id);
     handleModalClose();
-    store.fetchItems();
   };
-  const AddButton = rootStore.isAdmin() && (
-    <Fab onClick={handleAddClick}>+</Fab>
-  );
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const AddButton = <Fab onClick={handleAddClick}>+</Fab>;
 
   return (
     <React.Fragment>
@@ -75,7 +72,7 @@ const Administrator = () => {
             </tr>
           </thead>
           <tbody>
-            {store.items.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>{item.category}</td>
@@ -104,4 +101,4 @@ const Administrator = () => {
   );
 };
 
-export default Administrator;
+export default FirefighterBrigade;

@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-import { FormControl, InputLabel, Input } from '@mui/material';
 import { Form, Text } from '@/components/Form';
-import React from 'react';
-import BrigadeMember from '../../models/BrigadeMember';
+import { FormControl, Input, InputLabel } from '@mui/material';
 import { Formik } from 'formik';
+import BrigadeMember from '../../models/BrigadeMember';
 
 interface IProps {
   item?: BrigadeMember;
@@ -23,7 +21,7 @@ const FirefighterBrigadeForm = ({ item, onSubmit }: IProps) => {
         onSubmit(name, category);
       }}
       validate={(values) => {
-        const errors: any = {};
+        const errors: { [x: string]: string } = {};
         console.log(values);
 
         if (!values.name) {

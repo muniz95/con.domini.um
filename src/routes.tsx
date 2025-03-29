@@ -5,7 +5,7 @@ const LostFound = React.lazy(() => import('./views/LostFound'));
 const Administrator = React.lazy(() => import('./features/administrator'));
 const Assemblies = React.lazy(() => import('./features/assemblies'));
 const FirefighterBrigade = React.lazy(
-  () => import('./views/FirefighterBrigade')
+  () => import('./features/firefighter-brigade')
 );
 const Ride = React.lazy(() => import('./views/Ride'));
 const NeededRide = React.lazy(() => import('./views/Ride/needed'));
