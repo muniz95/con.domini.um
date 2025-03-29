@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import React from "react";
 import ProviderListStore from './store';
 import S from './styled';
-import { Fab } from '@material-ui/core';
+import { Fab } from '@mui/material';
 
 const Providers: React.FC<{}> = observer(() => {
   const store = React.useContext(ProviderListStore);

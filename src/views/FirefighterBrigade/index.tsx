@@ -1,4 +1,4 @@
-import { Button, Fab } from "@material-ui/core";
+import { Button, Fab } from "@mui/material";
 import { observer } from "mobx-react";
 import React from "react";
 import FirefighterBrigadeStore from "./store";

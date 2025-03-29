@@ -1,15 +1,11 @@
-import { observer } from "mobx-react";
-import React from "react";
-import S from "./styled";
-import Tabs from "@material-ui/core/Tabs";
-import AppBar from "@material-ui/core/AppBar";
-import Tab from "@material-ui/core/Tab";
-import Box from '@material-ui/core/Box';
-import SmallAd from "../../models/SmallAd";
-import SmallAdStore from "./store";
+import { AppBar, Box, Tab, Tabs } from '@mui/material';
+import { observer } from 'mobx-react';
+import React from 'react';
 import global from '../../global.style';
-import SmallAdForm from "./_form";
-// import { FormControl, Input, InputLabel } from "@material-ui/core";
+import SmallAd from '../../models/SmallAd';
+import SmallAdForm from './_form';
+import SmallAdStore from './store';
+import S from './styled';
 
 function a11yProps(index: number) {
   return {
@@ -18,56 +14,62 @@ function a11yProps(index: number) {
   };
 }
 
-const SmallAds: React.FC<{}> = observer(() => {
+const SmallAds: React.FC = observer(() => {
   const store = React.useContext(SmallAdStore);
   // const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(0);
   const myAds = (ad: SmallAd) => ad.createdBy === 'me';
-  
-  const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
+
+  const handleChange = (
+    _event: any,
+    newValue: React.SetStateAction<number>
+  ) => {
     setValue(newValue);
   };
-  
+
   React.useEffect(() => {
     store.fetchItems();
   }, [store]);
-  
+
   return (
     <React.Fragment>
       <h2>Classificados</h2>
-      <AppBar position="static" style={{backgroundColor: global.primaryColor}}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: global.primaryColor }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="Barra de anúncios"
         >
-          <Tab label="Anúncios" {...a11yProps(0)} />
-          <Tab label="Meus anúncios" {...a11yProps(1)} />
-          <Tab label="Novo anúncio" {...a11yProps(2)} />
+          <Tab title="Anúncios" {...a11yProps(0)} />
+          <Tab title="Meus anúncios" {...a11yProps(1)} />
+          <Tab title="Novo anúncio" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <S.AdCardContainer>
-          { store.items.map((item: SmallAd) =>
+          {store.items.map((item: SmallAd) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.name}</S.AdCardTitle>
-                <span>{item.creationDate.toLocaleDateString("pt-BR")}</span>
+                <span>{item.creationDate.toLocaleDateString('pt-BR')}</span>
               </S.AdCardBody>
-            </S.AdCard>,
-          ) }
+            </S.AdCard>
+          ))}
         </S.AdCardContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <S.AdCardContainer>
-          { store.items.filter(myAds).map((item: SmallAd) =>
+          {store.items.filter(myAds).map((item: SmallAd) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.name}</S.AdCardTitle>
-                <span>{item.creationDate.toLocaleDateString("pt-BR")}</span>
+                <span>{item.creationDate.toLocaleDateString('pt-BR')}</span>
               </S.AdCardBody>
-            </S.AdCard>,
-          ) }
+            </S.AdCard>
+          ))}
         </S.AdCardContainer>
       </TabPanel>
       <TabPanel value={value} index={2}>
@@ -77,7 +79,12 @@ const SmallAds: React.FC<{}> = observer(() => {
   );
 });
 
-const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any; }) => {
+const TabPanel = (props: {
+  [x: string]: any;
+  children: any;
+  value: any;
+  index: any;
+}) => {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -87,11 +94,7 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 };

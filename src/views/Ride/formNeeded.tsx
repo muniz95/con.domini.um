@@ -1,4 +1,4 @@
-import { FormControl, Input, InputLabel } from "@material-ui/core";
+import { FormControl, Input, InputLabel } from "@mui/material";
 import React from "react";
 import { Form } from "../../components/Form";
 import RideRecord from "../../models/RideRecord";

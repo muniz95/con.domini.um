@@ -1,7 +1,6 @@
-import Mood from "@material-ui/icons/Mood";
-import MoodBad from "@material-ui/icons/MoodBad";
-import styled from "styled-components";
-import global from "../../global.style";
+import { Mood, MoodBad } from '@mui/icons-material';
+import styled from 'styled-components';
+import global from '../../global.style';
 
 export const SmileysContainer = styled.div`
   display: flex;

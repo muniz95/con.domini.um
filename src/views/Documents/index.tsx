@@ -1,9 +1,9 @@
-import { observer } from "mobx-react";
-import React from "react";
-import { Tabs, AppBar, Tab, Box } from "@material-ui/core";
+import { AppBar, Box, Tab, Tabs } from '@mui/material';
+import { observer } from 'mobx-react';
+import React from 'react';
+import global from '../../global.style';
 import DocumentsStore from './store';
 import S from './styled';
-import global from '../../global.style';
 
 function a11yProps(index: number) {
   return {
@@ -12,7 +12,12 @@ function a11yProps(index: number) {
   };
 }
 
-const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any; }) => {
+const TabPanel = (props: {
+  [x: string]: any;
+  children?: React.ReactNode;
+  value: any;
+  index: any;
+}) => {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -22,11 +27,7 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 };
@@ -34,18 +35,24 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
 const Documents: React.FC<{}> = observer(() => {
   const store = React.useContext(DocumentsStore);
   const [value, setValue] = React.useState(0);
-  
+
   React.useEffect(() => {
     store.fetchItems();
   }, [store]);
 
-  const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
+  const handleChange = (
+    _event: any,
+    newValue: React.SetStateAction<number>
+  ) => {
     setValue(newValue);
   };
   return (
     <>
       <h2>Documentos</h2>
-      <AppBar position="static" style={{backgroundColor: global.primaryColor}}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: global.primaryColor }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -57,14 +64,14 @@ const Documents: React.FC<{}> = observer(() => {
       </AppBar>
       <TabPanel value={value} index={0}>
         <S.AdCardContainer>
-          { store.documents.map((item) =>
+          {store.documents.map((item) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.title}</S.AdCardTitle>
-                <span>{item.createdAt?.toLocaleDateString("pt-BR")}</span>
+                <span>{item.createdAt?.toLocaleDateString('pt-BR')}</span>
               </S.AdCardBody>
-            </S.AdCard>,
-          ) }
+            </S.AdCard>
+          ))}
         </S.AdCardContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>

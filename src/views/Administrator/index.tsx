@@ -4,7 +4,7 @@ import AdministratorStore from "./store";
 import Administrator from '../../models/Administrator';
 import RootStore from "../../store";
 import S from "./styled";
-import { Fab, FormControl, Input, InputLabel, Modal } from "@material-ui/core";
+import { Fab, FormControl, Input, InputLabel, Modal } from "@mui/material";
 import { Form } from "../../components/Form";
 
 const Administrators: React.FC<{}> = observer(() => {

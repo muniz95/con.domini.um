@@ -1,21 +1,21 @@
-import { observer } from "mobx-react";
-import Calendar from "react-calendar";
-import React from "react";
-import "react-calendar/dist/Calendar.css";
-import S from "./styled";
-import service from "../../services/reservation.service";
-import ReservationRecord from "../../models/ReservationRecord";
-import availableHours from "./availableHours";
+import { observer } from 'mobx-react';
+import React from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import ReservationRecord from '../../models/ReservationRecord';
+import service from '../../services/reservation.service';
+import availableHours from './availableHours';
+import S from './styled';
 
-const Reservations: React.FC<{}> = observer(() => {
-  const [reservations, setReservations] =
-    React.useState<ReservationRecord[]>([]);
-  const [, setSelectedReservation] =
-    React.useState<ReservationRecord | null>();
+const Reservations: React.FC = observer(() => {
+  const [reservations, setReservations] = React.useState<ReservationRecord[]>(
+    []
+  );
+  const [, setSelectedReservation] = React.useState<ReservationRecord | null>();
   const handleClickDay = (date: Date) => {
     service.getReservationsByDate(date).then((result: Response) => {
       console.log(result);
-      
+
       // setReservations(result);
     });
   };
@@ -27,9 +27,9 @@ const Reservations: React.FC<{}> = observer(() => {
   };
   const handleCardClick = (reservation: ReservationRecord) => {
     const newReservations = [
-      ...reservations.filter(item => item?.id !== reservation?.id),
-      reservation
-    ].sort((a, b) => a.date.getHours() - b.date.getHours())
+      ...reservations.filter((item) => item?.id !== reservation?.id),
+      reservation,
+    ].sort((a, b) => a.date.getHours() - b.date.getHours());
     setReservations(newReservations);
     setSelectedReservation(reservation);
   };
@@ -53,10 +53,13 @@ const Reservations: React.FC<{}> = observer(() => {
         {availableHours().map((hour) => {
           const currentReservation = getReservation(hour);
           return (
-            <S.ItemCard key={hour} onClick={() => handleCardClick(currentReservation)}>
+            <S.ItemCard
+              key={hour}
+              onClick={() => handleCardClick(currentReservation)}
+            >
               <S.ItemCardBody available={currentReservation === undefined}>
                 <span>{hour}</span>
-                {currentReservation?.date}
+                {currentReservation?.date.toDateString()}
               </S.ItemCardBody>
             </S.ItemCard>
           );

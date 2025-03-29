@@ -5,7 +5,7 @@ import AssembliesStore from "./store";
 import RootStore from '../../store';
 import S from "./styled";
 import { Form } from "../../components/Form";
-import { Button, Fab, FormControl, Input, InputLabel, Modal } from "@material-ui/core";
+import { Button, Fab, FormControl, Input, InputLabel, Modal } from "@mui/material";
 
 const Assemblies: React.FC<{}> = observer(() => {
   const store = React.useContext(AssembliesStore);

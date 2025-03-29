@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
+import { Button, FormControl, Input, InputLabel } from '@mui/material';
 import React from 'react';
 import { Form } from '../../components/Form';
 import LostFoundItem from '../../models/LostFoundItem';

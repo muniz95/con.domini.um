@@ -1,7 +1,6 @@
-import ThumbDown from "@material-ui/icons/ThumbDown";
-import ThumbUp from "@material-ui/icons/ThumbUp";
-import styled from "styled-components";
-import global from "../../global.style";
+import { ThumbDown, ThumbUp } from '@mui/icons-material';
+import styled from 'styled-components';
+import global from '../../global.style';
 
 export const SmileysContainer = styled.div`
   display: flex;

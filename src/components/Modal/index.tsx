@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "@material-ui/core";
+import { Modal } from "@mui/material";
 
 interface IProps {
   children: React.ReactElement

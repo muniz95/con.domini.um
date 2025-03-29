@@ -3,7 +3,7 @@ import React from "react";
 import OccurrenceStore from './store';
 import S from './styled';
 import Occurrence from "../../models/Occurrence";
-import { AppBar, Tabs, Box, Tab } from "@material-ui/core";
+import { AppBar, Tabs, Box, Tab } from "@mui/material";
 import global from '../../global.style';
 
 function a11yProps(index: number) {

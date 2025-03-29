@@ -1,7 +1,7 @@
-import { AppBar, Tabs, Tab, Box } from "@material-ui/core";
-import { observer } from "mobx-react";
-import React from "react";
-import RideStore from "./store";
+import { AppBar, Tabs, Tab, Box } from '@mui/material';
+import { observer } from 'mobx-react';
+import React from 'react';
+import RideStore from './store';
 import FormNeeded from './formNeeded';
 // import S from "./styled";
 import global from '../../global.style';
@@ -13,7 +13,12 @@ function a11yProps(index: number) {
   };
 }
 
-const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any; }) => {
+const TabPanel = (props: {
+  [x: string]: any;
+  children: React.ReactNode;
+  value: any;
+  index: any;
+}) => {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -23,16 +28,12 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 };
 
-const NeededRide: React.FC<{}> = observer(() => {
+const NeededRide: React.FC = observer(() => {
   const store = React.useContext(RideStore);
   const [value, setValue] = React.useState(0);
   // const [fieldVisible, setFieldVisible] = React.useState(false);
@@ -54,14 +55,19 @@ const NeededRide: React.FC<{}> = observer(() => {
     store.fetchItems();
   }, [store]);
 
-
-  const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
+  const handleChange = (
+    _event: any,
+    newValue: React.SetStateAction<number>
+  ) => {
     setValue(newValue);
   };
 
   return (
     <React.Fragment>
-      <AppBar position="static" style={{backgroundColor: global.primaryColor}}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: global.primaryColor }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -81,13 +87,13 @@ const NeededRide: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-            { store.records.map((item) =>
+            {store.records.map((item) => (
               <tr key={item.id}>
                 <td>{item.category}</td>
                 <td>{item.destiny}</td>
                 <td>{item.dayOrFrequency}</td>
               </tr>
-            ) }
+            ))}
           </tbody>
         </table>
       </TabPanel>
