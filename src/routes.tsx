@@ -12,7 +12,7 @@ const NeededRide = React.lazy(() => import('./views/Ride/needed'));
 const OfferRide = React.lazy(() => import('./views/Ride/offer'));
 const SmallAds = React.lazy(() => import('./views/SmallAds'));
 const Collaborators = React.lazy(() => import('./features/collaborators'));
-const Mail = React.lazy(() => import('./views/Mail'));
+const Mail = React.lazy(() => import('./features/mail'));
 const Documents = React.lazy(() => import('./features/documents'));
 const Surveys = React.lazy(() => import('./views/Surveys'));
 const Events = React.lazy(() => import('./features/events'));

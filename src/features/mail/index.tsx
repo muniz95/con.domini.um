@@ -1,13 +1,8 @@
-import React from 'react';
-import MailStore from './store';
+import { useGetMails } from './api/get-events';
 import S from './styled';
 
 const Mail = () => {
-  const store = React.useContext(MailStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetMails();
 
   return (
     <>
@@ -23,7 +18,7 @@ const Mail = () => {
             </tr>
           </thead>
           <tbody>
-            {store.items.map((record) => (
+            {data?.map((record) => (
               <tr key={record.id}>
                 <td>{record.unit}</td>
                 <td>{record.description}</td>
