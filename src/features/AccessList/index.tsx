@@ -1,17 +1,12 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { AccessRecord } from '../../models/AccessRecord';
+import { useAccessList } from './api/get-access-list';
 import S from './styled';
-import AccessListStore from './store';
-import AccessRecord from "../../models/AccessRecord";
 
-const AccessList: React.FC<{}> = observer(() => {
-  const store = React.useContext(AccessListStore);
+const AccessList = () => {
+  const { data } = useAccessList();
   const temporary = (record: AccessRecord) => !record.permanent;
   const permanent = (record: AccessRecord) => record.permanent;
 
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
   return (
     <>
       <h2>Enquetes</h2>
@@ -28,14 +23,14 @@ const AccessList: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.records.filter(temporary).map((record) =>
-            <tr key={record.id}>
-              <td>{record.name}</td>
-              <td>{record.rg}</td>
-              <td>{record.kinship}</td>
-              <td>{record.observation}</td>
-            </tr>,
-          )}
+            {data?.filter(temporary).map((record) => (
+              <tr key={record.id}>
+                <td>{record.name}</td>
+                <td>{record.rg}</td>
+                <td>{record.kinship}</td>
+                <td>{record.observation}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>
@@ -51,19 +46,19 @@ const AccessList: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.records.filter(permanent).map((record) =>
-            <tr key={record.id}>
-              <td>{record.name}</td>
-              <td>{record.rg}</td>
-              <td>{record.kinship}</td>
-              <td>{record.observation}</td>
-            </tr>,
-          )}
+            {data?.filter(permanent).map((record) => (
+              <tr key={record.id}>
+                <td>{record.name}</td>
+                <td>{record.rg}</td>
+                <td>{record.kinship}</td>
+                <td>{record.observation}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>
     </>
   );
-});
+};
 
 export default AccessList;
