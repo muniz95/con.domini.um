@@ -1,11 +1,11 @@
-class Dweller {
-  public id?: number;
-  public name: string;
-  public rg: string;
-  public kinship: string;
-  public birthdate: Date;
-  public mobilityRestriction: boolean;
-  public userId: number;
+interface Dweller {
+  id?: number;
+  name: string;
+  rg: string;
+  kinship: string;
+  birthdate: Date;
+  mobilityRestriction: boolean;
+  userId: number;
 
   constructor(params: any) {
     this.id = params.id;

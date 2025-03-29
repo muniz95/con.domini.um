@@ -1,5 +1,5 @@
-class Album {
-  public static create(
+interface Album {
+  static create(
     id: number,
     title: string,
     cover: string,
@@ -13,10 +13,10 @@ class Album {
     return item;
   }
 
-  public id: number;
-  public title: string;
-  public cover: string;
-  public date: Date;
+  id: number;
+  title: string;
+  cover: string;
+  date: Date;
 
   constructor() {
     this.id = 0;

@@ -6,38 +6,21 @@ type MartialStatus =
   | 'widow'
   | 'stable-union';
 
-class User {
-  public id?: number;
-  public name!: string;
-  public unit!: string;
-  public email!: string;
-  public login!: string;
-  public photo?: string;
-  public bio?: string;
-  public rg?: string;
-  public role: string;
-  public mobilityRestriction: boolean = false;
-  public birthdate: Date;
-  public gender: Gender;
-  public martialStatus: MartialStatus;
-  public visibility: boolean = true;
-
-  constructor(params: any) {
-    this.id = params.id;
-    this.name = params.name;
-    this.unit = params.unit;
-    this.email = params.email;
-    this.login = params.login;
-    this.photo = params.photo;
-    this.bio = params.bio;
-    this.rg = params.rg;
-    this.role = params.role;
-    this.mobilityRestriction = params.mobilityRestriction;
-    this.birthdate = params.birthdate;
-    this.gender = params.gender;
-    this.martialStatus = params.martialStatus;
-    this.visibility = params.visibility;
-  }
+interface User {
+  id?: number;
+  name?: string;
+  unit?: string;
+  email?: string;
+  login?: string;
+  photo?: string;
+  bio?: string;
+  rg?: string;
+  role: string;
+  mobilityRestriction: boolean;
+  birthdate: Date;
+  gender: Gender;
+  martialStatus: MartialStatus;
+  visibility: boolean;
 }
 
 export default User;

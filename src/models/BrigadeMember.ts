@@ -1,7 +1,7 @@
-class BrigadeMember {
-  public id?: number;
-  public name?: string;
-  public category?: string;
+interface BrigadeMember {
+  id?: number;
+  name?: string;
+  category?: string;
 
   constructor(params: any) {
     this.id = params.id;
