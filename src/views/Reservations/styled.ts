@@ -48,7 +48,7 @@ export const ItemCard = styled.div`
 
 export const ItemCardBody = styled.div<IItemCardBodyProps>`
   width: 100%;
-  background-color: ${(props: any) => props.available ? "green" : "red"};
+  background-color: ${(props: any) => (props.available ? 'green' : 'red')};
   margin: 5px;
   border-radius: 5px;
 `;

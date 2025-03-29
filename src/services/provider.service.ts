@@ -7,7 +7,7 @@ export const getProviders = async () => {
   const result = await http.get<Provider[]>(url);
   if (result) return result.map((item) => new Provider(item));
   return [];
-}
+};
 
 export default {
   getProviders,

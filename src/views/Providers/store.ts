@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import ProviderRecord from "../../models/ProviderRecord";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import ProviderRecord from '../../models/ProviderRecord';
 import service from '../../services/provider.service';
 
 class ProviderListStore {

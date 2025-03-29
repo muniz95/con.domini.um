@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Event from "../../models/Event";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Event from '../../models/Event';
 import service from '../../services/event.service';
 
 class EventsStore {

@@ -1,10 +1,10 @@
-import React from "react";
-import { Modal } from "@mui/material";
+import React from 'react';
+import { Modal } from '@mui/material';
 
 interface IProps {
-  children: React.ReactElement
-  open: boolean
-  setOpen: (isOpen: boolean) => void
+  children: React.ReactElement;
+  open: boolean;
+  setOpen: (isOpen: boolean) => void;
 }
 
 const CDUModal = ({ children, open, setOpen }: IProps) => {
@@ -17,11 +17,11 @@ const CDUModal = ({ children, open, setOpen }: IProps) => {
       open={open}
       onClose={handleModalClose}
       aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description" 
+      aria-describedby="simple-modal-description"
     >
-      { children }
+      {children}
     </Modal>
-  )
-}
+  );
+};
 
 export default CDUModal;

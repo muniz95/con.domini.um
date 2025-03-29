@@ -7,7 +7,7 @@ export const getOccurrences = async () => {
   const result = await http.get<Occurrence[]>(url);
   if (result) return result.map((item) => new Occurrence(item));
   return [];
-}
+};
 
 export default {
   getOccurrences,

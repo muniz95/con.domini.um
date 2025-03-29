@@ -3,7 +3,7 @@ class Poll {
   public title: string;
   public closingDate: Date;
   public voted?: boolean;
-  
+
   constructor(params: any) {
     this.id = params.id;
     this.title = params.title;

@@ -4,7 +4,7 @@ class Mail {
   public description?: string;
   public receivedAt?: Date;
   public deliveredAt?: Date;
-  
+
   constructor(params: any) {
     this.id = params.id;
     this.unit = params.unit;

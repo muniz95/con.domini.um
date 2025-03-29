@@ -18,7 +18,7 @@ class LostFoundItem {
   }
 
   get createdAt() {
-    return this.creationDate.toLocaleDateString("pt-BR");
+    return this.creationDate.toLocaleDateString('pt-BR');
   }
 }
 

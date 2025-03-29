@@ -7,7 +7,7 @@ class ProviderRecord {
   public rg: string;
   public reason?: string;
   public observation?: string;
-  
+
   constructor(params: any) {
     this.id = params.id;
     this.name = params.name;

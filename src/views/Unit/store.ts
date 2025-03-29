@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Dweller from "../../models/Dweller";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Dweller from '../../models/Dweller';
 import service from '../../services/unit.service';
 
 class UnitStore {

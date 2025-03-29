@@ -4,7 +4,7 @@ class Message {
   public to?: string;
   public content?: string;
   public deliveredAt?: Date;
-  
+
   constructor(params: any) {
     this.id = params.id;
     this.from = params.from;

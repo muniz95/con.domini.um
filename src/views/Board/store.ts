@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Notice from "../../models/Notice";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Notice from '../../models/Notice';
 import service from '../../services/notice.service';
 
 class BoardStore {

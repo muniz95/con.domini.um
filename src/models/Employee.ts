@@ -5,7 +5,7 @@ class Employee {
   public role: string;
   public begin: string;
   public end?: string;
-  
+
   constructor(params: any) {
     this.id = params.id;
     this.photo = params.photo;

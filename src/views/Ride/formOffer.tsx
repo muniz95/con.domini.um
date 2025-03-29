@@ -1,20 +1,20 @@
-<FormControl></FormControl>
-import { FormControl, Input, InputLabel } from "@mui/material";
-import React from "react";
-import { Form } from "@/components/Form";
-import RideRecord from "../../models/RideRecord";
-import service from "../../services/ride.service";
-import RootStore from "../../store";
-import { toBase64 } from "../../utils/file";
+<FormControl></FormControl>;
+import { FormControl, Input, InputLabel } from '@mui/material';
+import React from 'react';
+import { Form } from '@/components/Form';
+import RideRecord from '../../models/RideRecord';
+import service from '../../services/ride.service';
+import RootStore from '../../store';
+import { toBase64 } from '../../utils/file';
 
 const FormOffer = () => {
   const rootStore = React.useContext(RootStore);
-  const [destiny, setDestiny] = React.useState("");
-  const [town, setTown] = React.useState("");
-  const [frequency, setFrequency] = React.useState("");
-  const [departure, setDeparture] = React.useState("");
-  const [phone, setPhone] = React.useState("");
-  const [observation, setObservation] = React.useState("");
+  const [destiny, setDestiny] = React.useState('');
+  const [town, setTown] = React.useState('');
+  const [frequency, setFrequency] = React.useState('');
+  const [departure, setDeparture] = React.useState('');
+  const [phone, setPhone] = React.useState('');
+  const [observation, setObservation] = React.useState('');
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     service.post(
@@ -25,7 +25,7 @@ const FormOffer = () => {
         departure,
         phone,
         observation,
-        category: "need",
+        category: 'need',
       }),
       rootStore.jwt
     );

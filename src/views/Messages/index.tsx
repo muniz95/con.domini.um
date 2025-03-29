@@ -1,13 +1,13 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import MessagesStore from './store';
 import S from './styled';
-import Tabs from "@mui/material/Tabs";
-import AppBar from "@mui/material/AppBar";
-import Tab from "@mui/material/Tab";
+import Tabs from '@mui/material/Tabs';
+import AppBar from '@mui/material/AppBar';
+import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import global from '../../global.style';
-import Message from "../../models/Message";
+import Message from '../../models/Message';
 
 function a11yProps(index: number) {
   return {
@@ -21,19 +21,25 @@ const Messages: React.FC<{}> = observer(() => {
   const [value, setValue] = React.useState(0);
   const sentToMe = (item: Message) => item.to === 'Morador';
   const sentByMe = (item: Message) => item.from === 'Morador';
-  
+
   React.useEffect(() => {
     store.fetchItems();
   }, [store]);
 
-  const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
+  const handleChange = (
+    _event: any,
+    newValue: React.SetStateAction<number>
+  ) => {
     setValue(newValue);
   };
-  
+
   return (
     <React.Fragment>
       <h2>Message</h2>
-      <AppBar position="static" style={{backgroundColor: global.primaryColor}}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: global.primaryColor }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -45,33 +51,38 @@ const Messages: React.FC<{}> = observer(() => {
       </AppBar>
       <TabPanel value={value} index={0}>
         <S.AdCardContainer>
-          { store.messages.filter(sentToMe).map((item) =>
+          {store.messages.filter(sentToMe).map((item) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.from}</S.AdCardTitle>
-                <span>{item.deliveredAt?.toLocaleDateString("pt-BR")}</span>
+                <span>{item.deliveredAt?.toLocaleDateString('pt-BR')}</span>
               </S.AdCardBody>
-            </S.AdCard>,
-          ) }
+            </S.AdCard>
+          ))}
         </S.AdCardContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <S.AdCardContainer>
-          { store.messages.filter(sentByMe).map((item) =>
+          {store.messages.filter(sentByMe).map((item) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.to}</S.AdCardTitle>
-                <span>{item.deliveredAt?.toLocaleDateString("pt-BR")}</span>
+                <span>{item.deliveredAt?.toLocaleDateString('pt-BR')}</span>
               </S.AdCardBody>
-            </S.AdCard>,
-          ) }
+            </S.AdCard>
+          ))}
         </S.AdCardContainer>
       </TabPanel>
     </React.Fragment>
   );
 });
 
-const TabPanel = (props: { [x: string]: any; children: any; value: any; index: any; }) => {
+const TabPanel = (props: {
+  [x: string]: any;
+  children: any;
+  value: any;
+  index: any;
+}) => {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -81,11 +92,7 @@ const TabPanel = (props: { [x: string]: any; children: any; value: any; index: a
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 };

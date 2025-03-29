@@ -7,7 +7,7 @@ export const getDwellers = async () => {
   const result = await http.get<Dweller[]>(url);
   if (result) return result.map((item) => new Dweller(item));
   return [];
-}
+};
 
 export default {
   getDwellers,

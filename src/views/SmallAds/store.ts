@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import SmallAd from "../../models/SmallAd";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import SmallAd from '../../models/SmallAd';
 import service from '../../services/smallAd.service';
 
 class SmallAdsStore {

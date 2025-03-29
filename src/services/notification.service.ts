@@ -7,7 +7,7 @@ export const getNotifications = async () => {
   const result = await http.get<Notification[]>(url);
   if (result) return result.map((item) => new Notification(item));
   return [];
-}
+};
 
 export default {
   getNotifications,

@@ -3,14 +3,14 @@ export const toBase64 = (file: File) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      resolve(reader.result as string)
+      resolve(reader.result as string);
     };
     reader.onerror = (error) => {
       reject(error);
-    }
+    };
   });
-}
+};
 
 export default {
   getBase64: toBase64,
-}
+};

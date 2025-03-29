@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import MailStore from './store';
 import S from './styled';
 
@@ -9,7 +9,7 @@ const Mail: React.FC<{}> = observer(() => {
   React.useEffect(() => {
     store.fetchItems();
   }, [store]);
-  
+
   return (
     <>
       <h2>Correspondências</h2>
@@ -24,14 +24,14 @@ const Mail: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.items.map((record) =>
-            <tr key={record.id}>
-              <td>{record.unit}</td>
-              <td>{record.description}</td>
-              <td>{record.receivedAt?.toLocaleDateString()}</td>
-              <td>{record.deliveredAt?.toLocaleDateString()}</td>
-            </tr>,
-          )}
+            {store.items.map((record) => (
+              <tr key={record.id}>
+                <td>{record.unit}</td>
+                <td>{record.description}</td>
+                <td>{record.receivedAt?.toLocaleDateString()}</td>
+                <td>{record.deliveredAt?.toLocaleDateString()}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>

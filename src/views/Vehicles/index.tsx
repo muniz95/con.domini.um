@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import VehiclesStore from './store';
 import S from './styled';
 
@@ -25,15 +25,15 @@ const Vehicles: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.vehicles.map((item) =>
-            <tr key={item.id}>
-              <td>{item.plate}</td>
-              <td>{item.category}</td>
-              <td>{item.brand}</td>
-              <td>{item.model}</td>
-              <td>{item.color}</td>
-            </tr>,
-          )}
+            {store.vehicles.map((item) => (
+              <tr key={item.id}>
+                <td>{item.plate}</td>
+                <td>{item.category}</td>
+                <td>{item.brand}</td>
+                <td>{item.model}</td>
+                <td>{item.color}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>

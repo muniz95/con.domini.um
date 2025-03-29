@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import S from './styled';
 import EventsStore from './store';
 
@@ -24,14 +24,14 @@ const Events: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.events.map((event) =>
-            <tr key={event.id}>
-              <td>{event.title}</td>
-              <td>{event.local}</td>
-              <td>{event.date?.toLocaleDateString('pt-br')}</td>
-              <td>{event.attending ? 'Sim' : 'Não'}</td>
-            </tr>,
-          )}
+            {store.events.map((event) => (
+              <tr key={event.id}>
+                <td>{event.title}</td>
+                <td>{event.local}</td>
+                <td>{event.date?.toLocaleDateString('pt-br')}</td>
+                <td>{event.attending ? 'Sim' : 'Não'}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>

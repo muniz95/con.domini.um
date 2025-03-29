@@ -1,5 +1,10 @@
-type Gender = "male" | "female" | "other";
-type MartialStatus = "single" | "married" | "divorced" | "widow" | "stable-union";
+type Gender = 'male' | 'female' | 'other';
+type MartialStatus =
+  | 'single'
+  | 'married'
+  | 'divorced'
+  | 'widow'
+  | 'stable-union';
 
 class User {
   public id?: number;
@@ -16,7 +21,7 @@ class User {
   public gender: Gender;
   public martialStatus: MartialStatus;
   public visibility: boolean = true;
-  
+
   constructor(params: any) {
     this.id = params.id;
     this.name = params.name;

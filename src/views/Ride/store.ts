@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import RideRecord from "../../models/RideRecord";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import RideRecord from '../../models/RideRecord';
 import { instance } from '../../store';
 import service from '../../services/ride.service';
 

@@ -1,7 +1,20 @@
 class SmallAd {
-
-  public static create(id: number, name: string, foundBy: string, creationDate: Date, createdBy: string, status: string): SmallAd {
-    const item = new SmallAd({id, name, foundBy, creationDate, createdBy, status});
+  public static create(
+    id: number,
+    name: string,
+    foundBy: string,
+    creationDate: Date,
+    createdBy: string,
+    status: string
+  ): SmallAd {
+    const item = new SmallAd({
+      id,
+      name,
+      foundBy,
+      creationDate,
+      createdBy,
+      status,
+    });
     return item;
   }
   public id: number;

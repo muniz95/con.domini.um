@@ -56,4 +56,4 @@ const PersonalInfo = (user: User) => (
   </form>
 );
 
-export default PersonalInfo
+export default PersonalInfo;

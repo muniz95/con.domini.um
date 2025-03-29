@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import global from "../../global.style";
+import styled from 'styled-components';
+import global from '../../global.style';
 
 export const TabBar = styled.ul`
   ::before {

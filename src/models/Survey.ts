@@ -1,6 +1,11 @@
 class Survey {
-  public static create(id: number, title: string, closingDate: Date, voted?: boolean): Survey {
-    const item = new Survey({id, title, closingDate, voted});
+  public static create(
+    id: number,
+    title: string,
+    closingDate: Date,
+    voted?: boolean
+  ): Survey {
+    const item = new Survey({ id, title, closingDate, voted });
     item.id = id;
     item.title = title;
     item.closingDate = closingDate;

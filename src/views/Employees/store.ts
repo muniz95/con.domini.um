@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Employee from "../../models/Employee";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Employee from '../../models/Employee';
 import service from '../../services/employee.service';
 
 class EmployeesStore {

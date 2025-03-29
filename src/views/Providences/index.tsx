@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import ProvidencesStore from './store';
 import S from './styled';
 
@@ -22,12 +22,12 @@ const Providences: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.providences.map((item) =>
-            <tr key={item.id}>
-              <td>{item.details}</td>
-              <td>{item.category}</td>
-            </tr>,
-          )}
+            {store.providences.map((item) => (
+              <tr key={item.id}>
+                <td>{item.details}</td>
+                <td>{item.category}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>

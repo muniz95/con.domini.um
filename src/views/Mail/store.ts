@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Mail from "../../models/Mail";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Mail from '../../models/Mail';
 import service from '../../services/mail.service';
 
 class MailStore {

@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Poll from "../../models/Poll";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Poll from '../../models/Poll';
 import service from '../../services/poll.service';
 
 class ProviderListStore {

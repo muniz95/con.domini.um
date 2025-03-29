@@ -32,12 +32,12 @@ export async function get<T>(
   path: string,
   token?: string,
   args: RequestInit = {
-    method: "get",
-    headers: { 
-      "Content-Type": "application/json",
-      "Access-Control-Expose-Headers": "Authorization",
-      "Access-Control-Allow-Origin": "*",
-      "Authorization": token || '',
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Expose-Headers': 'Authorization',
+      'Access-Control-Allow-Origin': '*',
+      Authorization: token || '',
     },
   }
 ): Promise<T | null> {
@@ -49,12 +49,12 @@ export async function post<T>(
   body: any,
   token?: string,
   args: RequestInit = {
-    method: "POST",
-    headers: { 
-      "Content-Type": "application/json",
-      "Access-Control-Expose-Headers": "Authorization",
-      "Access-Control-Allow-Origin": "*",
-      "Authorization": token || '',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Expose-Headers': 'Authorization',
+      'Access-Control-Allow-Origin': '*',
+      Authorization: token || '',
     },
     body: JSON.stringify(body),
   }
@@ -67,12 +67,12 @@ export async function remove(
   id: any,
   token?: string,
   args: RequestInit = {
-    method: "DELETE",
-    headers: { 
-      "Content-Type": "application/json",
-      "Access-Control-Expose-Headers": "Authorization",
-      "Access-Control-Allow-Origin": "*",
-      "Authorization": token || '',
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Expose-Headers': 'Authorization',
+      'Access-Control-Allow-Origin': '*',
+      Authorization: token || '',
     },
   }
 ): Promise<void> {
@@ -83,11 +83,11 @@ export async function fullPost(
   path: string,
   body: any,
   args: RequestInit = {
-    method: "post",
-    headers: { 
-      "Content-Type": "application/json",
-      "Access-Control-Expose-Headers": "Authorization",
-      "Access-Control-Allow-Origin": "*",
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Expose-Headers': 'Authorization',
+      'Access-Control-Allow-Origin': '*',
     },
     body: JSON.stringify(body),
   }
@@ -100,11 +100,11 @@ export async function put<T>(
   body: any,
   token?: string,
   args: RequestInit = {
-    method: "put",
-    headers: { 
-      "Content-Type": "application/json",
-      "Access-Control-Expose-Headers": "Authorization",
-      "Access-Control-Allow-Origin": "*",
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Expose-Headers': 'Authorization',
+      'Access-Control-Allow-Origin': '*',
     },
     body: JSON.stringify(body),
   }

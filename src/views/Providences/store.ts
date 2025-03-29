@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Providence from "../../models/Providence";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Providence from '../../models/Providence';
 import service from '../../services/providence.service';
 
 class NotificationsStore {

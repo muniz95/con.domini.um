@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import UnitStore from './store';
 import S from './styled';
 
@@ -26,20 +26,20 @@ const Unit: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.dwellers.map((item) =>
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.rg}</td>
-              <td>{item.kinship}</td>
-              <td>{item.age}</td>
-              <td>{item.hasMobilityRestriction}</td>
-              <td>
-                <button>+</button>
-                <button>/</button>
-                <button>-</button>
-              </td>
-            </tr>,
-          )}
+            {store.dwellers.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.rg}</td>
+                <td>{item.kinship}</td>
+                <td>{item.age}</td>
+                <td>{item.hasMobilityRestriction}</td>
+                <td>
+                  <button>+</button>
+                  <button>/</button>
+                  <button>-</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>

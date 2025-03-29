@@ -1,5 +1,10 @@
 class Album {
-  public static create(id: number, title: string, cover: string, date: Date): Album {
+  public static create(
+    id: number,
+    title: string,
+    cover: string,
+    date: Date
+  ): Album {
     const item = new Album();
     item.id = id;
     item.title = title;
@@ -15,8 +20,8 @@ class Album {
 
   constructor() {
     this.id = 0;
-    this.title = "";
-    this.cover = "";
+    this.title = '';
+    this.cover = '';
     this.date = new Date();
   }
 }

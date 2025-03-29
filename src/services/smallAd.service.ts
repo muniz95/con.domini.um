@@ -7,7 +7,7 @@ export const getSmallAds = async () => {
   const result = await http.get<SmallAd[]>(url);
   if (result) return result.map((item) => new SmallAd(item));
   return [];
-}
+};
 
 export default {
   getSmallAds,

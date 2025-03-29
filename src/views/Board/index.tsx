@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import BoardStore from './store';
 import S from './styled';
 
@@ -22,12 +22,12 @@ const Board: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.items.map((item) =>
-            <tr key={item.id}>
-              <td>{item.title}</td>
-              <td>{item.date?.toLocaleDateString('pt-br')}</td>
-            </tr>,
-          )}
+            {store.items.map((item) => (
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.date?.toLocaleDateString('pt-br')}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>

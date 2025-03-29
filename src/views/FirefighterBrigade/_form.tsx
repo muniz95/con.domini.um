@@ -1,82 +1,76 @@
 /* eslint-disable no-unused-vars */
-import { FormControl, InputLabel, Input } from "@mui/material";
-import { Form, Text } from "@/components/Form";
-import React from "react";
-import BrigadeMember from "../../models/BrigadeMember";
-import { Formik } from "formik";
+import { FormControl, InputLabel, Input } from '@mui/material';
+import { Form, Text } from '@/components/Form';
+import React from 'react';
+import BrigadeMember from '../../models/BrigadeMember';
+import { Formik } from 'formik';
 
 interface IProps {
-  item?: BrigadeMember
-  onSubmit: (name: string, category: string) => void
+  item?: BrigadeMember;
+  onSubmit: (name: string, category: string) => void;
 }
 
-const FirefighterBrigadeForm = ({ item, onSubmit }: IProps) => {  
+const FirefighterBrigadeForm = ({ item, onSubmit }: IProps) => {
   return (
     <Formik
-      initialValues={
-        {
-          name: (item && item!.name) || "",
-          category: (item && item!.category) || ""
-        }
-      }
-      onSubmit={({name, category}) => {
+      initialValues={{
+        name: (item && item!.name) || '',
+        category: (item && item!.category) || '',
+      }}
+      onSubmit={({ name, category }) => {
         console.log(name, category);
-        
-        onSubmit(name, category)
+
+        onSubmit(name, category);
       }}
       validate={(values) => {
         const errors: any = {};
         console.log(values);
 
         if (!values.name) {
-          errors.name = "Nome é obrigatório.";
+          errors.name = 'Nome é obrigatório.';
         }
 
         if (!values.category) {
-          errors.category = "Categoria é obrigatória.";
+          errors.category = 'Categoria é obrigatória.';
         }
 
         return errors;
       }}
-      render={({
-        errors,
-        values,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-      }) => (
+      render={({ errors, values, handleChange, handleBlur, handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
           <FormControl>
             <InputLabel htmlFor="name">
-              Nome *
-              {errors.name && <Text color="red">{errors.name}</Text>}
+              Nome *{errors.name && <Text color="red">{errors.name}</Text>}
             </InputLabel>
-            <Input onChange={handleChange}
+            <Input
+              onChange={handleChange}
               onBlur={handleBlur}
               value={values.name}
               type="text"
               name="name"
-              placeholder="Nome"  />
+              placeholder="Nome"
+            />
           </FormControl>
           <FormControl>
             <InputLabel htmlFor="category">
               Categoria *
               {errors.category && <Text color="red">{errors.category}</Text>}
             </InputLabel>
-            <Input 
+            <Input
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.category}
               type="text"
               name="category"
-              placeholder="Categoria" />
+              placeholder="Categoria"
+            />
           </FormControl>
 
-          <Input type="submit" value="Enviar"/>
+          <Input type="submit" value="Enviar" />
         </Form>
       )}
     />
   );
-}
+};
 
 export default FirefighterBrigadeForm;

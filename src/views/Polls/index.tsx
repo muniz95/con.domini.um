@@ -1,5 +1,5 @@
-import { observer } from "mobx-react";
-import React from "react";
+import { observer } from 'mobx-react';
+import React from 'react';
 import PollsStore from './store';
 import S from './styled';
 
@@ -23,13 +23,13 @@ const Polls: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-          {store.polls.map((item) =>
-            <tr key={item.id}>
-              <td>{item.title}</td>
-              <td>{item.closingDate?.toLocaleDateString('pt-br')}</td>
-              <td>{item.voted ? "Sim" : "Não"}</td>
-            </tr>,
-          )}
+            {store.polls.map((item) => (
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.closingDate?.toLocaleDateString('pt-br')}</td>
+                <td>{item.voted ? 'Sim' : 'Não'}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>

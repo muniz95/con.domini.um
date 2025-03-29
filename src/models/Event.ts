@@ -1,6 +1,12 @@
 class Event {
-  public static create(id: number, title: string, local: string, date: Date, attending?: boolean): Event {
-    const item = new Event({id, title, local, date, attending});
+  public static create(
+    id: number,
+    title: string,
+    local: string,
+    date: Date,
+    attending?: boolean
+  ): Event {
+    const item = new Event({ id, title, local, date, attending });
     item.id = id;
     item.title = title;
     item.local = local;

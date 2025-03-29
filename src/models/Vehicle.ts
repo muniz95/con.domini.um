@@ -5,7 +5,7 @@ class Vehicle {
   public plate: string;
   public color: string;
   public category?: string;
-  
+
   constructor(params: any) {
     this.id = params.id;
     this.brand = params.brand;

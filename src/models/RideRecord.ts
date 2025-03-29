@@ -1,4 +1,4 @@
-type Categories = "need" | "offer";
+type Categories = 'need' | 'offer';
 
 class RideRecord {
   public id: number;
@@ -24,9 +24,9 @@ class RideRecord {
   }
 
   get dayOrFrequency() {
-    return this.date === null 
+    return this.date === null
       ? this.days!.join(', ')
-      : this.date!.toLocaleDateString("pt-br");
+      : this.date!.toLocaleDateString('pt-br');
   }
 }
 

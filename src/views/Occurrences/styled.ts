@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import global from "../../global.style";
+import styled from 'styled-components';
+import global from '../../global.style';
 
 export const TabBar = styled.ul`
   ::before {
@@ -67,17 +67,25 @@ export const SearchFieldContainer = styled.div`
 `;
 
 export const SearchField = styled.input`
-  transition: border linear .2s, box-shadow linear .2s;
+  transition:
+    border linear 0.2s,
+    box-shadow linear 0.2s;
   border: 1px solid #ccc;
   height: 20px;
   border-radius: 5px;
   :focus {
-    border-color: rgba(82,168,236,0.8);
+    border-color: rgba(82, 168, 236, 0.8);
     outline: 0;
     outline: thin dotted \9;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(82,168,236,0.6);
-    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(82,168,236,0.6);
+    -webkit-box-shadow:
+      inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow:
+      inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(82, 168, 236, 0.6);
+    box-shadow:
+      inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(82, 168, 236, 0.6);
   }
 `;
 

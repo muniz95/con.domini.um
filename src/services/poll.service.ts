@@ -7,7 +7,7 @@ export const getPolls = async () => {
   const result = await http.get<Poll[]>(url);
   if (result) return result.map((item) => new Poll(item));
   return [];
-}
+};
 
 export default {
   getPolls,

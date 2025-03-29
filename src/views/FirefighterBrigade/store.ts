@@ -1,8 +1,8 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import BrigadeMember from "../../models/BrigadeMember";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import BrigadeMember from '../../models/BrigadeMember';
 import service from '../../services/firefighter.service';
-import { instance } from "../../store";
+import { instance } from '../../store';
 
 class FirefighterBrigadeStore {
   @observable public items: BrigadeMember[] = [];

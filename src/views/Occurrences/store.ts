@@ -1,6 +1,6 @@
-import { action, observable } from "mobx";
-import { createContext } from "react";
-import Occurrence from "../..//models/Occurrence";
+import { action, observable } from 'mobx';
+import { createContext } from 'react';
+import Occurrence from '../..//models/Occurrence';
 import service from '../../services/occurrence.service';
 
 class OccurrencesStore {

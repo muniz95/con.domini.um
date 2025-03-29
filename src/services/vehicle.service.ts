@@ -7,7 +7,7 @@ export const getVehicles = async () => {
   const result = await http.get<Vehicle[]>(url);
   if (result) return result.map((item) => new Vehicle(item));
   return [];
-}
+};
 
 export default {
   getVehicles,
