@@ -1,22 +1,17 @@
 import { AppBar, Box, Tab, Tabs } from '@mui/material';
-
-import React from 'react';
-import global from '../../global.style';
-import DocumentsStore from './store';
+import React, { SyntheticEvent } from 'react';
+import { useGetDocuments } from './api/get-documents';
 import S from './styled';
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+const a11yProps = (index: number) => ({
+  id: `simple-tab-${index}`,
+  'aria-controls': `simple-tabpanel-${index}`,
+});
 
 const TabPanel = (props: {
-  [x: string]: any;
   children?: React.ReactNode;
-  value: any;
-  index: any;
+  value: number;
+  index: number;
 }) => {
   const { children, value, index, ...other } = props;
   return (
@@ -33,15 +28,11 @@ const TabPanel = (props: {
 };
 
 const Documents = () => {
-  const store = React.useContext(DocumentsStore);
+  const { data } = useGetDocuments();
   const [value, setValue] = React.useState(0);
 
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
-
   const handleChange = (
-    _event: any,
+    _event: SyntheticEvent,
     newValue: React.SetStateAction<number>
   ) => {
     setValue(newValue);
@@ -49,10 +40,7 @@ const Documents = () => {
   return (
     <>
       <h2>Documentos</h2>
-      <AppBar
-        position="static"
-        style={{ backgroundColor: global.primaryColor }}
-      >
+      <AppBar position="static" style={{ backgroundColor: '#faa473' }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -64,7 +52,7 @@ const Documents = () => {
       </AppBar>
       <TabPanel value={value} index={0}>
         <S.AdCardContainer>
-          {store.documents.map((item) => (
+          {data?.map((item) => (
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.title}</S.AdCardTitle>
@@ -76,7 +64,7 @@ const Documents = () => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         {/* <S.AdCardContainer>
-          { store.documents.filter(myAds).map((item: SmallAd) =>
+          { data?.filter(myAds).map((item: SmallAd) =>
             <S.AdCard key={item.id}>
               <S.AdCardBody>
                 <S.AdCardTitle>{item.name}</S.AdCardTitle>
