@@ -1,13 +1,8 @@
-import React from 'react';
-import PollsStore from './store';
+import { useGetPolls } from './api/get-polls';
 import S from './styled';
 
 const Polls = () => {
-  const store = React.useContext(PollsStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetPolls();
   return (
     <>
       <h2>Votações</h2>
@@ -22,7 +17,7 @@ const Polls = () => {
             </tr>
           </thead>
           <tbody>
-            {store.polls.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.title}</td>
                 <td>{item.closingDate?.toLocaleDateString('pt-br')}</td>

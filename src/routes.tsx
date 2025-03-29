@@ -23,7 +23,7 @@ const Occurrences = React.lazy(() => import('./features/occurrences'));
 const Board = React.lazy(() => import('./features/board'));
 const Reservations = React.lazy(() => import('./views/Reservations'));
 const Providers = React.lazy(() => import('./views/Providers'));
-const Polls = React.lazy(() => import('./views/Polls'));
+const Polls = React.lazy(() => import('./features/polls'));
 const Login = React.lazy(() => import('./views/Login'));
 const Pets = React.lazy(() => import('./features/pets'));
 const Vehicles = React.lazy(() => import('./views/Vehicles'));
