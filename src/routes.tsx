@@ -25,7 +25,7 @@ const Reservations = React.lazy(() => import('./views/Reservations'));
 const Providers = React.lazy(() => import('./views/Providers'));
 const Polls = React.lazy(() => import('./views/Polls'));
 const Login = React.lazy(() => import('./views/Login'));
-const Pets = React.lazy(() => import('./views/Pets'));
+const Pets = React.lazy(() => import('./features/pets'));
 const Vehicles = React.lazy(() => import('./views/Vehicles'));
 const Employees = React.lazy(() => import('./features/employees'));
 const Profile = React.lazy(() => import('./views/Profile'));

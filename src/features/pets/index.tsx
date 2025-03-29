@@ -1,13 +1,9 @@
-import React from 'react';
-import PetsStore from './store';
+import { useGetPets } from './api/get-pets';
 import S from './styled';
 
 const Pets = () => {
-  const store = React.useContext(PetsStore);
+  const { data } = useGetPets();
 
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
   return (
     <>
       <h2>Meus pets</h2>
@@ -22,7 +18,7 @@ const Pets = () => {
             </tr>
           </thead>
           <tbody>
-            {store.pets.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.category}</td>
                 <td>{item.race}</td>
