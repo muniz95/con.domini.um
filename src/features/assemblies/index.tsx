@@ -1,28 +1,29 @@
-import { observer } from "mobx-react";
-import React, { ChangeEvent } from "react";
-import Assembly from "../../models/Assembly";
-import AssembliesStore from "./store";
-import RootStore from '../../store';
-import S from "./styled";
-import { Form } from "@/components/Form";
-import { Button, Fab, FormControl, Input, InputLabel, Modal } from "@mui/material";
+import { Form } from '@/components/Form';
+import { Button, FormControl, Input, InputLabel, Modal } from '@mui/material';
+import React, { ChangeEvent } from 'react';
+import { useGetAssemblies } from './api/get-assemblies';
+import S from './styled';
+import { useCreateAssembly } from './api/create-assembly';
 
-const Assemblies: React.FC<{}> = observer(() => {
-  const store = React.useContext(AssembliesStore);
-  const rootStore = React.useContext(RootStore);
+const Assemblies: React.FC = () => {
+  const { data } = useGetAssemblies();
+  const createAssembly = useCreateAssembly();
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('');
   const [date, setDate] = React.useState('');
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    await store.saveItem(new Assembly({ title, date }));
+    await createAssembly.mutate({
+      title,
+      date: new Date(date),
+      confirmed: false,
+    });
     handleModalClose();
-    store.fetchItems();
   };
   const handleAddClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
     console.log(evt);
     setOpen(true);
-  }
+  };
   const handleModalClose = () => {
     setOpen(false);
   };
@@ -37,14 +38,8 @@ const Assemblies: React.FC<{}> = observer(() => {
       default:
         break;
     }
-  }
-  const AddButton = (
-    rootStore.isAdmin() && <Fab onClick={handleAddClick}>+</Fab>
-  );
-
-  React.useEffect(() => {
-    store.fetchItems()
-  }, [store]);
+  };
+  const AddButton = <Button onClick={handleAddClick}>+</Button>;
 
   return (
     <React.Fragment>
@@ -59,17 +54,17 @@ const Assemblies: React.FC<{}> = observer(() => {
             </tr>
           </thead>
           <tbody>
-            {store.items.map((item) =>
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.title}</td>
-                <td>{item.dateToString}</td>
-                <td>{item.isConfirmed}</td>
-              </tr>,
-            )}
+                <td>{item.date.toLocaleDateString('pt-br')}</td>
+                <td>{item.confirmed ? 'Sim' : 'Não'}</td>
+              </tr>
+            ))}
           </tbody>
         </S.Table>
       </S.Center>
-      { AddButton}
+      {AddButton}
       <Modal
         open={open}
         onClose={handleModalClose}
@@ -86,13 +81,15 @@ const Assemblies: React.FC<{}> = observer(() => {
             <Input type="date" id="date" value={date} onChange={handleChange} />
           </FormControl>
           <div>
-            <Button color="secondary" onClick={() => setOpen(false)}>Cancelar</Button>
-            <Input type="submit" value="Enviar"/>
+            <Button color="secondary" onClick={() => setOpen(false)}>
+              Cancelar
+            </Button>
+            <Input type="submit" value="Enviar" />
           </div>
         </Form>
       </Modal>
     </React.Fragment>
   );
-});
+};
 
 export default Assemblies;

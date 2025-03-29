@@ -31,11 +31,13 @@ export const getAccessListQueryOptions = () => {
   });
 };
 
-type UseCommentsOptions = {
+type UseGetAccessListOptions = {
   queryConfig?: QueryConfig<typeof getAccessList>;
 };
 
-export const useGetAccessList = ({ queryConfig }: UseCommentsOptions = {}) => {
+export const useGetAccessList = ({
+  queryConfig,
+}: UseGetAccessListOptions = {}) => {
   return useQuery({
     ...getAccessListQueryOptions(),
     ...queryConfig,

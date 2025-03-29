@@ -23,13 +23,13 @@ export const getAdministratorsQueryOptions = () => {
   });
 };
 
-type UseCommentsOptions = {
+type UseGetAdministratorsOptions = {
   queryConfig?: QueryConfig<typeof getAdministrators>;
 };
 
 export const useGetAdministrators = ({
   queryConfig,
-}: UseCommentsOptions = {}) => {
+}: UseGetAdministratorsOptions = {}) => {
   return useQuery({
     ...getAdministratorsQueryOptions(),
     ...queryConfig,
