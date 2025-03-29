@@ -3,12 +3,8 @@ import { useRoutes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import routes from './routes';
-import Store from './store';
-import { observer } from 'mobx-react';
 
-const App: React.FC = observer(() => {
-  const store = React.useContext(Store);
-  store.checkLoggedUser();
+const App: React.FC = () => {
   const routing = useRoutes([...routes]);
   return (
     <div className="App">
@@ -20,6 +16,6 @@ const App: React.FC = observer(() => {
       </div>
     </div>
   );
-});
+};
 
 export default App;

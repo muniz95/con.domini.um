@@ -10,7 +10,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import GlobalStore from '../store';
 
 interface IMenuEntry {
   name: string;
@@ -53,8 +52,6 @@ const menuEntries: IMenuEntry[] = [
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export default function Header() {
-  const globalStore = React.useContext(GlobalStore);
-  const navigate = useNavigate();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -91,7 +88,7 @@ export default function Header() {
       setState({ ...state, [anchor]: open });
     };
 
-  const menuButton = globalStore.authenticated ? (
+  const menuButton = (
     <IconButton
       onClick={toggleDrawer('right', true)}
       color="inherit"
@@ -99,26 +96,13 @@ export default function Header() {
     >
       <Menu />
     </IconButton>
-  ) : (
-    <></>
   );
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    await globalStore.logout();
-    navigate('/', { replace: true });
-  };
-
-  const authLink = globalStore.authenticated ? (
-    <Link to="" onClick={handleSubmit} color="inherit">
-      Logout
-    </Link>
-  ) : (
+  const authLink = (
     <Link to="login" color="inherit">
       Login
     </Link>
   );
-
   return (
     <AppBar position="static">
       <Toolbar>
