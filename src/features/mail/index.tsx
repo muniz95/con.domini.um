@@ -1,4 +1,4 @@
-import { useGetMails } from './api/get-events';
+import { useGetMails } from './api/get-mails';
 import S from './styled';
 
 const Mail = () => {
