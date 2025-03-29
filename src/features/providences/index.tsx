@@ -1,13 +1,8 @@
-import React from 'react';
-import ProvidencesStore from './store';
+import { useGetProvidences } from './api/get-providences';
 import S from './styled';
 
 const Providences = () => {
-  const store = React.useContext(ProvidencesStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetProvidences();
   return (
     <>
       <h2>Obras & Providências</h2>
@@ -21,7 +16,7 @@ const Providences = () => {
             </tr>
           </thead>
           <tbody>
-            {store.providences.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.details}</td>
                 <td>{item.category}</td>
