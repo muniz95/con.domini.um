@@ -17,7 +17,7 @@ const Documents = React.lazy(() => import('./features/documents'));
 const Surveys = React.lazy(() => import('./views/Surveys'));
 const Events = React.lazy(() => import('./features/events'));
 const AccessList = React.lazy(() => import('./features/access-list'));
-const Messages = React.lazy(() => import('./views/Messages'));
+const Messages = React.lazy(() => import('./features/messages'));
 const Providences = React.lazy(() => import('./views/Providences'));
 const Occurrences = React.lazy(() => import('./views/Occurrences'));
 const Board = React.lazy(() => import('./features/board'));
