@@ -1,6 +1,6 @@
 import { FormControl, Input, InputLabel } from "@mui/material";
 import React from "react";
-import { Form } from "../../components/Form";
+import { Form } from "@/components/Form";
 import RideRecord from "../../models/RideRecord";
 import service from "../../services/ride.service";
 import RootStore from "../../store";

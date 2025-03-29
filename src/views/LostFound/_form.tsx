@@ -1,6 +1,6 @@
 import { Button, FormControl, Input, InputLabel } from '@mui/material';
 import React from 'react';
-import { Form } from '../../components/Form';
+import { Form } from '@/components/Form';
 import LostFoundItem from '../../models/LostFoundItem';
 import service from '../../services/lostFound.service';
 import RootStore from '../../store';

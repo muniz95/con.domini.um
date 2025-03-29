@@ -1,6 +1,6 @@
 import { Button, FormControl, Input, InputLabel, Modal } from '@mui/material';
 import { FC, FormEvent, useState } from 'react';
-import { Form } from '../../components/Form';
+import { Form } from '@/components/Form';
 import { useCreateAdministrator } from './api/create-administrator';
 import { useAdministrators } from './api/get-administrators';
 import S from './styled';
