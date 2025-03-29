@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteObject } from 'react-router-dom';
 const Home = React.lazy(() => import('./views/Home'));
 const LostFound = React.lazy(() => import('./views/LostFound'));
-const Administrator = React.lazy(() => import('./views/Administrator'));
+const Administrator = React.lazy(() => import('./features/administrator'));
 const Assemblies = React.lazy(() => import('./views/Assemblies'));
 const FirefighterBrigade = React.lazy(
   () => import('./views/FirefighterBrigade')

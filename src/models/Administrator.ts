@@ -1,13 +1,5 @@
-class Administrator {
-  public id?: number;
-  public name?: string;
-  public phone?: string;
-
-  constructor(params: any) {
-    this.id = params.id;
-    this.name = params.name;
-    this.phone = params.phone;
-  }
+export interface Administrator {
+  id?: number;
+  name?: string;
+  phone?: string;
 }
-
-export default Administrator;
