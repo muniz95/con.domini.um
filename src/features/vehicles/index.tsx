@@ -1,13 +1,9 @@
-import React from 'react';
-import VehiclesStore from './store';
+import { useGetUnitVehicles } from './api/get-unit-vehicles';
 import S from './styled';
 
 const Vehicles = () => {
-  const store = React.useContext(VehiclesStore);
+  const { data } = useGetUnitVehicles();
 
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
   return (
     <>
       <h2>Veículos</h2>
@@ -24,7 +20,7 @@ const Vehicles = () => {
             </tr>
           </thead>
           <tbody>
-            {store.vehicles.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.plate}</td>
                 <td>{item.category}</td>
