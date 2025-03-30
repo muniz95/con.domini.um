@@ -1,4 +1,4 @@
-import { Form } from '@/components/Form';
+import { Form } from '@/components/form/styled';
 import { Button, FormControl, Input, InputLabel, Modal } from '@mui/material';
 import React, { ChangeEvent } from 'react';
 import { useGetAssemblies } from './api/get-assemblies';

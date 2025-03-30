@@ -1,5 +1,5 @@
 <FormControl></FormControl>;
-import { Form } from '@/components/Form';
+import { Form } from '@/components/form/styled';
 import { FormControl, Input, InputLabel } from '@mui/material';
 import React, { FormEvent, useState } from 'react';
 import { useCreateRideRecord } from './api/create-ride-record';

@@ -1,4 +1,4 @@
-import { Form } from '@/components/Form';
+import { Form } from '@/components/form/styled';
 import { Button, FormControl, Input, InputLabel } from '@mui/material';
 import { toBase64 } from '../../utils/file';
 import { useCreateLostFoundItem } from './api/create-lost-found-item';
