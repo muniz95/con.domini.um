@@ -7,7 +7,7 @@ export const getMails = async () => {
   const result = await http.get<Mail[]>(url);
   if (result) return result.map((item) => new Mail(item));
   return [];
-}
+};
 
 export default {
   getMails,

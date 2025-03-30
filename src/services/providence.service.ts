@@ -7,7 +7,7 @@ export const getProvidences = async () => {
   const result = await http.get<Providence[]>(url);
   if (result) return result.map((item) => new Providence(item));
   return [];
-}
+};
 
 export default {
   getProvidences,

@@ -1,8 +1,8 @@
-class ReservationRecord {
-  public id?: number;
-  public area?: string;
-  public date!: Date;
-  public reservedBy?: string;
+interface ReservationRecord {
+  id?: number;
+  area?: string;
+  date?: Date;
+  reservedBy?: string;
 }
 
 export default ReservationRecord;

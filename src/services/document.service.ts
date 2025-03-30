@@ -7,7 +7,7 @@ export const getDocuments = async () => {
   const result = await http.get<Document[]>(url);
   if (result) return result.map((item) => new Document(item));
   return [];
-}
+};
 
 export default {
   getDocuments,

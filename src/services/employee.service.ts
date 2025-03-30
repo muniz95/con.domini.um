@@ -7,7 +7,7 @@ export const getEmployees = async () => {
   const result = await http.get<Employee[]>(url);
   if (result) return result.map((item) => new Employee(item));
   return [];
-}
+};
 
 export default {
   getEmployees,

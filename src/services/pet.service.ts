@@ -7,7 +7,7 @@ export const getPets = async () => {
   const result = await http.get<Pet[]>(url);
   if (result) return result.map((item) => new Pet(item));
   return [];
-}
+};
 
 export default {
   getPets,

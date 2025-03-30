@@ -7,7 +7,7 @@ export const getMessages = async () => {
   const result = await http.get<Message[]>(url);
   if (result) return result.map((item) => new Message(item));
   return [];
-}
+};
 
 export default {
   getMessages,

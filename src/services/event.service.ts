@@ -7,7 +7,7 @@ export const getEvents = async () => {
   const result = await http.get<Event[]>(url);
   if (result) return result.map((item) => new Event(item));
   return [];
-}
+};
 
 export default {
   getEvents,

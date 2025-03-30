@@ -7,7 +7,7 @@ export const getSurveys = async () => {
   const result = await http.get<Survey[]>(url);
   if (result) return result.map((item) => new Survey(item));
   return [];
-}
+};
 
 export default {
   getSurveys,

@@ -7,7 +7,7 @@ export const getCollaborators = async () => {
   const result = await http.get<Collaborator[]>(url);
   if (result) return result.map((item) => new Collaborator(item));
   return [];
-}
+};
 
 export default {
   getCollaborators,

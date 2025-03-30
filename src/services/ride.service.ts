@@ -7,12 +7,12 @@ export const getRides = async (token: string) => {
   const result = await http.get<RideRecord[]>(url, token);
   if (result) return result.map((item) => new RideRecord(item));
   return [];
-}
+};
 
 export const post = async (item: RideRecord, token: string) => {
   const result = await http.post(url, item, token);
   console.log('post result', result);
-}
+};
 
 export default {
   getRides,
