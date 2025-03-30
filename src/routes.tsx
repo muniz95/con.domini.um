@@ -10,7 +10,7 @@ const FirefighterBrigade = React.lazy(
 const Ride = React.lazy(() => import('./features/ride'));
 const NeededRide = React.lazy(() => import('./features/ride/needed'));
 const OfferRide = React.lazy(() => import('./features/ride/offer'));
-const SmallAds = React.lazy(() => import('./views/SmallAds'));
+const SmallAds = React.lazy(() => import('./features/small-ads'));
 const Collaborators = React.lazy(() => import('./features/collaborators'));
 const Mail = React.lazy(() => import('./features/mail'));
 const Documents = React.lazy(() => import('./features/documents'));
