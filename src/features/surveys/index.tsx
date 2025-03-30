@@ -1,13 +1,8 @@
-import React from 'react';
+import { useGetSurveys } from './api/get-surveys';
 import S from './styled';
-import SurveysStore from './store';
 
 const Surveys = () => {
-  const store = React.useContext(SurveysStore);
-
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
+  const { data } = useGetSurveys();
   return (
     <>
       <h2>Enquetes</h2>
@@ -22,7 +17,7 @@ const Surveys = () => {
             </tr>
           </thead>
           <tbody>
-            {store.records.map((survey) => (
+            {data?.map((survey) => (
               <tr key={survey.id}>
                 <td>{survey.title}</td>
                 <td>{survey.closingDate?.toLocaleDateString('pt-br')}</td>

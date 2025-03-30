@@ -14,7 +14,7 @@ const SmallAds = React.lazy(() => import('./features/small-ads'));
 const Collaborators = React.lazy(() => import('./features/collaborators'));
 const Mail = React.lazy(() => import('./features/mail'));
 const Documents = React.lazy(() => import('./features/documents'));
-const Surveys = React.lazy(() => import('./views/Surveys'));
+const Surveys = React.lazy(() => import('./features/surveys'));
 const Events = React.lazy(() => import('./features/events'));
 const AccessList = React.lazy(() => import('./features/access-list'));
 const Messages = React.lazy(() => import('./features/messages'));
