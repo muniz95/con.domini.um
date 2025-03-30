@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import RideStore from './store';
 import S from './styled';
 
-const Ride: React.FC = observer(() => {
+const Ride = () => {
   const store = React.useContext(RideStore);
   const [fieldVisible, setFieldVisible] = React.useState(false);
   const [, setSelectedIcon] = React.useState('');

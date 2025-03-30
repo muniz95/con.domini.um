@@ -14,7 +14,7 @@ function a11yProps(index: number) {
   };
 }
 
-const SmallAds: React.FC = observer(() => {
+const SmallAds = () => {
   const store = React.useContext(SmallAdStore);
   // const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(0);

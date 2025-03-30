@@ -4,7 +4,7 @@ import Store from '../../store';
 import { useNavigate } from 'react-router';
 // import S from './styled';
 
-const Login: React.FC = observer(() => {
+const Login = () => {
   const store = React.useContext(Store);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');

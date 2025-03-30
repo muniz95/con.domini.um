@@ -33,7 +33,7 @@ const TabPanel = (props: {
   );
 };
 
-const NeededRide: React.FC = observer(() => {
+const NeededRide = () => {
   const store = React.useContext(RideStore);
   const [value, setValue] = React.useState(0);
   // const [fieldVisible, setFieldVisible] = React.useState(false);

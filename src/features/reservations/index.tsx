@@ -1,16 +1,14 @@
-
 import React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ReservationRecord from '../../models/ReservationRecord';
 import service from '../../services/reservation.service';
-import availableHours from './availableHours';
+import availableHours from './available-hours';
 import S from './styled';
+import { useGetReservations } from './api/get-reservations';
 
-const Reservations: React.FC = observer(() => {
-  const [reservations, setReservations] = React.useState<ReservationRecord[]>(
-    []
-  );
+const Reservations = () => {
+  const { data } = useGetReservations();
   const [, setSelectedReservation] = React.useState<ReservationRecord | null>();
   const handleClickDay = (date: Date) => {
     service.getReservationsByDate(date).then((result: Response) => {
@@ -20,17 +18,12 @@ const Reservations: React.FC = observer(() => {
     });
   };
   const getReservation = (hour: number) => {
-    const [exactReservation] = reservations.filter(
+    const [exactReservation] = data!.filter(
       (item) => item?.date?.getHours() === hour
     );
     return exactReservation;
   };
   const handleCardClick = (reservation: ReservationRecord) => {
-    const newReservations = [
-      ...reservations.filter((item) => item?.id !== reservation?.id),
-      reservation,
-    ].sort((a, b) => a.date.getHours() - b.date.getHours());
-    setReservations(newReservations);
     setSelectedReservation(reservation);
   };
 
@@ -59,7 +52,7 @@ const Reservations: React.FC = observer(() => {
             >
               <S.ItemCardBody available={currentReservation === undefined}>
                 <span>{hour}</span>
-                {currentReservation?.date.toDateString()}
+                {currentReservation?.date?.toDateString()}
               </S.ItemCardBody>
             </S.ItemCard>
           );
