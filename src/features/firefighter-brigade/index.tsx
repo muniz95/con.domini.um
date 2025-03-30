@@ -1,7 +1,7 @@
 import { Button, Fab } from '@mui/material';
 
 import React from 'react';
-import CDUModal from '../../components/Modal';
+import CDUModal from '../../components/modal';
 import BrigadeMember from '../../models/BrigadeMember';
 import FirefighterBrigadeForm from './_form';
 import { useCreateBrigadeMember } from './api/create-brigade-member';
