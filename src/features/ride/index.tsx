@@ -1,13 +1,12 @@
-
-import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import RideStore from './store';
+import { useGetRideRecords } from './api/get-ride-records';
 import S from './styled';
 
 const Ride = () => {
-  const store = React.useContext(RideStore);
-  const [fieldVisible, setFieldVisible] = React.useState(false);
-  const [, setSelectedIcon] = React.useState('');
+  const { data } = useGetRideRecords();
+  const [fieldVisible, setFieldVisible] = useState(false);
+  const [, setSelectedIcon] = useState('');
   const navigate = useNavigate();
   const offerIconAction = () => {
     if (!fieldVisible) {
@@ -24,12 +23,8 @@ const Ride = () => {
     navigate('/ride/needed');
   };
 
-  React.useEffect(() => {
-    store.fetchItems();
-  }, [store]);
-
   return (
-    <React.Fragment>
+    <>
       <h2>Carona solidária</h2>
       <p>
         A carona solidária tem o objetivo de unir os moradores para melhorar o
@@ -63,7 +58,7 @@ const Ride = () => {
             </tr>
           </thead>
           <tbody>
-            {store.records.map((record) => (
+            {data?.map((record) => (
               <tr key={record.id}>
                 <td>{record.category}</td>
                 <td>{record.destiny}</td>
@@ -73,7 +68,7 @@ const Ride = () => {
           </tbody>
         </S.Table>
       </S.Center>
-    </React.Fragment>
+    </>
   );
 };
 

@@ -9,6 +9,7 @@ interface RideRecord {
   departure: string;
   phone?: string;
   route: string;
+  town: string;
   category: Categories;
 }
 

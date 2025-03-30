@@ -7,9 +7,9 @@ const Assemblies = React.lazy(() => import('./features/assemblies'));
 const FirefighterBrigade = React.lazy(
   () => import('./features/firefighter-brigade')
 );
-const Ride = React.lazy(() => import('./views/Ride'));
-const NeededRide = React.lazy(() => import('./views/Ride/needed'));
-const OfferRide = React.lazy(() => import('./views/Ride/offer'));
+const Ride = React.lazy(() => import('./features/ride'));
+const NeededRide = React.lazy(() => import('./features/ride/needed'));
+const OfferRide = React.lazy(() => import('./features/ride/offer'));
 const SmallAds = React.lazy(() => import('./views/SmallAds'));
 const Collaborators = React.lazy(() => import('./features/collaborators'));
 const Mail = React.lazy(() => import('./features/mail'));
