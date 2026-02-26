@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { RideRepository } from '../../data/repositories/ride.repository';
-import { RideService } from '../../domain/services/ride-service';
+import { RideService } from '../../domain/services/ride.service';
 import { RideRecord } from '../../domain/entities/ride-record';
 import { MutationConfig } from '@/lib/react-query';
 import { RIDE_QUERY_KEYS } from './use-ride-records';

@@ -9,22 +9,33 @@ export default defineConfig(({ mode }) => {
   return {
     base: '/',
     build: {
+      outDir: 'dist',
+      sourcemap: false,
       rollupOptions: {
-        external: [/.*\.tests\.{ts,tsx}$/], // Exclude files matching this regex
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom', 'react-router-dom'],
+            'react-query': ['@tanstack/react-query'],
+          },
+        },
       },
     },
     define: {
       'process.env': env,
     },
-    test: {
-      environment: 'jsdom',
-      exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'],
-      globals: true,
-      include: ['src/__tests__/**/*.test.{ts,tsx}'],
-      typecheck: {
-        tsconfig: './tsconfig.json',
-      },
-    },
+    // test: {
+    //   environment: 'jsdom',
+    //   exclude: ['**/node_modules/**', '**/dist/**', '**/browser/**'],
+    //   globals: true,
+    //   include: ['src/__tests__/**/*.test.{ts,tsx}'],
+    //   typecheck: {
+    //     tsconfig: './tsconfig.json',
+    //   },
+    // },
     plugins: [react(), viteTsconfigPaths()],
+    resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   };
 });

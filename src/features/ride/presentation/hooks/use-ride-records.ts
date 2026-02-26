@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { RideRepository } from '../../data/repositories/ride.repository';
-import { RideService } from '../../domain/services/ride-service';
+import { RideService } from '../../domain/services/ride.service';
 import { QueryConfig } from '@/lib/react-query';
 
 const rideService = new RideService(new RideRepository());
