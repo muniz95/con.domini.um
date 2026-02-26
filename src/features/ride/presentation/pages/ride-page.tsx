@@ -1,27 +1,25 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetRideRecords } from './api/get-ride-records';
-import S from './styled';
+import { useRideRecords } from '../hooks';
+import * as S from '../styles/ride.styled';
 
-const Ride = () => {
-  const { data } = useGetRideRecords();
-  const [fieldVisible, setFieldVisible] = useState(false);
-  const [, setSelectedIcon] = useState('');
+export default function RidePage() {
+  const { data: records, isLoading, error } = useRideRecords();
   const navigate = useNavigate();
+  const [, setSelectedIcon] = useState('');
+
   const offerIconAction = () => {
-    if (!fieldVisible) {
-      setFieldVisible(true);
-    }
-    setSelectedIcon('condomínio');
+    setSelectedIcon('offer');
     navigate('/ride/offer');
   };
+
   const needIconAction = () => {
-    if (!fieldVisible) {
-      setFieldVisible(true);
-    }
-    setSelectedIcon('website');
+    setSelectedIcon('need');
     navigate('/ride/needed');
   };
+
+  if (isLoading) return <div>Carregando...</div>;
+  if (error) return <div>Erro ao carregar caronas</div>;
 
   return (
     <>
@@ -29,11 +27,6 @@ const Ride = () => {
       <p>
         A carona solidária tem o objetivo de unir os moradores para melhorar o
         trânsito e o ar das cidades.
-      </p>
-      <p>
-        Além de você, várias pessoas que moram em seu condomínio provavelmente
-        têm as mesmas necessidades de locomoção. Locais em comum como: escola
-        das crianças, trabalho e família no interior são os mais comuns.
       </p>
       <p>Participe dessa iniciativa!</p>
 
@@ -58,11 +51,11 @@ const Ride = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((record) => (
+            {records?.map((record) => (
               <tr key={record.id}>
                 <td>{record.category}</td>
                 <td>{record.destiny}</td>
-                <td>{record.days}</td>
+                <td>{record.days.join(', ')}</td>
               </tr>
             ))}
           </tbody>
@@ -70,6 +63,4 @@ const Ride = () => {
       </S.Center>
     </>
   );
-};
-
-export default Ride;
+}

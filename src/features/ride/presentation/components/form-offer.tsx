@@ -1,14 +1,15 @@
-import { Form } from '@/components/form/styled';
+import { Form } from '@/shared/components/form/styled';
 import { FormControl, Input, InputLabel } from '@mui/material';
 import { FormEvent, useState } from 'react';
-import { useCreateRideRecord } from './api/create-ride-record';
+import { useCreateRideRecord } from '../hooks';
 
-const FormNeeded = () => {
+export default function FormOffer() {
   const createRideRecord = useCreateRideRecord();
   const [destiny, setDestiny] = useState('');
   const [town, setTown] = useState('');
   const [departure, setDeparture] = useState('');
   const [phone, setPhone] = useState('');
+
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     createRideRecord.mutate({
@@ -16,11 +17,13 @@ const FormNeeded = () => {
       town,
       departure,
       phone,
-      category: 'need',
+      category: 'offer',
       place: '',
       route: '',
+      days: [],
     });
   };
+
   return (
     <Form onSubmit={handleSubmit}>
       <FormControl>
@@ -66,6 +69,4 @@ const FormNeeded = () => {
       <Input type="submit" value="Enviar" />
     </Form>
   );
-};
-
-export default FormNeeded;
+}

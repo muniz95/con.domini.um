@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header';
-import routes from './routes';
+import Header from '@/shared/components/Header';
+import routes from '@/routes';
 
 const App: React.FC = () => {
   const routing = useRoutes([...routes]);

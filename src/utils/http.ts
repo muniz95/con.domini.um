@@ -1,5 +1,3 @@
-import { instance as store } from '../store';
-
 export async function full(request: RequestInfo): Promise<Response> {
   return await fetch(request);
 }
@@ -16,7 +14,6 @@ export async function http<T>(request: RequestInfo): Promise<T | any | null> {
         result = await response.json();
         return result;
       case 401:
-        store.logout();
         break;
       default:
         break;
