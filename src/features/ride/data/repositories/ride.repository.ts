@@ -1,5 +1,5 @@
 import { RideRecord } from '../../domain/entities/ride-record';
-import { IRideRepository } from '../../domain/services/ride-service';
+import { IRideRepository } from '../../domain/services/ride.service';
 import { rideApi } from '../api/ride.api';
 import { rideMapper } from '../mappers/ride.mapper';
 
@@ -10,15 +10,17 @@ export class RideRepository implements IRideRepository {
   }
 
   async create(record: Omit<RideRecord, 'id'>): Promise<RideRecord> {
-    const dto = await rideApi.create(rideMapper.toDTO(record));
+    const dtoToSend = rideMapper.toDTO(record);
+    const { id, ...createData } = dtoToSend;
+
+    const dto = await rideApi.create(createData);
     return rideMapper.toDomain(dto);
   }
 
   async update(id: number, record: Partial<RideRecord>): Promise<RideRecord> {
-    const dto = await rideApi.update(
-      id,
-      rideMapper.toDTO(record as RideRecord)
-    );
+    const dtoToUpdate = rideMapper.toDTO(record as RideRecord);
+
+    const dto = await rideApi.update(id, dtoToUpdate);
     return rideMapper.toDomain(dto);
   }
 

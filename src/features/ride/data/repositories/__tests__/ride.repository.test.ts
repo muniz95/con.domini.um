@@ -1,16 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import { RideRepository } from '@/features/ride/data/repositories/ride.repository';
 import { RideRecord } from '@/features/ride/domain/entities/ride-record';
-import * as rideApiModule from '@/features/ride/data/api/ride.api';
+import { rideApi } from '@/features/ride/data/api/ride.api';
 
 vi.mock('@/features/ride/data/api/ride.api');
 
 describe('RideRepository', () => {
   let repository: RideRepository;
-
-  beforeEach(() => {
-    repository = new RideRepository();
-  });
+  const mockRideApi = vi.mocked(rideApi);
 
   const mockRideDTO = {
     id: 1,
@@ -25,11 +22,14 @@ describe('RideRepository', () => {
     date: '2026-02-26T08:00:00Z',
   };
 
+  beforeEach(() => {
+    vi.clearAllMocks();
+    repository = new RideRepository();
+  });
+
   describe('getAll', () => {
     it('should return array of RideRecord entities', async () => {
-      vi.mocked(rideApiModule.rideApi.getAll).mockResolvedValueOnce([
-        mockRideDTO,
-      ]);
+      mockRideApi.getAll.mockResolvedValueOnce([mockRideDTO]);
 
       const records = await repository.getAll();
 
@@ -39,16 +39,16 @@ describe('RideRepository', () => {
     });
 
     it('should call rideApi.getAll', async () => {
-      vi.mocked(rideApiModule.rideApi.getAll).mockResolvedValueOnce([]);
+      mockRideApi.getAll.mockResolvedValueOnce([]);
 
       await repository.getAll();
 
-      expect(rideApiModule.rideApi.getAll).toHaveBeenCalled();
+      expect(mockRideApi.getAll).toHaveBeenCalled();
     });
 
     it('should map DTOs to domain entities', async () => {
       const mockDtos = [mockRideDTO, { ...mockRideDTO, id: 2 }];
-      vi.mocked(rideApiModule.rideApi.getAll).mockResolvedValueOnce(mockDtos);
+      mockRideApi.getAll.mockResolvedValueOnce(mockDtos);
 
       const records = await repository.getAll();
 
@@ -60,9 +60,7 @@ describe('RideRepository', () => {
 
   describe('create', () => {
     it('should create a new ride record', async () => {
-      vi.mocked(rideApiModule.rideApi.create).mockResolvedValueOnce(
-        mockRideDTO
-      );
+      mockRideApi.create.mockResolvedValueOnce(mockRideDTO);
 
       const newRecord = new RideRecord(
         0,
@@ -82,10 +80,8 @@ describe('RideRepository', () => {
       expect(result.id).toBe(1);
     });
 
-    it('should call rideApi.create with mapped data', async () => {
-      vi.mocked(rideApiModule.rideApi.create).mockResolvedValueOnce(
-        mockRideDTO
-      );
+    it('should call rideApi.create with mapped data (without id)', async () => {
+      mockRideApi.create.mockResolvedValueOnce(mockRideDTO);
 
       const newRecord = new RideRecord(
         0,
@@ -101,11 +97,41 @@ describe('RideRepository', () => {
 
       await repository.create(newRecord);
 
-      expect(rideApiModule.rideApi.create).toHaveBeenCalledWith(
+      expect(mockRideApi.create).toHaveBeenCalledWith(
         expect.objectContaining({
           destiny: 'Rio de Janeiro',
           category: 'need',
+          phone: '21988888888',
+          town: 'Zona Sul',
+          departure: '09:00',
+          place: 'Metrô',
+          route: 'Via Dutra',
+          days: ['Tuesday'],
         })
+      );
+
+      expect(mockRideApi.create).toHaveBeenCalledWith(
+        expect.not.objectContaining({ id: expect.any(Number) })
+      );
+    });
+
+    it('should throw error if create fails', async () => {
+      mockRideApi.create.mockRejectedValueOnce(new Error('Create failed'));
+
+      const newRecord = new RideRecord(
+        0,
+        'Rio',
+        'need',
+        '21988888888',
+        'Centro',
+        '09:00',
+        'Metrô',
+        'BR',
+        ['Tuesday']
+      );
+
+      await expect(repository.create(newRecord)).rejects.toThrow(
+        'Create failed'
       );
     });
   });
@@ -113,42 +139,56 @@ describe('RideRepository', () => {
   describe('update', () => {
     it('should update a ride record', async () => {
       const updatedDTO = { ...mockRideDTO, destiny: 'Updated' };
-      vi.mocked(rideApiModule.rideApi.update).mockResolvedValueOnce(updatedDTO);
+      mockRideApi.update.mockResolvedValueOnce(updatedDTO);
 
       const result = await repository.update(1, {
         destiny: 'Updated',
-      });
+      } as RideRecord);
 
       expect(result.destiny).toBe('Updated');
     });
 
-    it('should call rideApi.update with id and data', async () => {
-      vi.mocked(rideApiModule.rideApi.update).mockResolvedValueOnce(
-        mockRideDTO
-      );
+    it('should call rideApi.update with id and mapped data', async () => {
+      mockRideApi.update.mockResolvedValueOnce(mockRideDTO);
 
-      await repository.update(1, { destiny: 'Updated' });
+      await repository.update(1, { destiny: 'Updated' } as RideRecord);
 
-      expect(rideApiModule.rideApi.update).toHaveBeenCalledWith(
+      expect(mockRideApi.update).toHaveBeenCalledWith(
         1,
-        expect.any(Object)
+        expect.objectContaining({
+          destiny: 'Updated',
+        })
       );
+    });
+
+    it('should throw error if update fails', async () => {
+      mockRideApi.update.mockRejectedValueOnce(new Error('Update failed'));
+
+      await expect(
+        repository.update(1, { destiny: 'Updated' } as RideRecord)
+      ).rejects.toThrow('Update failed');
     });
   });
 
   describe('delete', () => {
     it('should delete a ride record', async () => {
-      vi.mocked(rideApiModule.rideApi.delete).mockResolvedValueOnce(undefined);
+      mockRideApi.delete.mockResolvedValueOnce(undefined);
 
       await expect(repository.delete(1)).resolves.not.toThrow();
     });
 
     it('should call rideApi.delete with id', async () => {
-      vi.mocked(rideApiModule.rideApi.delete).mockResolvedValueOnce(undefined);
+      mockRideApi.delete.mockResolvedValueOnce(undefined);
 
       await repository.delete(1);
 
-      expect(rideApiModule.rideApi.delete).toHaveBeenCalledWith(1);
+      expect(mockRideApi.delete).toHaveBeenCalledWith(1);
+    });
+
+    it('should throw error if delete fails', async () => {
+      mockRideApi.delete.mockRejectedValueOnce(new Error('Delete failed'));
+
+      await expect(repository.delete(1)).rejects.toThrow('Delete failed');
     });
   });
 });
