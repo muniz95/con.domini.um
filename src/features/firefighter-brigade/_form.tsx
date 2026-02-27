@@ -1,4 +1,4 @@
-import { Form, Text } from '@/components/form/styled';
+import { Form, Text } from '@/shared/components/form/styled';
 import { FormControl, Input, InputLabel } from '@mui/material';
 import { Formik } from 'formik';
 import BrigadeMember from '../../models/BrigadeMember';

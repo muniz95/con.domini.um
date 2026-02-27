@@ -1,4 +1,4 @@
-import TabPanel from '@/components/tab-panel';
+import TabPanel from '@/shared/components/tab-panel';
 import AppBar from '@mui/material/AppBar';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';

@@ -1,20 +1,9 @@
-
 import React from 'react';
-import Store from '../../store';
-import { useNavigate } from 'react-router';
 // import S from './styled';
 
 const Login = () => {
-  const store = React.useContext(Store);
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    await store.authenticate(email, password);
-    if (store.authenticated) {
-      navigate('/', { replace: true });
-    }
   };
 
   return (

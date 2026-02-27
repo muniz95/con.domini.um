@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { Form } from '@/components/form/styled';
+import { Form } from '@/shared/components/form/styled';
 import {
   FormControl,
   InputLabel,

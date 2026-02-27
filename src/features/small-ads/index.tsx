@@ -1,4 +1,4 @@
-import TabPanel from '@/components/tab-panel';
+import TabPanel from '@/shared/components/tab-panel';
 import { AppBar, Tab, Tabs } from '@mui/material';
 import { SetStateAction, SyntheticEvent, useState } from 'react';
 import global from '../../global.style';
