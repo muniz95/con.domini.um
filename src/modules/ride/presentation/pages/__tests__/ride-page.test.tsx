@@ -56,7 +56,7 @@ describe('RidePage', () => {
     render(<RidePage />, { wrapper });
 
     await waitFor(() => {
-      expect(screen.getByText(/Curitiba/)).toBeInTheDocument();
+      expect(screen.getByText(/Aeroporto/)).toBeInTheDocument();
     });
   });
 });
