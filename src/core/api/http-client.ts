@@ -62,5 +62,5 @@ class HttpClient {
 }
 
 export const httpClient = new HttpClient({
-  baseURL: process.env.REACT_APP_BASE_URL || 'http://localhost:3001',
+  baseURL: process.env.REACT_APP_BASE_URL || 'http://localhost:3000/api/v1',
 });

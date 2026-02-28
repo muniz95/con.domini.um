@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
+const BASE_URL =
+  process.env.REACT_APP_BASE_URL || 'http://localhost:3000/api/v1';
 
 export const handlers = [
   http.get(`${BASE_URL}/rides`, () => {
