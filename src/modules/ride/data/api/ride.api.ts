@@ -1,6 +1,6 @@
 import { httpClient } from '@/core/api/http-client';
-import { RideRecordDTO } from '../../domain/entities/ride-record';
-import { RIDE_ENDPOINTS } from './ride.endpoints';
+import { RideRecordDTO } from '@/modules/ride/domain/entities/ride-record';
+import { RIDE_ENDPOINTS } from '@/modules/ride/data/api/ride.endpoints';
 
 export const rideApi = {
   async getAll(): Promise<RideRecordDTO[]> {

@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { useRideRecords } from '@/features/ride/presentation/hooks/use-ride-records';
-import { useCreateRideRecord } from '@/features/ride/presentation/hooks/use-create-ride-record';
+import { useRideRecords } from '@/modules/ride/presentation/hooks/use-ride-records';
+import { useCreateRideRecord } from '@/modules/ride/presentation/hooks/use-create-ride-record';
 import { queryClient } from '@/lib/react-query';
-import { RideRecord } from '@/features/ride/domain/entities/ride-record';
+import { RideRecord } from '@/modules/ride/domain/entities/ride-record';
 import React from 'react';
 
 const wrapper = ({ children }: { children: React.ReactNode }) =>

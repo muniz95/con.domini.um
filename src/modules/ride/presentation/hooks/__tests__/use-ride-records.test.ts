@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { useRideRecords } from '@/features/ride/presentation/hooks/use-ride-records';
+import { useRideRecords } from '@/modules/ride/presentation/hooks/use-ride-records';
 import { queryClient } from '@/lib/react-query';
 import React from 'react';
 

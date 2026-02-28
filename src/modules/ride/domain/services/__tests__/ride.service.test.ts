@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import {
   RideService,
   IRideRepository,
-} from '@/features/ride/domain/services/ride.service';
-import { RideRecord } from '@/features/ride/domain/entities/ride-record';
+} from '@/modules/ride/domain/services/ride.service';
+import { RideRecord } from '@/modules/ride/domain/entities/ride-record';
 
 describe('RideService', () => {
   let rideService: RideService;

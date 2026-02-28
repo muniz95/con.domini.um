@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   RideRecord,
   RideRecordDTO,
-} from '@/features/ride/domain/entities/ride-record';
+} from '@/modules/ride/domain/entities/ride-record';
 
 describe('RideRecord Entity', () => {
   const validDTO: RideRecordDTO = {

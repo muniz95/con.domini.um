@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
-import { RideRepository } from '@/features/ride/data/repositories/ride.repository';
-import { RideRecord } from '@/features/ride/domain/entities/ride-record';
-import { rideApi } from '@/features/ride/data/api/ride.api';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { RideRepository } from '@/modules/ride/data/repositories/ride.repository';
+import { RideRecord } from '@/modules/ride/domain/entities/ride-record';
+import { rideApi } from '@/modules/ride/data/api/ride.api';
 
-vi.mock('@/features/ride/data/api/ride.api');
+vi.mock('@/modules/ride/data/api/ride.api');
 
 describe('RideRepository', () => {
   let repository: RideRepository;

@@ -1,16 +1,8 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
+import { generateModuleRoutes } from './module.routes';
 
 const Home = React.lazy(() => import('@/views/Home'));
-const RidePage = React.lazy(
-  () => import('@/features/ride/presentation/pages/ride-page')
-);
-const OfferRidePage = React.lazy(
-  () => import('@/features/ride/presentation/pages/offer-ride-page')
-);
-const NeededRidePage = React.lazy(
-  () => import('@/features/ride/presentation/pages/needed-ride-page')
-);
 const LostFound = React.lazy(() => import('@/features/lost-found'));
 const Administrator = React.lazy(() => import('@/features/administrator'));
 const Assemblies = React.lazy(() => import('@/features/assemblies'));
@@ -39,10 +31,14 @@ const Profile = React.lazy(() => import('@/features/profile'));
 const Unit = React.lazy(() => import('@/features/unit'));
 
 const routes: RouteObject[] = [
-  { path: '', element: <Home /> },
-  { path: 'ride', element: <RidePage /> },
-  { path: 'ride/offer', element: <OfferRidePage /> },
-  { path: 'ride/needed', element: <NeededRidePage /> },
+  {
+    path: '',
+    element: <Home />,
+  },
+  ...generateModuleRoutes(),
+  // { path: 'ride', element: <RidePage /> },
+  // { path: 'ride/offer', element: <OfferRidePage /> },
+  // { path: 'ride/needed', element: <NeededRidePage /> },
   { path: 'lostfound', element: <LostFound /> },
   {
     path: 'administrator',

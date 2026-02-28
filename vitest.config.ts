@@ -8,7 +8,10 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
-    include: ['src/**/__tests__/**/*.test.ts', 'src/**/__tests__/**/*.test.tsx'],
+    include: [
+      'src/**/__tests__/**/*.test.ts',
+      'src/**/__tests__/**/*.test.tsx',
+    ],
     exclude: ['node_modules', 'dist'],
     coverage: {
       provider: 'v8',
@@ -23,10 +26,12 @@ export default defineConfig({
         '**/*.styles.ts',
         '**/index.ts',
       ],
-      lines: 80,
-      functions: 80,
-      branches: 75,
-      statements: 80,
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 75,
+        statements: 80,
+      },
     },
   },
   resolve: {

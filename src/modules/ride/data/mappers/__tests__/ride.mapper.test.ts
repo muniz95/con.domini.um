@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import {
   RideRecord,
   RideRecordDTO,
-} from '@/features/ride/domain/entities/ride-record';
-import { rideMapper } from '@/features/ride/data/mappers/ride.mapper';
+} from '@/modules/ride/domain/entities/ride-record';
+import { rideMapper } from '@/modules/ride/data/mappers/ride.mapper';
 
 describe('RideMapper', () => {
   const validDTO: RideRecordDTO = {

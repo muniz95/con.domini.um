@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { rideApi } from '@/features/ride/data/api/ride.api';
+import { rideApi } from '@/modules/ride/data/api/ride.api';
 
 describe('RideApi', () => {
   describe('getAll', () => {
@@ -80,8 +80,8 @@ describe('RideApi', () => {
       });
 
       expect(updated).toHaveProperty('id');
-      expect(updated).toHaveProperty('category');
-      expect(updated).toHaveProperty('phone');
+      expect(updated).toHaveProperty('destiny');
+      expect(updated.destiny).toBe('New Destiny');
     });
   });
 
