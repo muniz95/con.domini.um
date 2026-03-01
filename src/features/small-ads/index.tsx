@@ -1,76 +1,59 @@
-import TabPanel from '@/shared/components/tab-panel';
-import { AppBar, Tab, Tabs } from '@mui/material';
-import { SetStateAction, SyntheticEvent, useState } from 'react';
-import global from '../../global.style';
+import { Tabs } from '@mantine/core';
+import { useState } from 'react';
 import SmallAd from '../../models/SmallAd';
 import SmallAdForm from './_form';
 import { useGetSmallAds } from './api/get-small-ads';
 import S from './styled';
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
 const SmallAds = () => {
   const { data } = useGetSmallAds();
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<string | null>('ads');
   const myAds = (ad: SmallAd) => ad.createdBy === 'me';
-
-  const handleChange = (
-    _event: SyntheticEvent,
-    newValue: SetStateAction<number>
-  ) => {
-    setValue(newValue);
-  };
 
   return (
     <>
       <h2>Classificados</h2>
-      <AppBar
-        position="static"
-        style={{ backgroundColor: global.primaryColor }}
+      <Tabs
+        value={value}
+        onChange={setValue}
+        color="brand"
+        variant="outline"
+        radius="sm"
       >
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="Barra de anúncios"
-        >
-          <Tab title="Anúncios" {...a11yProps(0)} />
-          <Tab title="Meus anúncios" {...a11yProps(1)} />
-          <Tab title="Novo anúncio" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <S.AdCardContainer>
-          {data?.map((item: SmallAd) => (
-            <S.AdCard key={item.id}>
-              <S.AdCardBody>
-                <S.AdCardTitle>{item.name}</S.AdCardTitle>
-                <span>{item.creationDate.toLocaleDateString('pt-BR')}</span>
-              </S.AdCardBody>
-            </S.AdCard>
-          ))}
-        </S.AdCardContainer>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <S.AdCardContainer>
-          {data?.filter(myAds).map((item: SmallAd) => (
-            <S.AdCard key={item.id}>
-              <S.AdCardBody>
-                <S.AdCardTitle>{item.name}</S.AdCardTitle>
-                <span>{item.creationDate.toLocaleDateString('pt-BR')}</span>
-              </S.AdCardBody>
-            </S.AdCard>
-          ))}
-        </S.AdCardContainer>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <SmallAdForm />
-      </TabPanel>
+        <Tabs.List>
+          <Tabs.Tab value="ads">Anúncios</Tabs.Tab>
+          <Tabs.Tab value="my-ads">Meus anúncios</Tabs.Tab>
+          <Tabs.Tab value="new-ad">Novo anúncio</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value="ads" pt="md">
+          <S.AdCardContainer>
+            {data?.map((item: SmallAd) => (
+              <S.AdCard key={item.id}>
+                <S.AdCardBody>
+                  <S.AdCardTitle>{item.name}</S.AdCardTitle>
+                  <span>{item.creationDate.toLocaleDateString('pt-BR')}</span>
+                </S.AdCardBody>
+              </S.AdCard>
+            ))}
+          </S.AdCardContainer>
+        </Tabs.Panel>
+        <Tabs.Panel value="my-ads" pt="md">
+          <S.AdCardContainer>
+            {data?.filter(myAds).map((item: SmallAd) => (
+              <S.AdCard key={item.id}>
+                <S.AdCardBody>
+                  <S.AdCardTitle>{item.name}</S.AdCardTitle>
+                  <span>{item.creationDate.toLocaleDateString('pt-BR')}</span>
+                </S.AdCardBody>
+              </S.AdCard>
+            ))}
+          </S.AdCardContainer>
+        </Tabs.Panel>
+        <Tabs.Panel value="new-ad" pt="md">
+          <SmallAdForm />
+        </Tabs.Panel>
+      </Tabs>
     </>
   );
 };

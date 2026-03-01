@@ -1,6 +1,7 @@
-import { Button, FormControl, Input, InputLabel, Modal } from '@mui/material';
+import { Button, FormControl, Input, InputLabel } from '@mui/material';
 import { FC, FormEvent, useState } from 'react';
 import { Form } from '@/shared/components/form/styled';
+import CDUModal from '@/shared/components/modal';
 import { useCreateAdministrator } from './api/create-administrator';
 import { useGetAdministrators } from './api/get-administrators';
 import S from './styled';
@@ -51,12 +52,7 @@ const Administrators: FC = () => {
         </S.Table>
       </S.Center>
       {AddButton}
-      <Modal
-        open={open}
-        onClose={handleModalClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
+      <CDUModal open={open} setOpen={setOpen} title="Nova administradora">
         <Form onSubmit={handleSubmit}>
           <FormControl>
             <InputLabel htmlFor="name">Nome</InputLabel>
@@ -79,7 +75,7 @@ const Administrators: FC = () => {
 
           <Input type="submit" value="Enviar" />
         </Form>
-      </Modal>
+      </CDUModal>
     </>
   );
 };

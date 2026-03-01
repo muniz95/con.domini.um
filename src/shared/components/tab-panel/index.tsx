@@ -1,7 +1,8 @@
-import { Box } from '@mui/material';
+import { Box } from '@mantine/core';
+import type { ReactNode } from 'react';
 
 const TabPanel = (props: {
-  children?: React.ReactNode;
+  children?: ReactNode;
   value: number;
   index: number;
 }) => {
@@ -14,7 +15,7 @@ const TabPanel = (props: {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box p="md">{children}</Box>}
     </div>
   );
 };

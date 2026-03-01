@@ -1,133 +1,107 @@
-import { Inbox, Menu } from '@mui/icons-material';
-import AppBar from '@mui/material/AppBar';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Burger,
+  Drawer,
+  Group,
+  NavLink,
+  ScrollArea,
+  Text,
+  UnstyledButton,
+} from '@mantine/core';
+import { IconInbox } from '@tabler/icons-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface IMenuEntry {
   name: string;
   url: string;
-  icon: JSX.Element;
 }
 
 const menuEntries: IMenuEntry[] = [
-  { name: 'Achados & Perdidos', url: 'lostfound', icon: <Inbox /> },
-  { name: 'Administradora', url: 'administrator', icon: <Inbox /> },
-  { name: 'Assembleias', url: 'assemblies', icon: <Inbox /> },
-  { name: 'Brigada de incêndio', url: 'brigade', icon: <Inbox /> },
-  // { name: "Caixa de sugestão", url: "sugestions", icon: <Inbox /> },
-  { name: 'Carona Solidária', url: 'ride', icon: <Inbox /> },
-  { name: 'Classificados', url: 'smallads', icon: <Inbox /> },
-  { name: 'Colaboradores', url: 'collaborators', icon: <Inbox /> },
-  { name: 'Correspondências', url: 'mail', icon: <Inbox /> },
-  { name: 'Documentos', url: 'documents', icon: <Inbox /> },
-  { name: 'Empregados', url: 'employees', icon: <Inbox /> },
-  { name: 'Enquetes', url: 'surveys', icon: <Inbox /> },
-  { name: 'Eventos', url: 'events', icon: <Inbox /> },
-  { name: 'Lista de Acesso', url: 'accesslist', icon: <Inbox /> },
-  { name: 'Mensagens', url: 'messages', icon: <Inbox /> },
-  { name: 'Minha unidade', url: 'unit', icon: <Inbox /> },
+  { name: 'Achados & Perdidos', url: 'lostfound' },
+  { name: 'Administradora', url: 'administrator' },
+  { name: 'Assembleias', url: 'assemblies' },
+  { name: 'Brigada de incêndio', url: 'brigade' },
+  // { name: "Caixa de sugestão", url: "sugestions" },
+  { name: 'Carona Solidária', url: 'ride' },
+  { name: 'Classificados', url: 'smallads' },
+  { name: 'Colaboradores', url: 'collaborators' },
+  { name: 'Correspondências', url: 'mail' },
+  { name: 'Documentos', url: 'documents' },
+  { name: 'Empregados', url: 'employees' },
+  { name: 'Enquetes', url: 'surveys' },
+  { name: 'Eventos', url: 'events' },
+  { name: 'Lista de Acesso', url: 'accesslist' },
+  { name: 'Mensagens', url: 'messages' },
+  { name: 'Minha unidade', url: 'unit' },
   {
     name: 'Obras & Providências',
     url: 'providences',
-    icon: <Inbox />,
   },
-  { name: 'Ocorrências', url: 'occurrences', icon: <Inbox /> },
-  { name: 'Perfil', url: 'profile', icon: <Inbox /> },
-  { name: 'Pets', url: 'pets', icon: <Inbox /> },
-  { name: 'Quadro de Avisos', url: 'board', icon: <Inbox /> },
-  { name: 'Reservas', url: 'reservations', icon: <Inbox /> },
-  { name: 'Veículos', url: 'vehicles', icon: <Inbox /> },
-  { name: 'Visita de Prestadores', url: 'providers', icon: <Inbox /> },
-  { name: 'Votações', url: 'polls', icon: <Inbox /> },
+  { name: 'Ocorrências', url: 'occurrences' },
+  { name: 'Perfil', url: 'profile' },
+  { name: 'Pets', url: 'pets' },
+  { name: 'Quadro de Avisos', url: 'board' },
+  { name: 'Reservas', url: 'reservations' },
+  { name: 'Veículos', url: 'vehicles' },
+  { name: 'Visita de Prestadores', url: 'providers' },
+  { name: 'Votações', url: 'polls' },
 ];
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
-
 export default function Header() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+  const [opened, setOpened] = React.useState(false);
 
-  const sideList: JSX.Element = (
-    <div>
-      <List>
-        {menuEntries.map((entry, index) => (
-          <Link to={`/${entry.url}`} key={entry.name}>
-            <ListItem key={index}>
-              <ListItemIcon>{entry.icon}</ListItemIcon>
-              <ListItemText primary={entry.name} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-    </div>
-  );
-
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
-
-      setState({ ...state, [anchor]: open });
-    };
-
-  const menuButton = (
-    <IconButton
-      onClick={toggleDrawer('right', true)}
-      color="inherit"
-      aria-label="Menu"
-    >
-      <Menu />
-    </IconButton>
-  );
-
-  const authLink = (
-    <Link to="login" color="inherit">
-      Login
-    </Link>
-  );
   return (
-    <AppBar position="static">
-      <Toolbar>
-        {authLink}
-        <Typography variant="h6" color="inherit">
-          <Link to="">News</Link>
-        </Typography>
-        {menuButton}
-      </Toolbar>
+    <Box
+      px="md"
+      py="sm"
+      style={(theme) => ({
+        backgroundColor: theme.colors.brand[6],
+        color: theme.white,
+      })}
+    >
+      <Group justify="space-between" align="center">
+        <Link to="login" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <Text fw={600}>Login</Text>
+        </Link>
+        <Link to="" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <Text fw={700} size="lg">
+            News
+          </Text>
+        </Link>
+        <Burger
+          opened={opened}
+          onClick={() => setOpened((current) => !current)}
+          aria-label="Menu"
+          color="white"
+        />
+      </Group>
+
       <Drawer
-        anchor={'right'}
-        open={state['right']}
-        onClose={toggleDrawer('right', false)}
+        opened={opened}
+        onClose={() => setOpened(false)}
+        position="right"
+        title="Menu"
+        size="xs"
       >
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={toggleDrawer('right', false)}
-          onKeyDown={toggleDrawer('right', false)}
-        >
-          {sideList}
-        </div>
+        <ScrollArea.Autosize mah="70vh">
+          {menuEntries.map((entry) => (
+            <UnstyledButton
+              key={entry.name}
+              component={Link}
+              to={`/${entry.url}`}
+              onClick={() => setOpened(false)}
+              style={{ display: 'block', width: '100%' }}
+            >
+              <NavLink
+                label={entry.name}
+                leftSection={<IconInbox size={16} stroke={1.5} />}
+                component="div"
+              />
+            </UnstyledButton>
+          ))}
+        </ScrollArea.Autosize>
       </Drawer>
-    </AppBar>
+    </Box>
   );
 }
-
-// export default withStyles(styles)(Header);

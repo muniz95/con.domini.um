@@ -88,13 +88,13 @@ const FirefighterBrigade = () => {
         </S.Table>
       </S.Center>
       {AddButton}
-      <CDUModal open={editOpen} setOpen={setEditOpen}>
+      <CDUModal open={editOpen} setOpen={setEditOpen} title="Editar membro">
         <FirefighterBrigadeForm
           item={currentItem!}
           onSubmit={handleEditSubmit}
         />
       </CDUModal>
-      <CDUModal open={newOpen} setOpen={setNewOpen}>
+      <CDUModal open={newOpen} setOpen={setNewOpen} title="Novo membro">
         <FirefighterBrigadeForm onSubmit={handleNewSubmit} />
       </CDUModal>
     </React.Fragment>

@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { AppProvider } from './app/providers/app-provider';
 import App from './app/App';
 import './index.css';
+import '@mantine/core/styles.css';
 import * as serviceWorker from './serviceWorker';
 import { setupMockInterceptor } from '@/core/api/mock-interceptor';
 import { loadMocks } from '@/core/api/mock-loader';

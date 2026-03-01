@@ -1,5 +1,6 @@
 import { Form } from '@/shared/components/form/styled';
-import { Button, FormControl, Input, InputLabel, Modal } from '@mui/material';
+import CDUModal from '@/shared/components/modal';
+import { Button, FormControl, Input, InputLabel } from '@mui/material';
 import React, { ChangeEvent } from 'react';
 import { useGetAssemblies } from './api/get-assemblies';
 import S from './styled';
@@ -65,12 +66,7 @@ const Assemblies: React.FC = () => {
         </S.Table>
       </S.Center>
       {AddButton}
-      <Modal
-        open={open}
-        onClose={handleModalClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
+      <CDUModal open={open} setOpen={setOpen} title="Nova assembleia">
         <Form onSubmit={handleSubmit}>
           <FormControl>
             <InputLabel htmlFor="title">Título</InputLabel>
@@ -87,7 +83,7 @@ const Assemblies: React.FC = () => {
             <Input type="submit" value="Enviar" />
           </div>
         </Form>
-      </Modal>
+      </CDUModal>
     </React.Fragment>
   );
 };

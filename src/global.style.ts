@@ -1,7 +1,14 @@
-export const primaryColor = '#faa473';
-export const secondaryColor = '#930154';
+import { createTheme, colorsTuple } from '@mantine/core';
 
-export default {
-  primaryColor,
-  secondaryColor,
-};
+const primaryColor = '#faa473';
+const secondaryColor = '#930154';
+
+const theme = createTheme({
+  colors: {
+    brand: colorsTuple(primaryColor),
+    accent: colorsTuple(secondaryColor),
+  },
+  primaryColor: 'brand',
+});
+
+export default theme;

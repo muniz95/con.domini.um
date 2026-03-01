@@ -1,22 +1,37 @@
-import { Modal } from '@mui/material';
+import { Modal, type MantineSize } from '@mantine/core';
+import React from 'react';
 
 interface IProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
   open: boolean;
   setOpen: (isOpen: boolean) => void;
+  title?: React.ReactNode;
+  size?: MantineSize | (string & {});
+  centered?: boolean;
 }
 
-const CDUModal = ({ children, open, setOpen }: IProps) => {
+const CDUModal = ({
+  children,
+  open,
+  setOpen,
+  title,
+  size = 'md',
+  centered = true,
+}: IProps) => {
   const handleModalClose = () => {
     setOpen(false);
   };
 
   return (
     <Modal
-      open={open}
+      opened={open}
       onClose={handleModalClose}
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
+      title={title}
+      size={size}
+      centered={centered}
+      withCloseButton
+      closeOnEscape
+      closeOnClickOutside
     >
       {children}
     </Modal>
