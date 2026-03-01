@@ -1,5 +1,5 @@
 import { Form } from '@/shared/components/form/styled';
-import { Button, FormControl, Input, InputLabel } from '@mui/material';
+import { Button, FileInput, TextInput, Textarea } from '@mantine/core';
 import { toBase64 } from '../../utils/file';
 import { useCreateLostFoundItem } from './api/create-lost-found-item';
 import { useState, FormEvent } from 'react';
@@ -13,54 +13,43 @@ const LostFoundItemForm = ({ itemLabel, itemCategory = '' }: IProps) => {
   const createLostFoundItem = useCreateLostFoundItem();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [images, setImages] = useState<FileList | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    let file;
     let image = '';
-    if (images) {
-      [file] = [...Array.from(images)];
-      image = await toBase64(file);
+    if (imageFile) {
+      image = await toBase64(imageFile);
     }
     createLostFoundItem.mutate({ name, description, image, foundBy: 'Admin' });
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <FormControl>
-        <InputLabel htmlFor="item">
-          O que você {itemLabel[itemCategory]}
-        </InputLabel>
-        <Input
-          type="text"
-          id="item"
-          name="item"
-          onChange={({ target }) => setName(target.value)}
-        />
-      </FormControl>
-      <FormControl>
-        <InputLabel htmlFor="description">Faça uma descrição</InputLabel>
-        <Input
-          type="textarea"
-          id="description"
-          name="description"
-          onChange={({ target }) => setDescription(target.value)}
-        />
-      </FormControl>
-      <FormControl>
-        <label htmlFor="image">Anexar imagem (opcional)</label>
-        <Button variant="contained" component="label">
-          Upload File
-          <input
-            type="file"
-            id="image"
-            name="image"
-            hidden
-            onChange={({ currentTarget }) => setImages(currentTarget.files)}
-          />
-        </Button>
-      </FormControl>
+      <TextInput
+        type="text"
+        id="item"
+        name="item"
+        label={`O que você ${itemLabel[itemCategory]}`}
+        onChange={({ target }) => setName(target.value)}
+      />
+      <Textarea
+        id="description"
+        name="description"
+        label="Faça uma descrição"
+        onChange={({ target }) => setDescription(target.value)}
+      />
+      <FileInput
+        id="image"
+        name="image"
+        label="Anexar imagem (opcional)"
+        placeholder="Selecione uma imagem"
+        accept="image/*"
+        clearable
+        onChange={setImageFile}
+      />
 
-      <Input type="submit" value="Enviar" />
+      <Button mt="md" type="submit">
+        Enviar
+      </Button>
     </Form>
   );
 };

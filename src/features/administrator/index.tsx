@@ -1,4 +1,5 @@
-import { Button, FormControl, Input, InputLabel } from '@mui/material';
+import { Button, TextInput } from '@mantine/core';
+import { Button as MUIButton } from '@mui/material';
 import { FC, FormEvent, useState } from 'react';
 import { Form } from '@/shared/components/form/styled';
 import CDUModal from '@/shared/components/modal';
@@ -28,7 +29,7 @@ const Administrators: FC = () => {
   const handleModalClose = () => {
     setOpen(false);
   };
-  const AddButton = <Button onClick={handleAddClick}>+</Button>;
+  const AddButton = <MUIButton onClick={handleAddClick}>+</MUIButton>;
 
   return (
     <>
@@ -54,26 +55,23 @@ const Administrators: FC = () => {
       {AddButton}
       <CDUModal open={open} setOpen={setOpen} title="Nova administradora">
         <Form onSubmit={handleSubmit}>
-          <FormControl>
-            <InputLabel htmlFor="name">Nome</InputLabel>
-            <Input
-              type="text"
-              name="name"
-              id="name"
-              onChange={({ target }) => setName(target.value)}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="phone">Telefone</InputLabel>
-            <Input
-              type="text"
-              name="phone"
-              id="phone"
-              onChange={({ target }) => setPhone(target.value)}
-            />
-          </FormControl>
-
-          <Input type="submit" value="Enviar" />
+          <TextInput
+            type="text"
+            name="name"
+            id="name"
+            label="Nome"
+            onChange={({ target }) => setName(target.value)}
+          />
+          <TextInput
+            type="text"
+            name="phone"
+            id="phone"
+            label="Telefone"
+            onChange={({ target }) => setPhone(target.value)}
+          />
+          <Button mt="md" type="submit">
+            Enviar
+          </Button>
         </Form>
       </CDUModal>
     </>

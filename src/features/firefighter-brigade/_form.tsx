@@ -1,5 +1,5 @@
 import { Form, Text } from '@/shared/components/form/styled';
-import { FormControl, Input, InputLabel } from '@mui/material';
+import { Button, TextInput } from '@mantine/core';
 import { Formik } from 'formik';
 import BrigadeMember from '../../models/BrigadeMember';
 
@@ -36,35 +36,30 @@ const FirefighterBrigadeForm = ({ item, onSubmit }: IProps) => {
       }}
       render={({ errors, values, handleChange, handleBlur, handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
-          <FormControl>
-            <InputLabel htmlFor="name">
-              Nome *{errors.name && <Text color="red">{errors.name}</Text>}
-            </InputLabel>
-            <Input
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.name}
-              type="text"
-              name="name"
-              placeholder="Nome"
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="category">
-              Categoria *
-              {errors.category && <Text color="red">{errors.category}</Text>}
-            </InputLabel>
-            <Input
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.category}
-              type="text"
-              name="category"
-              placeholder="Categoria"
-            />
-          </FormControl>
+          <TextInput
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.name}
+            type="text"
+            name="name"
+            label="Nome *"
+            placeholder="Nome"
+            error={errors.name && <Text color="red">{errors.name}</Text>}
+          />
+          <TextInput
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.category}
+            type="text"
+            name="category"
+            label="Categoria *"
+            placeholder="Categoria"
+            error={errors.category && <Text color="red">{errors.category}</Text>}
+          />
 
-          <Input type="submit" value="Enviar" />
+          <Button mt="md" type="submit">
+            Enviar
+          </Button>
         </Form>
       )}
     />

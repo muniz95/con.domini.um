@@ -1,6 +1,7 @@
 import { Form } from '@/shared/components/form/styled';
 import CDUModal from '@/shared/components/modal';
-import { Button, FormControl, Input, InputLabel } from '@mui/material';
+import { Button, Group, TextInput } from '@mantine/core';
+import { Button as MUIButton } from '@mui/material';
 import React, { ChangeEvent } from 'react';
 import { useGetAssemblies } from './api/get-assemblies';
 import S from './styled';
@@ -40,7 +41,7 @@ const Assemblies: React.FC = () => {
         break;
     }
   };
-  const AddButton = <Button onClick={handleAddClick}>+</Button>;
+  const AddButton = <MUIButton onClick={handleAddClick}>+</MUIButton>;
 
   return (
     <React.Fragment>
@@ -68,20 +69,25 @@ const Assemblies: React.FC = () => {
       {AddButton}
       <CDUModal open={open} setOpen={setOpen} title="Nova assembleia">
         <Form onSubmit={handleSubmit}>
-          <FormControl>
-            <InputLabel htmlFor="title">Título</InputLabel>
-            <Input id="title" value={title} onChange={handleChange} />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="date">Data</InputLabel>
-            <Input type="date" id="date" value={date} onChange={handleChange} />
-          </FormControl>
-          <div>
-            <Button color="secondary" onClick={() => setOpen(false)}>
+          <TextInput
+            id="title"
+            label="Título"
+            value={title}
+            onChange={handleChange}
+          />
+          <TextInput
+            type="date"
+            id="date"
+            label="Data"
+            value={date}
+            onChange={handleChange}
+          />
+          <Group mt="md">
+            <Button variant="default" onClick={() => setOpen(false)}>
               Cancelar
             </Button>
-            <Input type="submit" value="Enviar" />
-          </div>
+            <Button type="submit">Enviar</Button>
+          </Group>
         </Form>
       </CDUModal>
     </React.Fragment>

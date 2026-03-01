@@ -1,5 +1,5 @@
 import { Form } from '@/shared/components/form/styled';
-import { FormControl, Input, InputLabel } from '@mui/material';
+import { Button, TextInput } from '@mantine/core';
 import { FormEvent, useState } from 'react';
 import { useCreateRideRecord } from '../hooks';
 
@@ -26,47 +26,41 @@ export default function FormOffer() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormControl>
-        <InputLabel htmlFor="destiny">Destino</InputLabel>
-        <Input
-          type="text"
-          id="destiny"
-          name="destiny"
-          onChange={({ target }) => setDestiny(target.value)}
-        />
-      </FormControl>
+      <TextInput
+        type="text"
+        id="destiny"
+        name="destiny"
+        label="Destino"
+        onChange={({ target }) => setDestiny(target.value)}
+      />
 
-      <FormControl>
-        <InputLabel htmlFor="town">Bairro e/ou cidade</InputLabel>
-        <Input
-          type="text"
-          id="town"
-          name="town"
-          onChange={({ target }) => setTown(target.value)}
-        />
-      </FormControl>
+      <TextInput
+        type="text"
+        id="town"
+        name="town"
+        label="Bairro e/ou cidade"
+        onChange={({ target }) => setTown(target.value)}
+      />
 
-      <FormControl>
-        <InputLabel htmlFor="departure">Horário de saída</InputLabel>
-        <Input
-          type="text"
-          id="departure"
-          name="departure"
-          onChange={({ target }) => setDeparture(target.value)}
-        />
-      </FormControl>
+      <TextInput
+        type="text"
+        id="departure"
+        name="departure"
+        label="Horário de saída"
+        onChange={({ target }) => setDeparture(target.value)}
+      />
 
-      <FormControl>
-        <InputLabel htmlFor="phone">Telefone (opcional)</InputLabel>
-        <Input
-          type="text"
-          id="phone"
-          name="phone"
-          onChange={({ target }) => setPhone(target.value)}
-        />
-      </FormControl>
+      <TextInput
+        type="text"
+        id="phone"
+        name="phone"
+        label="Telefone (opcional)"
+        onChange={({ target }) => setPhone(target.value)}
+      />
 
-      <Input type="submit" value="Enviar" />
+      <Button mt="md" type="submit">
+        Enviar
+      </Button>
     </Form>
   );
 }
