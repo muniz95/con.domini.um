@@ -1,4 +1,4 @@
-import { ThumbDown, ThumbUp } from '@mui/icons-material';
+import { IconThumbDown, IconThumbUp } from '@tabler/icons-react';
 import styled from 'styled-components';
 import global from '../../global.style';
 
@@ -12,12 +12,12 @@ export const SmileysContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-export const OfferIcon = styled(ThumbUp)`
+export const OfferIcon = styled(IconThumbUp)`
   font-size: 8pc;
   color: ${global.primaryColor};
 ` as unknown as keyof JSX.IntrinsicElements;
 
-export const NeedIcon = styled(ThumbDown)`
+export const NeedIcon = styled(IconThumbDown)`
   font-size: 8pc;
   color: ${global.primaryColor};
 ` as unknown as keyof JSX.IntrinsicElements;

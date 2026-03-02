@@ -1,5 +1,4 @@
-import { Button, Fab } from '@mui/material';
-
+import { ActionIcon, Button, Group } from '@mantine/core';
 import React from 'react';
 import CDUModal from '@/shared/components/modal';
 import BrigadeMember from '../../models/BrigadeMember';
@@ -57,7 +56,11 @@ const FirefighterBrigade = () => {
     deleteBrigadeMember.mutate(id);
     handleModalClose();
   };
-  const AddButton = <Fab onClick={handleAddClick}>+</Fab>;
+  const AddButton = (
+    <ActionIcon onClick={handleAddClick} variant="filled" radius="xl" size="lg">
+      +
+    </ActionIcon>
+  );
 
   return (
     <React.Fragment>
@@ -77,10 +80,18 @@ const FirefighterBrigade = () => {
                 <td>{item.name}</td>
                 <td>{item.category}</td>
                 <td>
-                  <Button onClick={() => handleEdit(item)}>Editar</Button>
-                  <Button onClick={() => handleRemove(item.id!)}>
-                    Remover
-                  </Button>
+                  <Group gap="xs">
+                    <Button size="compact-sm" onClick={() => handleEdit(item)}>
+                      Editar
+                    </Button>
+                    <Button
+                      size="compact-sm"
+                      color="red"
+                      onClick={() => handleRemove(item.id!)}
+                    >
+                      Remover
+                    </Button>
+                  </Group>
                 </td>
               </tr>
             ))}

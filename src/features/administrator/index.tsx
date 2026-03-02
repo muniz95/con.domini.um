@@ -1,5 +1,4 @@
-import { Button, TextInput } from '@mantine/core';
-import { Button as MUIButton } from '@mui/material';
+import { ActionIcon, Button, TextInput } from '@mantine/core';
 import { FC, FormEvent, useState } from 'react';
 import { Form } from '@/shared/components/form/styled';
 import CDUModal from '@/shared/components/modal';
@@ -29,7 +28,11 @@ const Administrators: FC = () => {
   const handleModalClose = () => {
     setOpen(false);
   };
-  const AddButton = <MUIButton onClick={handleAddClick}>+</MUIButton>;
+  const AddButton = (
+    <ActionIcon onClick={handleAddClick} variant="filled" radius="xl" size="lg">
+      +
+    </ActionIcon>
+  );
 
   return (
     <>

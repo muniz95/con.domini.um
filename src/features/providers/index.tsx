@@ -1,4 +1,4 @@
-import { Fab } from '@mui/material';
+import { ActionIcon } from '@mantine/core';
 import { useGetProviders } from './api/get-providers';
 import S from './styled';
 
@@ -35,7 +35,9 @@ const Providers = () => {
           </tbody>
         </S.Table>
       </S.Center>
-      <Fab>+</Fab>
+      <ActionIcon variant="filled" radius="xl" size="lg">
+        +
+      </ActionIcon>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { Mood, MoodBad } from '@mui/icons-material';
+import { IconMoodSmile, IconMoodSad } from '@tabler/icons-react';
 import styled from 'styled-components';
 import global from '../../global.style';
 
@@ -8,12 +8,12 @@ export const SmileysContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-export const SadEmoji = styled(MoodBad)`
+export const SadEmoji = styled(IconMoodSad)`
   font-size: 8pc;
   color: ${global.primaryColor};
 ` as unknown as keyof JSX.IntrinsicElements;
 
-export const HappyEmoji = styled(Mood)`
+export const HappyEmoji = styled(IconMoodSmile)`
   font-size: 8pc;
   color: ${global.primaryColor};
 ` as unknown as keyof JSX.IntrinsicElements;

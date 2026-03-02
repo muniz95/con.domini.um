@@ -1,7 +1,6 @@
 import { Form } from '@/shared/components/form/styled';
 import CDUModal from '@/shared/components/modal';
-import { Button, Group, TextInput } from '@mantine/core';
-import { Button as MUIButton } from '@mui/material';
+import { ActionIcon, Button, Group, TextInput } from '@mantine/core';
 import React, { ChangeEvent } from 'react';
 import { useGetAssemblies } from './api/get-assemblies';
 import S from './styled';
@@ -41,7 +40,11 @@ const Assemblies: React.FC = () => {
         break;
     }
   };
-  const AddButton = <MUIButton onClick={handleAddClick}>+</MUIButton>;
+  const AddButton = (
+    <ActionIcon onClick={handleAddClick} variant="filled" radius="xl" size="lg">
+      +
+    </ActionIcon>
+  );
 
   return (
     <React.Fragment>
