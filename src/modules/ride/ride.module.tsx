@@ -1,12 +1,5 @@
-import { RouteObject } from 'react-router-dom';
+import { ModuleDefinition } from '@/core/modules/module-definition';
 import { lazy } from 'react';
-
-export interface ModuleDefinition {
-  name: string;
-  enabled: boolean;
-  routes: RouteObject[];
-  dependencies?: string[];
-}
 
 const RidePage = lazy(() => import('./presentation/pages/ride-page'));
 const OfferRidePage = lazy(

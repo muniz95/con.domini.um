@@ -1,11 +1,5 @@
+import { ModuleDefinition } from '@/core/modules/module-definition';
 import { rideModule } from '@/modules/ride/ride.module';
-
-export interface ModuleDefinition {
-  name: string;
-  enabled: boolean;
-  routes: any[];
-  dependencies?: string[];
-}
 
 export const ALL_MODULES: ModuleDefinition[] = [rideModule];
 
